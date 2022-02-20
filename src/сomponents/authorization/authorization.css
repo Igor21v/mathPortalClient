@@ -1,0 +1,35 @@
+.authorization {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  align-self: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.authorization__header {
+  font-size: 30px;
+  font-weight: 700;
+}
+.authorization input {
+  margin: 10px 20px;
+}
+.authorization__btn {
+  border: none;
+  background-color: #566885;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  padding: 5px 10px;
+  align-self: flex-end;
+  margin-top: 10px;
+}
+.login {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center
+}
+/*# sourceMappingURL=authorization.css.map */
