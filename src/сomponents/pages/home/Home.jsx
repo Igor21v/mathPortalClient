@@ -20,8 +20,8 @@ export function Home() {
         const [searchName, setSearchName] = useState('')
         const [searchTimeout, setSearchTimeout] = useState(false)
         const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
-
-        function searchChangeHandler(e) {
+        console.log('1');
+        function searchChangeHandler(e) { 
                 setSearchName(e.target.value)
                 if (searchTimeout !== false) {
                     clearTimeout(searchTimeout)
@@ -51,7 +51,7 @@ export function Home() {
                         :
                         <Container>
                                 <Row className="justify-content-md-center mb-5">
-                                        <Col lg={8} >
+                                        <Col lg={8} >     
                                                 <h5>Счетчик событий useEffect: {" "}
                                                         {localStorage.getItem('useEffectCont')}</h5>
                                                         <img className="navbar__avatar" src={avatar} alt=""/>
