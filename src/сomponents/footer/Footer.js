@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 
 const Footer = () => (
-    <Container fluid style={{ backgroundColor: '#388e3c', color: '#202020' }}>
+    <Container fluid style={{ backgroundColor: '#558b2f', color: '#202020' }}>
         <Container style={{
             display: 'flex', justifyContent: 'center', padding: '10px 0px 3px',
             fontSize: "80%", fontStyle: "italic", lineHeight: "1"
