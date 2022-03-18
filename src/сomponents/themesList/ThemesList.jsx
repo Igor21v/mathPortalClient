@@ -1,10 +1,6 @@
 import React from 'react';
 import { useSelector } from "react-redux"
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import slide1 from "../../pictures/themes/1.jpg"
-import slide2 from "../../pictures/themes/2.jpg"
-import slide3 from "../../pictures/themes/3.jpg"
-import slide4 from "../../pictures/themes/4.jpg"
+import { Container, Row } from 'react-bootstrap';
 import Theme from './theme/Theme';
 
 const ThemesList = () => {
