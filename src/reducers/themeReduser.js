@@ -1,15 +1,15 @@
-import React from 'react';
+const SET_THEMES = "SET_THEMES"
 
 const defaultState = {
     themes: []
 }
 
-const themeReduser = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+export default function themeReduser(state = defaultState, action) {
+     switch (action.type) {
+         case SET_THEMES return {...state, themes: action.payliad}
+         default:
+             return state
+     }
+}
 
-export default themeReduser;
+export const setThemes = (themes) => ({type: SET_THEMES, payload: themes})
