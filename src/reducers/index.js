@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     files: fileReducer,
     upload: uploadReducer,
     app: appReducer,
-    theme: themeReduser
+    themes: themeReduser
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

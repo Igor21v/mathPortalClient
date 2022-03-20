@@ -6,10 +6,10 @@ const defaultState = {
 
 export default function themeReduser(state = defaultState, action) {
      switch (action.type) {
-         case SET_THEMES return {...state, themes: action.payliad}
+         case SET_THEMES: return {...state, themes: action.payload}
          default:
              return state
      }
 }
 
-export const setThemes = (themes) => ({type: SET_THEMES, payload: themes})
+export const setThemes = (payload) => ({type: SET_THEMES, payload: payload})
