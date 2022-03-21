@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import ThemesList from '../../themesList/ThemesList';
 import { getThemes } from '../../../actions/theme';
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Container, Col, Row } from 'react-bootstrap';
+import LeftMenu from './leftMenu/LeftMenu';
 
 
 
@@ -14,17 +15,20 @@ export const Themes = () => {
     })
     return (
         <div>
-        < Dropdown>
-            <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                Dropdown Button
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown >
-    < ThemesList />
-    </div>
+            <Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+                <Row className="gap-3">
+                    <Col md={2}>
+                        <LeftMenu />
+                    </Col>
+
+                    <Col >
+                        <Row className="justify-content-center">
+                            < ThemesList />
+                        </Row>
+                    </Col>
+
+                </Row>
+            </Container >
+        </div >
     )
-       }
+}
