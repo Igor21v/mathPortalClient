@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 export const Themes = () => {
-    const showAll = "true"
+    const showThemes = "1"
     const dispatch = useDispatch()
     useEffect(() =>{
-        dispatch(getThemes(showAll))
+        dispatch(getThemes(showThemes))
     })
        return     (<ThemesList/>);
 }
