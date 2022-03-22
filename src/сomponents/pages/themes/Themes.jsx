@@ -23,7 +23,7 @@ export const Themes = () => {
 
                     <Col>        
                         <Row className="d-flex justify-content-center bg-warning" >
-                            {/* < ThemesList/> */}
+                            < ThemesList className="d-flex justify-content-center bg-warning"/>
                         </Row>
                     </Col>
                 </Row>
