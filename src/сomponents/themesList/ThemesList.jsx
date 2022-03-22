@@ -13,7 +13,7 @@ const ThemesList = () => {
     return (
         <>      
                 {themes.map(theme =>
-                    <Theme theme={theme} />
+                    <Theme key={theme._id} theme={theme} />
                 )}
         </>
     );

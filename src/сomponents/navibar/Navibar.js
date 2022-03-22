@@ -55,9 +55,9 @@ export default function Navibar() {
                         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className='me-auto'>
-                                <Nav.Link> <Link to="/themes">Темы</Link> </Nav.Link>
-                                <Nav.Link> <Link to="/">Личный кабинет</Link> </Nav.Link>
-                                <Nav.Link> <Link to="/about">О портале</Link> </Nav.Link>
+                                 <Link className='me-2' to="/themes">Темы</Link> 
+                                 <Link className='me-2' to="/">Личный кабинет</Link> 
+                                 <Link className='me-2' to="/about">О портале</Link> 
                             </Nav>
                             {!isAuth &&
                                 <Nav onSelect={handleShow}> <Nav.Link eventKey="0">
@@ -67,10 +67,6 @@ export default function Navibar() {
                                 <Nav onSelect={getLogout}> <Nav.Link eventKey="0">
                                     <StalesAll>Выйти</StalesAll>
                                 </Nav.Link> </Nav>}
-                            {/* {isAuth && <Button variant='secondary' onClick={getLogout}>Выйти</Button>} */}
-                            {/* {!isAuth && <Button variant='secondary' onClick={handleShow}>Войти</Button>} */}
-                            {/* {isAuth && <Button variant='secondary' onClick={getLogout}>Выйти</Button>} */}
-                            {/* </Nav> */}
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

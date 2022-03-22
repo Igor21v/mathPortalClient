@@ -21,12 +21,11 @@ export const Themes = () => {
                         <LeftMenu />
                     </Col>
 
-                    <Col >
-                        <Row className="justify-content-center">
-                            < ThemesList />
+                    <Col>        
+                        <Row className="d-flex justify-content-center bg-warning" >
+                            {/* < ThemesList/> */}
                         </Row>
                     </Col>
-
                 </Row>
             </Container >
         </div >
