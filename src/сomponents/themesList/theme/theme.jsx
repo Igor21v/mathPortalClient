@@ -6,7 +6,7 @@ import {API_URL} from "../../../config";
 const Theme = ({ theme }) => {
     const picturePath = theme.hasPicture? 
     (API_URL + "themes/themePicture/" + theme._id + ".jpg"):
-    (API_URL + "themes/themePicture/" + "1" + ".jpg") 
+    (API_URL + "themes/themePicture/1.jpg") 
     return (
         <Col md="auto">
             <Card style={{ width: '16rem' }} className="mb-3">

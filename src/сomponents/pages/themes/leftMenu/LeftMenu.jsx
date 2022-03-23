@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown, Form, Stack } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { getThemes } from '../../../../actions/theme';
+
+
 
 const LeftMenu = () => {
+    const [searchName, setSearchName] = useState('')
+    const [searchTimeout, setSearchTimout] = useState(false)
+    const dispatch = useDispatch()
+    function searchChangeHandler(e) { 
+    setSearchName(e.target.value)
+    if (searchTimeout !==false){
+        clearTimeout(searchTimeout)
+    }    
+    setSearchTimout(setTimeout((value) => {
+        dispatch(getThemes("", value));
+    }, 500, e.target.value))
+    } 
+
     return (
         <>
             <Stack gap={3} className="d-grid"> 
@@ -16,7 +33,11 @@ const LeftMenu = () => {
                     </Dropdown.Menu>
                 </Dropdown >
                 
-                <Form.Control type="text" placeholder="Поиск темы" />
+                <Form.Control 
+                type="text" 
+                placeholder="Поиск темы" 
+                value={searchName}
+                onChange={e => searchChangeHandler(e)} />
             </Stack>
         </>
     );
