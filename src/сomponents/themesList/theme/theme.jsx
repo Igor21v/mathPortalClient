@@ -9,7 +9,7 @@ const Theme = ({ theme }) => {
     (API_URL + "themes/themePicture/" + "1" + ".jpg") 
     return (
         <Col md="auto">
-            <Card style={{ width: '18rem' }} className="mb-3">
+            <Card style={{ width: '16rem' }} className="mb-3">
                 <Card.Img variant="top" src= {picturePath} />
                 <Card.Body>
                     <Card.Title>{theme.name}</Card.Title>

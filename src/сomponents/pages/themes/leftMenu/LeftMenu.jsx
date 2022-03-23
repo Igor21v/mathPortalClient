@@ -5,9 +5,9 @@ const LeftMenu = () => {
     return (
         <>
             <Stack gap={3} className="d-grid"> 
-                < Dropdown className="d-grid">
+                < Dropdown className="d-grid" >
                     <Dropdown.Toggle variant="primary" id="dropdown-basic" >
-                        Режим отображения
+                        Отображать
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item href="#/action-1">Все темы</Dropdown.Item>

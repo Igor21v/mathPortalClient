@@ -14,20 +14,19 @@ export const Themes = () => {
         dispatch(getThemes(showThemes))
     })
     return (
-        <div>
+        <>
             <Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <Row className="gap-3">
-                    <Col md={2}>
+                    <Col lg={2}>
                         <LeftMenu />
                     </Col>
-
-                    <Col>        
-                        <Row className="d-flex justify-content-center bg-warning" >
-                            < ThemesList className="d-flex justify-content-center bg-warning"/>
-                        </Row>
+                    <Col>
+                        <div className="d-flex flex-wrap justify-content-around" >
+                            < ThemesList />
+                        </div>
                     </Col>
                 </Row>
             </Container >
-        </div >
+        </ >
     )
 }
