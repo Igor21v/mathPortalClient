@@ -8,11 +8,13 @@ import LeftMenu from './leftMenu/LeftMenu';
 
 
 export const Themes = () => {
-    const showThemes = "1"
+    const showThemes = useSelector(state => state.themes.showThemes)
+    const searchThemes = useSelector(state => state.themes.searchThemes)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getThemes(showThemes))
-    })
+        dispatch(getThemes(showThemes, searchThemes))
+    }, [searchThemes])
+    console.log("ShT: " + showThemes + "  SeT: "+  searchThemes)
     return (
         <>
             <Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
