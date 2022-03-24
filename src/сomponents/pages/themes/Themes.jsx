@@ -13,7 +13,7 @@ export const Themes = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getThemes(showThemes, searchThemes))
-    }, [searchThemes])
+    }, [searchThemes, showThemes])
     console.log("ShT: " + showThemes + "  SeT: "+  searchThemes)
     return (
         <>
