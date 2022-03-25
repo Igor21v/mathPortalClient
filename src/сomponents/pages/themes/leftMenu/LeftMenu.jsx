@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown, Form, Stack } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getThemes } from '../../../../actions/theme';
 import { setShowThemes, setSearchThemes } from '../../../../reducers/themeReduser';
 
 

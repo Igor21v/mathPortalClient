@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Login from "../../authorization/Login";
 import Registration from "../../authorization/Registration";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import './home.css';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import Disk from '../../disk/Disk';
 import Profile from '../../profile/Profile';
-import {showLoader} from "../../../reducers/appReducer";
-import {getFiles, searchFiles} from "../../../actions/file";
+import { showLoader } from "../../../reducers/appReducer";
+import { getFiles, searchFiles } from "../../../actions/file";
 import avatarLogo from '../../../assets/img/avatar.svg'
-import {API_URL} from "../../../config";
+import { API_URL } from "../../../config";
 
 export function Home() {
 
@@ -21,20 +21,20 @@ export function Home() {
         const [searchTimeout, setSearchTimeout] = useState(false)
         const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
         console.log('1');
-        function searchChangeHandler(e) { 
+        function searchChangeHandler(e) {
                 setSearchName(e.target.value)
                 if (searchTimeout !== false) {
-                    clearTimeout(searchTimeout)
+                        clearTimeout(searchTimeout)
                 }
                 dispatch(showLoader())
-                if(e.target.value !== '') {
-                    setSearchTimeout(setTimeout((value) => {
-                        dispatch(searchFiles(value));
-                    }, 500, e.target.value))
+                if (e.target.value !== '') {
+                        setSearchTimeout(setTimeout((value) => {
+                                dispatch(searchFiles(value));
+                        }, 500, e.target.value))
                 } else {
-                    dispatch(getFiles(currentDir))
+                        dispatch(getFiles(currentDir))
                 }
-            }
+        }
 
         return (
 
@@ -49,22 +49,32 @@ export function Home() {
                                 </Row>
                         </Container>
                         :
-                        <Container>
-                                <Row className="justify-content-md-center mb-5">
-                                        <Col lg={8} >     
-                                                <h5>Счетчик событий useEffect: {" "}
-                                                        {localStorage.getItem('useEffectCont')}</h5>
-                                                        <img className="navbar__avatar" src={avatar} alt=""/>
-                                                        {<Profile />}
-                                                <Registration />
-                                                <h2>Управление файловой системой проекта</h2>
-                                                <input
-                                                        value={searchName}
-                                                        onChange={e => searchChangeHandler(e)}
-                                                        className='navbar__search'
-                                                        type="text"
-                                                        placeholder="Название файла..." />
-                                                {<Disk />}
+                        <Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+                                <Row className="gap-3">
+                                        <Col lg={2}>
+                                                <Stack gap={3}>
+                                                        <Button> Управление пользователями</Button>
+                                                        <Button> Управление темами</Button>
+                                                </Stack>
+                                        </Col>
+                                        <Col>
+                                                <Row className="justify-content-md-center mb-5">
+                                                        <Col>
+                                                                <h5>Счетчик событий useEffect: {" "}
+                                                                        {localStorage.getItem('useEffectCont')}</h5>
+                                                                <img className="navbar__avatar" src={avatar} alt="" />
+                                                                {<Profile />}
+                                                                <Registration />
+                                                                <h2>Управление файловой системой проекта</h2>
+                                                                <input
+                                                                        value={searchName}
+                                                                        onChange={e => searchChangeHandler(e)}
+                                                                        className='navbar__search'
+                                                                        type="text"
+                                                                        placeholder="Название файла..." />
+                                                                {<Disk />}
+                                                        </Col>
+                                                </Row>
                                         </Col>
                                 </Row>
                         </Container>
