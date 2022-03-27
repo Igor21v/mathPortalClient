@@ -34,7 +34,7 @@ const Login = () => {
                         <Form.Check type="checkbox" label='запомнить меня' />
                     </Form.Group>
                     <Form.Group className="ms-auto ">
-                        <Button type="submit" class="btn-primary" >Войти</Button>
+                        <Button type="submit" className="btn-primary" >Войти</Button>
                     </Form.Group>
                 </Stack>
             </Form>
