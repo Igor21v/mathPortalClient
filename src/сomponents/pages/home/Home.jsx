@@ -11,6 +11,7 @@ import { API_URL } from "../../../config";
 import LeftMenu from './leftMenu/LeftMenu';
 import ControlUsers from './controlUsers/ControlUsers.jsx';
 import ControlGeneral from './controlGeneral/ControlGeneral';
+import ControlThemes from './controlThemes/ControlThemes';
 
 export function Home() {
 	const isAuth = useSelector(state => state.user.isAuth)
@@ -21,6 +22,8 @@ export function Home() {
 		switch (contentPage) {
 			case 'users':
 				return <ControlUsers/>
+			case 'themes':
+				return <ControlThemes/>
 			case 'settings':
 				return  <ControlGeneral/>	
 			default:
@@ -32,7 +35,7 @@ export function Home() {
 
 		<> 
 		{!isAuth ?
-			<Container>
+			<Container className = "d-flex justify-content-center mb-5 ">
 
 				<Col lg={4} >
 					<h3 className="authorization_need">Необходима авторизация</h3>
