@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ThemesList from '../../themesList/ThemesList';
 import { getThemes } from '../../../actions/theme';
 import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import LeftMenu from './leftMenu/LeftMenu';
 
 
@@ -13,8 +13,12 @@ export const Themes = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getThemes(showThemes, searchThemes))
-    }, [searchThemes, showThemes])
-    console.log("ShT: " + showThemes + "  SeT: "+  searchThemes)
+        localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
+    }, [showThemes, searchThemes])
+    useEffect(() => {
+        console.log('Выполнен useEffect')
+    })
+
     return (
         <>
             <Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>

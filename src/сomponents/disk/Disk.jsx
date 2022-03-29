@@ -15,7 +15,6 @@ const Disk = () => {
     const [dragEnter, setDragEnter] = useState(false)
     const [sort, setSort] = useState('type')
     
-
     useEffect(() => {
         dispatch(getFiles(currentDir, sort))
     }, [currentDir, sort])

@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Login from "../../authorization/Login";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import './home.css';
 import { Col, Container, Row } from 'react-bootstrap';
-
-import { showLoader } from "../../../reducers/appReducer";
-import { getFiles, searchFiles } from "../../../actions/file";
-import avatarLogo from '../../../assets/img/avatar.svg'
-import { API_URL } from "../../../config";
 import LeftMenu from './leftMenu/LeftMenu';
 import ControlUsers from './controlUsers/ControlUsers.jsx';
 import ControlGeneral from './controlGeneral/ControlGeneral';
@@ -17,7 +12,6 @@ export function Home() {
 	const isAuth = useSelector(state => state.user.isAuth)
 	const contentPage = useSelector(state => state.app.contentPage)
 
-	console.log(contentPage);
 	const content = () => {
 		switch (contentPage) {
 			case 'users':

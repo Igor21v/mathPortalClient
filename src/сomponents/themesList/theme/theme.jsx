@@ -5,7 +5,6 @@ import { API_URL } from "../../../config";
 
 const Theme = ({ theme }) => {
     const borderRed = theme.isPublic ? '' : 'danger'
-    console.log(borderRed)
     const picturePath = theme.hasPicture ?
         (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
         (API_URL + "themes/themePicture/1.jpg")

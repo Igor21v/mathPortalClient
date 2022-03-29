@@ -35,7 +35,6 @@ export const auth =  () => {
             const response = await axios.get(`${API_URL}api/auth/auth`,
                 {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
             )
-            localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
             dispatch (setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {

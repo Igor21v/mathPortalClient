@@ -12,6 +12,7 @@ export function getThemes (showThemes, searchTheme) {
             }}, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
+            console.log('Выполнен запрос тем')
             dispatch(setThemes(response.data))
         }
         catch (e) {
@@ -20,19 +21,18 @@ export function getThemes (showThemes, searchTheme) {
     }
 }
 
-export function addTheme (name, discription) {
-    return async dispatch => {
+export async function addTheme (name, discription) {
         try {
+            console.log('555 ' + name + '  ' + discription)
             const response = await axios.post(`${API_URL}api/theme`,{
                 name: name,
                 discription: discription
             }, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
             })
-        console.log(response)
+        console.log(response.data)
         }     
         catch (e) {
             alert(e.response.data.message)
-        }
     }
 }
