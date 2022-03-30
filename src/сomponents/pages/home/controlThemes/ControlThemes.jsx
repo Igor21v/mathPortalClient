@@ -9,8 +9,8 @@ const ControlThemes = () => {
         event.preventDefault()
         addTheme(nameTheme, discription)
         console.log(nameTheme + '  ' + discription)
-
     }
+    
 
     return (
         <>
