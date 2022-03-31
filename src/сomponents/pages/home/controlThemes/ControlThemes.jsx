@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { addTheme } from '../../../../actions/theme';
+import { useDispatch } from "react-redux";
+import AddStatus from './addStatus/AddStatus';
 
 const ControlThemes = () => {
     const [nameTheme, setName] = useState('');
     const [discription, setDiscription] = useState('');
+    const dispatch = useDispatch()
     const AddTheme = (event) => {
         event.preventDefault()
-        addTheme(nameTheme, discription)
+        dispatch(addTheme(nameTheme, discription))
         console.log(nameTheme + '  ' + discription)
     }
 
@@ -36,7 +39,7 @@ const ControlThemes = () => {
                 <Button variant="primary" type="submit" >
                     Добавить тему
                 </Button>
-                <span className="text-danger ms-3">Ошибка при создании темы!</span>
+                <AddStatus/>
             </Form>
         </>
     );
