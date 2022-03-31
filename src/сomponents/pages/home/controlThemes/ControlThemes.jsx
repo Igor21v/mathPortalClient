@@ -32,11 +32,10 @@ const ControlThemes = () => {
                     <Form.Control
                         type="text"
                         onChange={(e) => setDiscription(e.target.value)}
-                        placeholder="Добвавьте описание темы (необязательно)"
+                        placeholder="Добавьте описание темы (необязательно)"
                         value={discription} />
                 </Form.Group>
-
-                <Button variant="primary" type="submit" >
+                <Button variant="primary" type="submit" className='me-3'>
                     Добавить тему
                 </Button>
                 <AddStatus/>
