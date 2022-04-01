@@ -1,10 +1,13 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from "../../../config";
 
 
 const Theme = ({ theme }) => {
     const borderRed = theme.isPublic ? '' : 'danger'
+    const router = useNavigate()
+    console.log(router)
     const picturePath = theme.hasPicture ?
         (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
         (API_URL + "themes/themePicture/1.jpg")
@@ -15,7 +18,13 @@ const Theme = ({ theme }) => {
                 <Card.Body>
                     <Card.Title>{theme.name}</Card.Title>
                     <Card.Text>{theme.discription}</Card.Text>
-                    <Button>Перейти к изучению</Button>
+                    <Button >Перейти к изучению</Button>
+                    <img style={{position:'absolute', right:'8px'}}
+                        src="/edit.svg"
+                        width="36"
+                        height="36"
+                        alt=""
+                    />
                 </Card.Body>
             </Card>
         </Col>
