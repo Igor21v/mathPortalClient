@@ -38,7 +38,7 @@ const ControlThemes = () => {
                 <Button variant="primary" type="submit" className='me-3'>
                     Добавить тему
                 </Button>
-                <AddStatus/>
+                <AddStatus />
             </Form>
         </>
     );

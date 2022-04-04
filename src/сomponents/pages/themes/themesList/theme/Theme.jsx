@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from "../../../config";
+import { API_URL } from "../../../../../config";
 
 
 const Theme = ({ theme }) => {

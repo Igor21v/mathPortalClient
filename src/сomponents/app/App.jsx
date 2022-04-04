@@ -14,8 +14,8 @@ import { Home } from '../pages/home/Home';
 import { useDispatch} from "react-redux";
 import { auth } from "../../actions/user";
 import './app.scss';
-import EditTheme from '../pages/themes/leftMenu/editTheme/EditTheme';
-import VeiwTheme from '../pages/themes/leftMenu/viewTheme/ViewTheme';
+import EditTheme from '../pages/themes/editTheme/EditTheme';
+import VeiwTheme from '../pages/themes/viewTheme/ViewTheme';
 
 
 function App() {
