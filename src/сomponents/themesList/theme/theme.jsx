@@ -7,7 +7,6 @@ import { API_URL } from "../../../config";
 const Theme = ({ theme }) => {
     const borderRed = theme.isPublic ? '' : 'danger'
     const router = useNavigate()
-    console.log(router)
     const picturePath = theme.hasPicture ?
         (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
         (API_URL + "themes/themePicture/1.jpg")
@@ -18,8 +17,9 @@ const Theme = ({ theme }) => {
                 <Card.Body>
                     <Card.Title>{theme.name}</Card.Title>
                     <Card.Text>{theme.discription}</Card.Text>
-                    <Button >Перейти к изучению</Button>
-                    <img style={{position:'absolute', right:'8px'}}
+                    <Button onClick={() => router(`/themes/view/${theme._id}`)}>Перейти к изучению</Button>
+                    <img style={{position:'absolute', right:'8px', cursor: 'pointer'}}
+                        onClick={() => router(`/themes/edit/${theme._id}`)}
                         src="/edit.svg"
                         width="36"
                         height="36"

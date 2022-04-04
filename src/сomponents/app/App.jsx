@@ -15,6 +15,7 @@ import { useDispatch} from "react-redux";
 import { auth } from "../../actions/user";
 import './app.scss';
 import EditTheme from '../pages/themes/leftMenu/editTheme/EditTheme';
+import VeiwTheme from '../pages/themes/leftMenu/viewTheme/ViewTheme';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route exact path="/themes" element={<Themes />} />
           <Route exact path="/themes/edit/:id" element={<EditTheme />} />
+          <Route exact path="/themes/view/:id" element={<VeiwTheme />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Navigate to ="/themes" />}/>
         </Routes>
