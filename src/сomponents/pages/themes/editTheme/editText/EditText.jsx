@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 
 
 const EditText = () => {
-    const param = useParams()
     const [nameTheme, setName] = useState('');
     const [discription, setDiscription] = useState('');
     const SaveChanges = (event) => {
@@ -15,11 +13,6 @@ const EditText = () => {
     return (
         <>
             <Form className='border p-3 rounded-3 mb-3' onSubmit={SaveChanges}>
-                <h2 style={{ textAlign: 'center' }}>Изменение темы с ID: {param.id}</h2>
-                <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>Default file input example</Form.Label>
-                    <Form.Control type="file" />
-                </Form.Group>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Наименование темы</Form.Label>
                     <Form.Control
