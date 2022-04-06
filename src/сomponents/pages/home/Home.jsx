@@ -9,7 +9,7 @@ import ControlGeneral from './controlGeneral/ControlGeneral';
 import ControlThemes from './controlThemes/ControlThemes';
 
 export function Home() {
-	const isAuth = useSelector(state => state.user.isAuth)
+	const role = useSelector(state => state.user.currentUser.role)
 	const contentPage = useSelector(state => state.app.contentPage)
 
 	const content = () => {
@@ -28,7 +28,7 @@ export function Home() {
 	return (
 
 		<> 
-		{!isAuth ?
+		{!role>0 ?
 			<Container className = "d-flex justify-content-center mb-5 ">
 
 				<Col lg={4} >
