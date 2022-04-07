@@ -9,16 +9,17 @@ const EditImage = (theme) => {
     return (
         <Form className='border p-3 rounded-3 mb-3 '>
             <Row>
-                <Col xs='auto'>
+                <Col  xs='auto'>
                     <Card style={{ width: '16rem' }} className="mb-3 ">
                         <Card.Img variant="top" src={picturePath} />
                     </Card>
                 </Col>
-                <Col xs={4}>
+                <Col >
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Выберете изображение темы</Form.Label>
                         <Form.Control type="file" />
                     </Form.Group>
+                    <p>или</p>
                     <Button>Установить стандартное изображение</Button>
                 </Col>
             </Row>

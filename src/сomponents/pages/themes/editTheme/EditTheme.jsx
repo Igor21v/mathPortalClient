@@ -10,7 +10,7 @@ import EditImage from './editImage/EditImage';
 const EditTheme = () => {
     const param = useParams()
     const theme = {
-        _id: param.id,
+        id: param.id,
         name: 'Тема222',
         discription: 'Описание'
     }

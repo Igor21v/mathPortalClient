@@ -30,10 +30,10 @@ export default function Navibar() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const role = useSelector(state => state.user.currentUser.role);
+    const accessLevel = useSelector(state => state.user.currentUser.accessLevel);
     const dispatch = useDispatch();
     const getLogout = () => dispatch(logout());
-    if (role>0 && show) {
+    if (accessLevel>0 && show) {
         handleClose();
     }
     return (
@@ -59,11 +59,11 @@ export default function Navibar() {
                                  <Link className='me-2' to="/">Личный кабинет</Link> 
                                  <Link className='me-2' to="/about">О портале</Link> 
                             </Nav>
-                            {!role>0 &&
+                            {!accessLevel>0 &&
                                 <Nav onSelect={handleShow}> <Nav.Link eventKey="0">
                                     <StalesAll>Войти</StalesAll>
                                 </Nav.Link> </Nav>}
-                            {role>0 &&
+                            {accessLevel>0 &&
                                 <Nav onSelect={getLogout}> <Nav.Link eventKey="0">
                                     <StalesAll>Выйти</StalesAll>
                                 </Nav.Link> </Nav>}

@@ -41,3 +41,17 @@ export function addTheme(name, discription) {
         }
     }
 }
+
+export async function deleteTheme(id) {
+    try {
+        console.log('delete: ' + id)
+        const response = await axios.delete(`${API_URL}api/theme/deleteTheme?id=${id}`,{
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        alert(response.data)
+    } catch (error) {
+        alert(error?.response?.data?.message)
+    }
+}

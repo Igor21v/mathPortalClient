@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
+import { deleteTheme } from '../../../../../actions/theme';
 
 
-const EditText = () => {
+const EditText = ({theme}) => {
     const [nameTheme, setName] = useState('');
     const [discription, setDiscription] = useState('');
     const SaveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы')
+    }
+    const deleteTheme1 = (theme) => {
+        deleteTheme(theme.id)
+        console.log('del: ' + theme.id)
+        console.log('d: ')
     }
     return (
         <>
@@ -55,7 +61,7 @@ const EditText = () => {
                     <Button variant="primary" type="submit" className='me-auto'>
                         Отменить изменения
                     </Button>
-                    <a onClick={() => console.log('Нажал')}
+                    <a onClick={() => deleteTheme1(theme)}
                         className='text-decoration-underline text-danger mt-auto'
                         style={{ cursor: 'pointer' }}>
 
