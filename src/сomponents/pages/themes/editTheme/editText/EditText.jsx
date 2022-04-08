@@ -5,16 +5,22 @@ import { deleteTheme } from '../../../../../actions/theme';
 
 
 const EditText = ({theme}) => {
-    const [nameTheme, setName] = useState('');
+    const [name, setName] = useState('');
     const [discription, setDiscription] = useState('');
+    const [form, setForm] = useState({
+        name: '',
+        discription: '',
+        order: null
+    });
+    const update = e => {
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
+      };
     const SaveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы')
-    }
-    const deleteTheme1 = (theme) => {
-        deleteTheme(theme.id)
-        console.log('del: ' + theme.id)
-        console.log('d: ')
     }
     return (
         <>
@@ -23,9 +29,10 @@ const EditText = ({theme}) => {
                     <Form.Label>Наименование темы</Form.Label>
                     <Form.Control
                         type="text"
-                        onChange={(e) => setName(e.target.value)}
+                        name='name'
+                        onChange={update}
                         placeholder="Введите наименование темы"
-                        value={nameTheme} />
+                        value={form.name} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="discription">
                     <Form.Label>Описание темы</Form.Label>
@@ -33,7 +40,7 @@ const EditText = ({theme}) => {
                         type="text"
                         onChange={(e) => setDiscription(e.target.value)}
                         placeholder="Добавьте описание темы (необязательно)"
-                        value={discription} />
+                        value={form.discription} />
                 </Form.Group>
                 <Row >
                     <Col>
@@ -43,7 +50,7 @@ const EditText = ({theme}) => {
                                 onChange={(e) => setDiscription(e.target.value)}
                                 type="text"
                                 placeholder="Добавьте номер для сортировки тем"
-                                value={discription} />
+                                value={form.order} />
                         </Form.Group>
                     </Col>
                     <Col className='d-flex align-items-center'>
@@ -61,7 +68,7 @@ const EditText = ({theme}) => {
                     <Button variant="primary" type="submit" className='me-auto'>
                         Отменить изменения
                     </Button>
-                    <a onClick={() => deleteTheme1(theme)}
+                    <a onClick={() => deleteTheme(theme.id)}
                         className='text-decoration-underline text-danger mt-auto'
                         style={{ cursor: 'pointer' }}>
 
