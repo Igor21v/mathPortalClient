@@ -2,18 +2,21 @@ import axios from "axios";
 import { API_URL } from "../config";
 import { setAddStatus, setThemes } from "../reducers/themeReduser";
 
-export function getThemes(showThemes, searchTheme) {
+export function getThemes(showThemes, searchTheme, searchThemeID) {
     return async dispatch => {
         try {
+            console.log('222' + searchThemeID)
             const response = await axios.get(`${API_URL}api/theme`, {
                 params: {
                     showThemes: showThemes,
-                    searchTheme: searchTheme
+                    searchTheme: searchTheme,
+                    searchThemeID: searchThemeID
                 }
             }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
-            console.log('Выполнен запрос тем')
+            console.log('Выполнен запрос тем:' + showThemes + searchTheme + searchThemeID)
+            console.log('результат:' + JSON.stringify(response.data))
             dispatch(setThemes(response.data))
         }
         catch (e) {

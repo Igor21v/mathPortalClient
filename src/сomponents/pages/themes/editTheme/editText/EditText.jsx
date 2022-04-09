@@ -10,7 +10,7 @@ const EditText = ({theme}) => {
     const [form, setForm] = useState({
         name: '',
         discription: '',
-        order: null
+        order: 2
     });
     const update = e => {
         setForm({
@@ -20,7 +20,7 @@ const EditText = ({theme}) => {
       };
     const SaveChanges = (event) => {
         event.preventDefault()
-        console.log('Редактирование темы')
+        console.log('Редактирование темы' + theme.id)
     }
     return (
         <>
@@ -38,7 +38,8 @@ const EditText = ({theme}) => {
                     <Form.Label>Описание темы</Form.Label>
                     <Form.Control
                         type="text"
-                        onChange={(e) => setDiscription(e.target.value)}
+                        name='discription'
+                        onChange={update}
                         placeholder="Добавьте описание темы (необязательно)"
                         value={form.discription} />
                 </Form.Group>
@@ -47,7 +48,8 @@ const EditText = ({theme}) => {
                         <Form.Group className="mb-3" controlId="number">
                             <Form.Label>Порядковй номер для очереди отображения</Form.Label>
                             <Form.Control
-                                onChange={(e) => setDiscription(e.target.value)}
+                                name='order'
+                                onChange={update}
                                 type="text"
                                 placeholder="Добавьте номер для сортировки тем"
                                 value={form.order} />

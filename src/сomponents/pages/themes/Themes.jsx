@@ -15,9 +15,6 @@ export const Themes = () => {
         dispatch(getThemes(showThemes, searchThemes))
         localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
     }, [showThemes, searchThemes])
-    useEffect(() => {
-        console.log('Выполнен useEffect')
-    })
 
     return (
         <>
