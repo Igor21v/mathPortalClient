@@ -1,26 +1,49 @@
 import axios from "axios";
 import { API_URL } from "../config";
-import { setAddStatus, setThemes } from "../reducers/themeReduser";
+import { setAddStatus, setTheme, setListThemes } from "../reducers/themeReduser";
+import {hideLoader, showLoader} from "../reducers/appReducer";
 
-export function getThemes(showThemes, searchTheme, searchThemeID) {
+export function getTheme(searchThemeID) {
     return async dispatch => {
         try {
-            console.log('222' + searchThemeID)
+            dispatch(showLoader())
             const response = await axios.get(`${API_URL}api/theme`, {
                 params: {
-                    showThemes: showThemes,
-                    searchTheme: searchTheme,
                     searchThemeID: searchThemeID
                 }
             }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
-            console.log('Выполнен запрос тем:' + showThemes + searchTheme + searchThemeID)
-            console.log('результат:' + JSON.stringify(response.data))
-            dispatch(setThemes(response.data))
+            dispatch(setTheme(response.data))
         }
         catch (e) {
             alert(e.response.data.message)
+        }
+        finally {
+            dispatch(hideLoader())
+        }
+    }
+}
+
+export function getListThemes(showThemes, searchTheme) {
+    return async dispatch => {
+        try {
+            dispatch(showLoader())
+            const response = await axios.get(`${API_URL}api/theme/getListThemes`, {
+                params: {
+                    showThemes: showThemes,
+                    searchTheme: searchTheme,
+                }
+            }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            dispatch(setListThemes(response.data))
+        }
+        catch (e) {
+            alert(e.response.data.message)
+        }
+        finally {
+            dispatch(hideLoader())
         }
     }
 }

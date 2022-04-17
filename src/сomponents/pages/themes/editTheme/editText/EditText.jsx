@@ -5,23 +5,21 @@ import { deleteTheme } from '../../../../../actions/theme';
 
 
 const EditText = ({theme}) => {
-    const [name, setName] = useState('');
-    const [discription, setDiscription] = useState('');
     const [form, setForm] = useState({
-        name: '',
-        discription: '',
-        order: 2
+        name: theme.name,
+        discription: theme.discription,
+        order: theme.order
     });
+    const SaveChanges = (event) => {
+        event.preventDefault()
+        console.log('Редактирование темы' + theme._id)
+    }
     const update = e => {
         setForm({
           ...form,
           [e.target.name]: e.target.value
         });
       };
-    const SaveChanges = (event) => {
-        event.preventDefault()
-        console.log('Редактирование темы' + theme.id)
-    }
     return (
         <>
             <Form className='border p-3 rounded-3 mb-3' onSubmit={SaveChanges}>
@@ -70,11 +68,11 @@ const EditText = ({theme}) => {
                     <Button variant="primary" type="submit" className='me-auto'>
                         Отменить изменения
                     </Button>
-                    <a onClick={() => deleteTheme(theme.id)}
+                    <p onClick={() => deleteTheme(theme._id)}
                         className='text-decoration-underline text-danger mt-auto'
                         style={{ cursor: 'pointer' }}>
 
-                        Удалить тему  </a>
+                        Удалить тему  </p>
                 </div>
             </Form>
         </>

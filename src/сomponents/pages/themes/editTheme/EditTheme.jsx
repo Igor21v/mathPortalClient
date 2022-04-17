@@ -5,30 +5,35 @@ import { useDispatch, useSelector } from "react-redux";
 import EditText from './editText/EditText';
 import EditFiles from './editFiles/EditFiles';
 import EditImage from './editImage/EditImage';
-import { getThemes } from '../../../../actions/theme';
+import { getTheme } from '../../../../actions/theme';
+import { setTheme } from '../../../../reducers/themeReduser';
+import Loader from '../../../../utils/loader/Loader';
 
 
 const EditTheme = () => {
     const param = useParams()
-/*     const theme = {
-        id: param.id,
-        name: 'Тема222',
-        discription: 'Описание'
-    } */
-    const theme = useSelector(state => state.themes.themes)
+    const theme = useSelector(state => state.themes.theme)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getThemes(undefined, undefined, param.id))
-        console.log('fdgsd '+ JSON.stringify(theme))
+        dispatch(getTheme(param.id))
+        return (() => {
+            dispatch(setTheme(''))
+        }
+        )
     }, [])
+    console.log('fdgsd ' + JSON.stringify(theme))
     return (
         <>
-            <Container className='mb-3 mt-3'>
-                <h2 style={{ textAlign: 'center' }}>Изменение темы с ID: {param.id}</h2>
-                <EditImage theme={theme} />
-                <EditFiles theme={theme} />
-                <EditText theme={theme} />
-            </Container>
+            {theme ?
+                <Container className='mb-3 mt-3'>
+                    <h2 style={{ textAlign: 'center' }}>Изменение темы с ID: {param.id}</h2>
+                    <EditImage theme={theme} />
+                    <EditFiles theme={theme} />
+                    <EditText theme={theme} />
+                </Container>
+                :
+                <Loader/>
+            }
         </>
     );
 };

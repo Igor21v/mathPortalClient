@@ -1,14 +1,24 @@
-import React from 'react';
-import { useSelector } from "react-redux"
+import React,  { useEffect } from 'react';
 import Theme from './theme/Theme';
+import { getListThemes } from '../../../../actions/theme';
+import { useSelector, useDispatch } from "react-redux";
 
 
 
 
 
 const ThemesList = () => {
-    const themes = useSelector(state => state.themes.themes)
+    const showThemes = useSelector(state => state.themes.showThemes)
+    const searchThemes = useSelector(state => state.themes.searchThemes)
+    const themes = useSelector(state => state.themes.listThemes)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getListThemes(showThemes, searchThemes))
+        localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
+     }, [showThemes, searchThemes])
+
     if (themes ) {
+
     return (
         <>      
                 {themes.map(theme =>
@@ -19,7 +29,9 @@ const ThemesList = () => {
 }
     else {
         return (
-            <h1>Сервер сдох</h1>
+            <><h1>Сервер сдох</h1>
+            {console.log('Вот те раз')}
+            </>
         )
     }
 }

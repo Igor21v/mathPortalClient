@@ -2,10 +2,11 @@ import React from 'react';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
 import { API_URL } from "../../../../../config";
 
-const EditImage = (theme) => {
+const EditImage = ({theme}) => {
     const picturePath = theme.hasPicture ?
         (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
         (API_URL + "themes/themePicture/1.jpg")
+    console.log('содержит картинку ' + theme.hasPicture)
     return (
         <Form className='border p-3 rounded-3 mb-3 '>
             <Row>
