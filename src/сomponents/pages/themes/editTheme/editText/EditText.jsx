@@ -8,7 +8,8 @@ const EditText = ({theme}) => {
     const [form, setForm] = useState({
         name: theme.name,
         discription: theme.discription,
-        order: theme.order
+        order: theme.order,
+        isPublic: theme.isPublic
     });
     const SaveChanges = (event) => {
         event.preventDefault()
@@ -58,7 +59,9 @@ const EditText = ({theme}) => {
                             type="switch"
                             id="custom-switch"
                             label="Опубликовать"
-                        />
+                            name='isPablic'
+                            onChange={() => setForm({...form, isPublic: !form.isPublic})}
+                            checked={form.isPublic}/>
                     </Col>
                 </Row>
                 <div className='d-flex flex-row'>

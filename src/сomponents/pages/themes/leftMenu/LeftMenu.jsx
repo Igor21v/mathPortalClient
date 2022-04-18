@@ -10,22 +10,22 @@ const LeftMenu = () => {
     const searchThemes = useSelector(state => state.themes.searchThemes)
     const [searchField, setSearchField] = useState(searchThemes)
     const dispatch = useDispatch()
-    
-    function searchChangeHandler(e) { 
-    setSearchField(e.target.value)
-    if (searchTimeout !==false){
-        clearTimeout(searchTimeout)
-    }    
-    setSearchTimout(setTimeout((value) => {
-        dispatch(setSearchThemes(value));
-    }, 500, e.target.value))
-    } 
+
+    function searchChangeHandler(e) {
+        setSearchField(e.target.value)
+        if (searchTimeout !== false) {
+            clearTimeout(searchTimeout)
+        }
+        setSearchTimout(setTimeout((value) => {
+            dispatch(setSearchThemes(value));
+        }, 500, e.target.value))
+    }
 
     return (
         <>
-            <Stack gap={3} className="d-grid"> 
-                < Dropdown className="d-grid" onSelect={(eventKey)=> dispatch(setShowThemes(eventKey))}>
-                    
+            <Stack gap={3} className="d-grid">
+                < Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
+
                     <Dropdown.Toggle variant="primary" id="dropdown-basic" >
                         Отображать
                     </Dropdown.Toggle>
@@ -35,12 +35,12 @@ const LeftMenu = () => {
                         <Dropdown.Item eventKey='onlyDev'>В разработке</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown >
-                
-                <Form.Control 
-                type="text" 
-                placeholder="Поиск темы" 
-                value={searchField}
-                onChange={e => searchChangeHandler(e)} />
+
+                <Form.Control
+                    type="text"
+                    placeholder="Поиск темы"
+                    value={searchField}
+                    onChange={e => searchChangeHandler(e)} />
             </Stack>
         </>
     );
