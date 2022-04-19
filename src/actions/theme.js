@@ -68,6 +68,26 @@ export function addTheme(name, discription) {
     }
 }
 
+export function editTheme(theme) {
+    return async dispatch => {
+        try {
+            dispatch(setAddStatus('Performing edit')) 
+            console.log('111 ' + theme)
+            const response = await axios.put(`${API_URL}api/theme/edit`, {
+                ...theme
+            }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            console.log(response.data)
+             dispatch(setAddStatus('Success edit')) 
+        }
+        catch (e) {
+            alert(e.response.data.message)
+            dispatch(setAddStatus("Error edit")) 
+        }
+    }
+}
+
 export async function deleteTheme(id) {
     try {
         console.log('delete: ' + id)

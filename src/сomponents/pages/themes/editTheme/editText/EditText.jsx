@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
-import { deleteTheme } from '../../../../../actions/theme';
+import { deleteTheme, editTheme } from '../../../../../actions/theme';
 
 
 const EditText = ({theme}) => {
+    const dispatch = useDispatch()
     const [form, setForm] = useState({
+        _id: theme._id,
         name: theme.name,
         discription: theme.discription,
         order: theme.order,
@@ -14,6 +16,7 @@ const EditText = ({theme}) => {
     const SaveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы' + theme._id)
+        dispatch ( editTheme(form))
     }
     const update = e => {
         setForm({
@@ -72,7 +75,7 @@ const EditText = ({theme}) => {
                         Отменить изменения
                     </Button>
                     <p onClick={() => deleteTheme(theme._id)}
-                        className='text-decoration-underline text-danger mt-auto'
+                        className='text-decoration-underline text-danger mt-auto ms-3'
                         style={{ cursor: 'pointer' }}>
 
                         Удалить тему  </p>
