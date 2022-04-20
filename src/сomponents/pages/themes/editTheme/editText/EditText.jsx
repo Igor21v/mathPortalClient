@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { deleteTheme, editTheme } from '../../../../../actions/theme';
+import EditStatus from './editStatus/EditStatus';
 
 
 const EditText = ({theme}) => {
@@ -80,6 +81,7 @@ const EditText = ({theme}) => {
 
                         Удалить тему  </p>
                 </div>
+                <EditStatus/>
             </Form>
         </>
     );

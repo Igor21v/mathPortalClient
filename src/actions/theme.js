@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
-import { setAddStatus, setTheme, setListThemes } from "../reducers/themeReduser";
+import { setProcessStatus, setTheme, setListThemes } from "../reducers/themeReduser";
 import {hideLoader, showLoader} from "../reducers/appReducer";
 
 export function getTheme(searchThemeID) {
@@ -51,6 +51,7 @@ export function getListThemes(showThemes, searchTheme) {
 export function addTheme(name, discription) {
     return async dispatch => {
         try {
+            dispatch(setProcessStatus('Processing')) 
             console.log('555 ' + name + '  ' + discription)
             const response = await axios.post(`${API_URL}api/theme`, {
                 name: name,
@@ -59,19 +60,37 @@ export function addTheme(name, discription) {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
-            dispatch(setAddStatus('Success'))
+            dispatch(setProcessStatus('Success'))
         }
         catch (e) {
             alert(e.response.data.message)
-            dispatch(setAddStatus("Error"))
+            dispatch(setProcessStatus("Error"))
         }
     }
+}
+
+export async function postPicture(themeId, file) {
+        try {
+            console.log('add picture ' +  themeId)
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('themeId', themeId)
+            console.log('Отправка запроса ' +  formData)
+            const response = await axios.post(`${API_URL}api/theme/postPicture`, formData
+            , {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            console.log('Ответ сервера: ' + response.data)
+        }
+        catch (e) {
+            alert('Ошибка: ' + e.response.data.message)
+        }
 }
 
 export function editTheme(theme) {
     return async dispatch => {
         try {
-            dispatch(setAddStatus('Performing edit')) 
+            dispatch(setProcessStatus('Processing')) 
             console.log('111 ' + theme)
             const response = await axios.put(`${API_URL}api/theme/edit`, {
                 ...theme
@@ -79,11 +98,11 @@ export function editTheme(theme) {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
-             dispatch(setAddStatus('Success edit')) 
+             dispatch(setProcessStatus('Success')) 
         }
         catch (e) {
             alert(e.response.data.message)
-            dispatch(setAddStatus("Error edit")) 
+            dispatch(setProcessStatus("Error")) 
         }
     }
 }
