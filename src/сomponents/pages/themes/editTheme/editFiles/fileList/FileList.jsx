@@ -1,17 +1,14 @@
 import React from 'react';
-import icon from '../../../../../../assets/img/pdf.svg';
+import File from './file/File';
+import './fileList.css'
 
-const FileList = ({theme}) => {
+const FileList = ({ theme }) => {
     return (
-        <div className='d-flex'>
-        {theme.files.map (file => 
-            <div className=''>
-            <img src={icon} alt="" />
-            <span> {file} </span>
+        <div className='file-list'>
+            {theme.files.map(file =>
+                <File key={file} file={file} themeId={theme._id}/>
+            )}
         </div>
-        )}
-        </div>
-        
     );
 };
 

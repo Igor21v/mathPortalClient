@@ -8,7 +8,7 @@ const EditFiles = ({ theme }) => {
     return (
         <>
             <Form className='border p-3 rounded-3 mb-3'>
-                <Form.Group controlId="Добавить файлы для обучения" className="mb-3">
+                <Form.Group controlId="Add files">
                     <Form.Label>Добавить файлы для обучения</Form.Label>
                     <Form.Control type="file" multiple className='mb-3' />
                     {theme.files ?
