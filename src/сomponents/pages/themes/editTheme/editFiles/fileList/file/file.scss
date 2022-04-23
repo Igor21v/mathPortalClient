@@ -1,14 +1,30 @@
 .file-theme {
+  position: relative;
   width:7rem;
   text-align: center;
   color: black;
-  cursor: pointer;
   margin: 2px;
+  cursor: default;
+
+  &__basket{
+    position: absolute;
+    right: 3px;
+    width: 2rem;
+    display: none;
+  }
   
   &:hover {
   transform: scale(1.02);
   /* animation: file-theme 10s linear infinite; */
-
+  }
+  &:hover &__basket{
+    display: block;
+    cursor: pointer;
+  }
+  &__basket:hover {
+    display: block;
+    cursor: pointer;
+    transform: scale(1.1);
   }
 }
 @keyframes file-theme {
