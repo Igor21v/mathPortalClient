@@ -3,13 +3,13 @@ import { API_URL } from "../config";
 import { setProcessStatus, setTheme, setListThemes } from "../reducers/themeReduser";
 import { hideLoader, showLoader } from "../reducers/appReducer";
 
-export function getTheme(searchThemeID) {
+export function getTheme(themeId) {
     return async dispatch => {
         try {
             dispatch(showLoader())
             const response = await axios.get(`${API_URL}api/theme`, {
                 params: {
-                    searchThemeID: searchThemeID
+                    themeId: themeId
                 }
             }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
