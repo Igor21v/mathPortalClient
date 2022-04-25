@@ -90,22 +90,27 @@ export function postFile(themeId, file) {
     }
 }
 
-export async function postPicture(themeId, file) {
+export function postPicture(theme, file) {
+    return async dispatch => {
     try {
-        console.log('add picture ' + themeId)
+        dispatch(setTheme(theme))
+        console.log('add picture ' + theme._id)
         const formData = new FormData()
         formData.append('file', file)
-        formData.append('themeId', themeId)
+        formData.append('themeId', theme._id)
         console.log('Отправка запроса ' + formData)
         const response = await axios.post(`${API_URL}api/theme/postPicture`, formData
             , {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
-        console.log('Ответ сервера: ' + response.data)
+
+        dispatch(setTheme(response.data))
+            console.log('Ответ сервера: ' + response.data)
     }
     catch (e) {
         alert('Ошибка: ' + e.response.data.message)
     }
+}
 }
 
 export function editTheme(theme) {

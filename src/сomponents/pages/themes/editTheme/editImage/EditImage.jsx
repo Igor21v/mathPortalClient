@@ -1,25 +1,24 @@
 import React from 'react';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postPicture } from '../../../../../actions/theme';
 import { API_URL } from "../../../../../config";
 
 const EditImage = ({theme}) => {
-    const picturePath = theme.hasPicture ?
+    const picturePath = theme.hasPicture?
         (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
         (API_URL + "themes/themePicture/1.jpg")
-    console.log('содержит картинку ' + theme.hasPicture)
     const dispatch = useDispatch()
     function changeHandler(e) {
         const file = e.target.files[0]
-        postPicture(theme._id, file)
+        dispatch(postPicture(theme, file))
     }
     return (
         <Form className='border p-3 rounded-3 mb-3 '>
             <Row>
                 <Col  xs='auto'>
                     <Card style={{ width: '16rem' }} className="mb-3 ">
-                        <Card.Img variant="top" src={picturePath} />
+                        <Card.Img variant="top" src={`${picturePath}?${Date.now()}`} alt=''/>
                     </Card>
                 </Col>
                 <Col >
@@ -29,6 +28,7 @@ const EditImage = ({theme}) => {
                     </Form.Group>
                     <p>или</p>
                     <Button>Установить стандартное изображение</Button>
+                    <p>PP {picturePath}</p>
                 </Col>
             </Row>
         </Form>
