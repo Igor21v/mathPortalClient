@@ -7,13 +7,12 @@ import { API_URL } from "../../../../../config";
 const Theme = ({ theme }) => {
     const borderRed = theme.isPublic ? '' : 'danger'
     const router = useNavigate()
-    const picturePath = theme.hasPicture ?
-        (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
-        (API_URL + "themes/themePicture/1.jpg")
+    const picturePath = API_URL + "themes/themePicture/" + theme.pictureName + ".jpg"
+    console.log('theme.pictureName ' + theme.pictureName)
     return (
         <Col md="auto" >
             <Card style={{ width: '16rem' }} className="mb-3" border={borderRed}>
-                <Card.Img variant="top" src={picturePath} />
+                <Card.Img variant="top" src={picturePath} alt=''/>
                 <Card.Body>
                     <Card.Title>{theme.name}</Card.Title>
                     <Card.Text>{theme.discription}</Card.Text>

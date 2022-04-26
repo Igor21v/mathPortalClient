@@ -1,13 +1,11 @@
 import React from 'react';
 import { Button, Card, Form, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPicture } from '../../../../../actions/theme';
+import { deletePicture, postPicture } from '../../../../../actions/theme';
 import { API_URL } from "../../../../../config";
 
 const EditImage = ({theme}) => {
-    const picturePath = theme.hasPicture?
-        (API_URL + "themes/themePicture/" + theme._id + ".jpg") :
-        (API_URL + "themes/themePicture/1.jpg")
+    const picturePath = API_URL + "themes/themePicture/" + theme.pictureName + ".jpg"
     const dispatch = useDispatch()
     function changeHandler(e) {
         const file = e.target.files[0]
@@ -27,7 +25,7 @@ const EditImage = ({theme}) => {
                         <Form.Control type="file" accept="image/*" onChange={e => changeHandler(e)} />
                     </Form.Group>
                     <p>или</p>
-                    <Button>Установить стандартное изображение</Button>
+                    <Button onClick={() => dispatch(deletePicture(theme))}>Установить стандартное изображение</Button>
                     <p>PP {picturePath}</p>
                 </Col>
             </Row>

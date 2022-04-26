@@ -147,6 +147,22 @@ export async function deleteTheme(id) {
     }
 }
 
+export function deletePicture(theme) {
+    return async dispatch => {
+    try {
+        console.log('deletePic: ' + theme._id)
+        const response = await axios.delete(`${API_URL}api/theme/deletePicture?themeId=${theme._id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        dispatch(setTheme(response.data))
+    } catch (error) {
+        alert(error?.response?.data?.message)
+    }
+}
+}
+
 export function deleteThemeFile(themeId, nameFile) {
     return async dispatch => {
         try {
