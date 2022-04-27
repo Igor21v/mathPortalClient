@@ -26,7 +26,6 @@ const EditImage = ({theme}) => {
                     </Form.Group>
                     <p>или</p>
                     <Button onClick={() => dispatch(deletePicture(theme))}>Установить стандартное изображение</Button>
-                    <p>PP {picturePath}</p>
                 </Col>
             </Row>
         </Form>

@@ -5,7 +5,7 @@ import { setShowThemes, setSearchThemes } from '../../../../reducers/themeReduse
 
 
 
-const LeftMenu = () => {
+const TopMenu = () => {
     const [searchTimeout, setSearchTimout] = useState(false)
     const searchThemes = useSelector(state => state.themes.searchThemes)
     const [searchField, setSearchField] = useState(searchThemes)
@@ -22,10 +22,16 @@ const LeftMenu = () => {
     }
 
     return (
-        <>
-            <Stack gap={3} className="d-grid">
-                < Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
 
+        <>
+            <Stack gap={3} direction='horizontal' >
+                <Form.Control
+                    type="text"
+                    placeholder="Поиск темы"
+                    value={searchField}
+                    onChange={e => searchChangeHandler(e)} />
+
+                < Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
                     <Dropdown.Toggle variant="primary" id="dropdown-basic" >
                         Отображать
                     </Dropdown.Toggle>
@@ -35,15 +41,10 @@ const LeftMenu = () => {
                         <Dropdown.Item eventKey='onlyDev'>В разработке</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown >
-
-                <Form.Control
-                    type="text"
-                    placeholder="Поиск темы"
-                    value={searchField}
-                    onChange={e => searchChangeHandler(e)} />
             </Stack>
         </>
+
     );
 };
 
-export default LeftMenu;
+export default TopMenu;
