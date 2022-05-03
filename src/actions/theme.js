@@ -10,8 +10,7 @@ export function getTheme(themeId) {
             const response = await axios.get(`${API_URL}api/theme`, {
                 params: {
                     themeId: themeId
-                }
-            }, {
+                },
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             dispatch(setTheme(response.data))
@@ -33,8 +32,7 @@ export function getListThemes(showThemes, searchTheme) {
                 params: {
                     showThemes: showThemes,
                     searchTheme: searchTheme,
-                }
-            }, {
+                },
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             dispatch(setListThemes(response.data))
@@ -55,8 +53,7 @@ export function addTheme(name, discription) {
             console.log('555 ' + name + '  ' + discription)
             const response = await axios.post(`${API_URL}api/theme`, {
                 name: name,
-                discription: discription
-            }, {
+                discription: discription,
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
@@ -92,25 +89,25 @@ export function postFile(themeId, file) {
 
 export function postPicture(theme, file) {
     return async dispatch => {
-    try {
-        dispatch(setTheme(theme))
-        console.log('add picture ' + theme._id)
-        const formData = new FormData()
-        formData.append('file', file)
-        formData.append('themeId', theme._id)
-        console.log('Отправка запроса ' + formData)
-        const response = await axios.post(`${API_URL}api/theme/postPicture`, formData
-            , {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
+        try {
+            dispatch(setTheme(theme))
+            console.log('add picture ' + theme._id)
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('themeId', theme._id)
+            console.log('Отправка запроса ' + formData)
+            const response = await axios.post(`${API_URL}api/theme/postPicture`, formData
+                , {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
 
-        dispatch(setTheme(response.data))
+            dispatch(setTheme(response.data))
             console.log('Ответ сервера: ' + response.data)
+        }
+        catch (e) {
+            alert('Ошибка: ' + e.response.data.message)
+        }
     }
-    catch (e) {
-        alert('Ошибка: ' + e.response.data.message)
-    }
-}
 }
 
 export function editTheme(theme) {
@@ -120,7 +117,7 @@ export function editTheme(theme) {
             console.log('111 ' + theme)
             const response = await axios.put(`${API_URL}api/theme/edit`, {
                 ...theme
-            }, {
+            ,
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
@@ -149,18 +146,18 @@ export async function deleteTheme(id) {
 
 export function deletePicture(theme) {
     return async dispatch => {
-    try {
-        console.log('deletePic: ' + theme._id)
-        const response = await axios.delete(`${API_URL}api/theme/deletePicture?themeId=${theme._id}`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-        dispatch(setTheme(response.data))
-    } catch (error) {
-        alert(error?.response?.data?.message)
+        try {
+            console.log('deletePic: ' + theme._id)
+            const response = await axios.delete(`${API_URL}api/theme/deletePicture?themeId=${theme._id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            dispatch(setTheme(response.data))
+        } catch (error) {
+            alert(error?.response?.data?.message)
+        }
     }
-}
 }
 
 export function deleteThemeFile(themeId, nameFile) {
