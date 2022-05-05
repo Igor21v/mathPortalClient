@@ -6,23 +6,23 @@ import { Button } from 'react-bootstrap';
 import { Form, InputGroup, Container, Row, Stack } from 'react-bootstrap';
 
 const Login = () => {
-    const [email, setEmail] = useState("")
+    const [phon, setPhon] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const getLogin = (event) => {
         event.preventDefault();
-        dispatch(login(email, password));
+        dispatch(login(phon, password));
     }
 
 
     return (
         <>
             <Form onSubmit={getLogin}>
-                <Form.Group controlId="fromBasicEmail" className="mb-2">
+                <Form.Group controlId="fromBasicPhon" className="mb-2">
                     <Form.Label>Номер телефона</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>+7</InputGroup.Text>
-                        <Form.Control type="text" placeholder='Введите email' value={email} onChange={(event) => setEmail(event.target.value)} />
+                        <Form.Control type="text" placeholder='Введите номер телефона' value={phon} onChange={(event) => setPhon(event.target.value)} />
                     </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="fromBasicPassword">
