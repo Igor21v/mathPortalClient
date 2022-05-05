@@ -53,7 +53,7 @@ export function addTheme(name, discription) {
             console.log('555 ' + name + '  ' + discription)
             const response = await axios.post(`${API_URL}api/theme`, {
                 name: name,
-                discription: discription,
+                discription: discription},{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
@@ -117,7 +117,7 @@ export function editTheme(theme) {
             console.log('111 ' + theme)
             const response = await axios.put(`${API_URL}api/theme/edit`, {
                 ...theme
-            ,
+            },{
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)

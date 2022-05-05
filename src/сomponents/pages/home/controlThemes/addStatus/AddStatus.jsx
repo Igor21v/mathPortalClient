@@ -10,6 +10,8 @@ const AddStatus = () => {
     }, [])
     let content = ''
     let className = ''
+    let onClick= () => console.log('fff')
+    let style= ''
     switch (processStatus) {
         case 'Processing':
             content = 'Сохранение темы...'
@@ -17,7 +19,9 @@ const AddStatus = () => {
             break;
         case 'Success':
             content = 'Тема успешно добалена'
-            className = 'text-success'
+            className = 'text-success text-decoration-underline'
+            style= {cursor: 'pointer'}
+            onClick= () => console.log('JJJ')
             break;
         case 'Error' :
             content = 'Ошибка при добавлении темы'
@@ -29,7 +33,7 @@ const AddStatus = () => {
     } 
     return (
         <>
-            <span className={className}>{content}</span>
+            <span className={className} onClick={onClick} style={{style}}>{content} </span>
         </>
     );
 };
