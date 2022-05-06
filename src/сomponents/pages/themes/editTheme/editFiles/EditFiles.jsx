@@ -8,6 +8,7 @@ import FileList from './fileList/FileList';
 
 const EditFiles = ({ theme }) => {
     const dispatch = useDispatch()
+    console.log('theme.files ' + theme.files)
     function fileUploadHandler(event) {
         const files = [...event.target.files]
         files.forEach(file => dispatch(postFile(theme._id, file)))
@@ -18,7 +19,7 @@ const EditFiles = ({ theme }) => {
                 <Form.Group controlId="Add files">
                     <Form.Label>Добавить файлы для обучения</Form.Label>
                     <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler}/>
-                    {theme.files!=0?
+                    {theme.files && theme.files!=0 ?
                         <FileList theme={theme}/>
                         :
                         <span> Файлов для обучения пока что нет... </span>}

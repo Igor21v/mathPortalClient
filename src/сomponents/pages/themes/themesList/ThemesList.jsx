@@ -12,6 +12,7 @@ const ThemesList = () => {
     const searchThemes = useSelector(state => state.themes.searchThemes)
     const themes = useSelector(state => state.themes.listThemes)
     const dispatch = useDispatch()
+    console.log('рисуется')
     useEffect(() => {
         dispatch(getListThemes(showThemes, searchThemes))
         localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
