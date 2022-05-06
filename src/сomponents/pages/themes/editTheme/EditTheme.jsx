@@ -21,7 +21,6 @@ const EditTheme = () => {
         }
         )
     }, [])
-    console.log('fdgsd ' + JSON.stringify(theme))
     return (
         <>
             {theme ?
