@@ -58,6 +58,7 @@ export function addTheme(name, discription) {
             })
             console.log(response.data)
             dispatch(setProcessStatus('Success'))
+            dispatch(setTheme(response.data))
         }
         catch (e) {
             alert(e.response.data.message)
