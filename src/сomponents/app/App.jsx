@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { Themes } from '../pages/themes/Themes';
 import { About } from '../pages/about/About';
-import { Home } from '../pages/home/Home';
+import { Account } from '../pages/account/Account';
 import { useDispatch} from "react-redux";
 import { auth } from "../../actions/user";
 import './app.scss';
@@ -30,7 +30,7 @@ function App() {
       <Router>
         <Navibar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Account />} />
           <Route exact path="/themes" element={<Themes />} />
           <Route exact path="/themes/edit/:id" element={<EditTheme />} />
           <Route exact path="/themes/view/:id" element={<VeiwTheme />} />

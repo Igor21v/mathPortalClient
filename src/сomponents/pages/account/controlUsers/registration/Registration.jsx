@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { registration } from "../../../../../actions/user";
-import { Form, InputGroup, Button } from 'react-bootstrap';
+import { Form, InputGroup, Button, Container, Card } from 'react-bootstrap';
 
 const Registration = () => {
     const [phon, setPhon] = useState("")
     const [password, setPassword] = useState("")
     const getRegistration = event => {
         event.preventDefault()
-        registration(phon,password)
+        registration(phon, password)
     }
 
     return (
-        <>
-            <h3 className='mt-4'>Регистрация нового ученика</h3>
+        <Card className='mt-4 p-3'>
+            <h3 style={{textAlign: 'center'}}>Регистрация нового ученика</h3>
             <Form onSubmit={getRegistration}>
                 <Form.Group controlId="fromBasicPhon" className="mb-2">
                     <Form.Label>Номер телефона</Form.Label>
@@ -29,7 +29,7 @@ const Registration = () => {
                     <Button type="submit" className="btn-primary" >Зарегистрировать</Button>
                 </Form.Group>
             </Form>
-        </>
+        </Card>
     );
 };
 
