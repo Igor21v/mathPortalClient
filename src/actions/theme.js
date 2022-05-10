@@ -2,16 +2,16 @@ import axios from "axios";
 import { API_URL } from "../config";
 import { setProcessStatus, setTheme, setListThemes } from "../reducers/themeReduser";
 import { hideLoader, showLoader } from "../reducers/appReducer";
+import { $authHost, $host } from ".";
 
 export function getTheme(themeId) {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.get(`${API_URL}api/theme`, {
+            const response = await $host.get(`api/theme`, {
                 params: {
                     themeId: themeId
-                },
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                }
             })
             dispatch(setTheme(response.data))
         }
@@ -28,12 +28,11 @@ export function getListThemes(showThemes, searchTheme) {
     return async dispatch => {
         try {
             dispatch(showLoader())
-            const response = await axios.get(`${API_URL}api/theme/getListThemes`, {
+            const response = await $host.get(`api/theme/getListThemes`, {
                 params: {
                     showThemes: showThemes,
                     searchTheme: searchTheme,
-                },
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                }
             })
             dispatch(setListThemes(response.data))
         }
@@ -51,11 +50,9 @@ export function addTheme(name, discription) {
         try {
             dispatch(setProcessStatus('Processing'))
             console.log('555 ' + name + '  ' + discription)
-            const response = await axios.post(`${API_URL}api/theme`, {
+            const response = await $authHost.post(`api/theme`, {
                 name: name,
-                discription: discription},{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
+                discription: discription})
             console.log(response.data)
             dispatch(setProcessStatus('Success'))
             dispatch(setTheme(response.data))
@@ -75,10 +72,7 @@ export function postFile(themeId, file) {
             formData.append('file', file)
             formData.append('themeId', themeId)
             console.log('Отправка запроса ' + formData)
-            const response = await axios.post(`${API_URL}api/theme/postFile`, formData
-                , {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                })
+            const response = await $authHost.post(`api/theme/postFile`, formData)
             dispatch(setTheme(response.data))
             console.log('Ответ сервера: ' + response.data)
         }
@@ -97,11 +91,7 @@ export function postPicture(theme, file) {
             formData.append('file', file)
             formData.append('themeId', theme._id)
             console.log('Отправка запроса ' + formData)
-            const response = await axios.post(`${API_URL}api/theme/postPicture`, formData
-                , {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                })
-
+            const response = await $authHost.post(`api/theme/postPicture`, formData)
             dispatch(setTheme(response.data))
             console.log('Ответ сервера: ' + response.data)
         }
@@ -116,10 +106,8 @@ export function editTheme(theme) {
         try {
             dispatch(setProcessStatus('Processing'))
             console.log('111 ' + theme)
-            const response = await axios.put(`${API_URL}api/theme/edit`, {
+            const response = await $authHost.put(`api/theme/edit`, {
                 ...theme
-            },{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             console.log(response.data)
             dispatch(setProcessStatus('Success'))
@@ -134,11 +122,7 @@ export function editTheme(theme) {
 export async function deleteTheme(id) {
     try {
         console.log('delete: ' + id)
-        const response = await axios.delete(`${API_URL}api/theme/deleteTheme?id=${id}`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        })
+        const response = await $authHost.delete(`api/theme/deleteTheme?id=${id}`)
         alert(response.data)
     } catch (error) {
         alert(error?.response?.data?.message)
@@ -149,11 +133,7 @@ export function deletePicture(theme) {
     return async dispatch => {
         try {
             console.log('deletePic: ' + theme._id)
-            const response = await axios.delete(`${API_URL}api/theme/deletePicture?themeId=${theme._id}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const response = await $authHost.delete(`api/theme/deletePicture?themeId=${theme._id}`)
             dispatch(setTheme(response.data))
         } catch (error) {
             alert(error?.response?.data?.message)
@@ -165,11 +145,7 @@ export function deleteThemeFile(themeId, nameFile) {
     return async dispatch => {
         try {
             console.log('delete: theme - ' + themeId + 'file - ' + nameFile)
-            const response = await axios.delete(`${API_URL}api/theme/deleteFile?themeId=${themeId}&nameFile=${nameFile}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const response = await $authHost.delete(`api/theme/deleteFile?themeId=${themeId}&nameFile=${nameFile}`)
             dispatch(setTheme(response.data))
         } catch (error) {
             alert(error?.response?.data?.message)

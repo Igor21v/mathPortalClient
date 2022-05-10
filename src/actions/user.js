@@ -1,16 +1,14 @@
 import axios from 'axios'
 import { setUser } from "../reducers/userReducer";
 import { API_URL } from "../config";
+import { $authHost, $host } from '.';
 
 export const registration = async (phon, password) => {
     try {
-        const response = await axios.post(`${API_URL}api/auth/registration`, {
+        const response = await $authHost.post(`api/auth/registration`, {
             phon,
             password
-        }, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        }
-        )
+        })
         alert(response.data.message)
     } catch (e) {
         alert(e.response.data.message)
@@ -20,7 +18,7 @@ export const registration = async (phon, password) => {
 export const login = (phon, password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(`${API_URL}api/auth/login`, {
+            const response = await $host.post(`api/auth/login`, {
                 phon,
                 password
             })
@@ -35,9 +33,7 @@ export const login = (phon, password) => {
 export const auth = () => {
     return async dispatch => {
         try {
-            const response = await axios.get(`${API_URL}api/auth/auth`,
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            )
+            const response = await $authHost.get(`api/auth/auth`)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
@@ -52,9 +48,7 @@ export const uploadAvatar = (file) => {
         try {
             const formData = new FormData()
             formData.append('file', file)
-            const response = await axios.post(`${API_URL}api/files/avatar`, formData,
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            )
+            const response = await $authHost.post(`api/files/avatar`, formData)
             dispatch(setUser(response.data))
         } catch (e) {
             console.log(e)
@@ -65,9 +59,7 @@ export const uploadAvatar = (file) => {
 export const deleteAvatar = () => {
     return async dispatch => {
         try {
-            const response = await axios.delete(`${API_URL}api/files/avatar`,
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            )
+            const response = await $authHost.delete(`api/files/avatar`)
             dispatch(setUser(response.data))
         } catch (e) {
             console.log(e)
