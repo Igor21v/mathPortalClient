@@ -1,14 +1,14 @@
 import React from 'react';
-import Login from "../../authorization/Login";
+import Login from "../../../authorization/Login";
 import { useSelector } from "react-redux";
-import './account.css';
+import './admin.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftMenu from './leftMenu/LeftMenu';
 import ControlUsers from './controlUsers/ControlUsers.jsx';
 import ControlGeneral from './controlGeneral/ControlGeneral';
 import ControlThemes from './controlThemes/ControlThemes';
 
-export function Account() {
+export function Admin() {
 	const userRole = useSelector(state => state.user.currentUser.role)
 	const contentPage = useSelector(state => state.app.contentPage)
 

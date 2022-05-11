@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { setProcessStatus } from '../../../../../reducers/themeReduser';
+import { setProcessStatus } from '../../../../../../reducers/themeReduser';
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 

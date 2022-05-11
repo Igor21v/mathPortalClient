@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Disk from '../../../disk/Disk';
+import Disk from '../../../../disk/Disk';
 import { useSelector, useDispatch } from "react-redux";
-import { showLoader } from "../../../../reducers/appReducer";
-import { getFiles, searchFiles } from "../../../../actions/file";
+import { showLoader } from "../../../../../reducers/appReducer";
+import { getFiles, searchFiles } from "../../../../../actions/file";
 
 
 const ControlGeneral = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { contentPage } from '../../../../reducers/appReducer';
+import { contentPage } from '../../../../../reducers/appReducer';
 
 const LeftMenu = () => {
     const dispatch = useDispatch()

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { registration } from "../../../../../actions/user";
+import { registration } from "../../../../../../actions/user";
 import { Form, InputGroup, Button, Container, Card } from 'react-bootstrap';
 
 const Registration = () => {
