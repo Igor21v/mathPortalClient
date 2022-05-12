@@ -5,10 +5,26 @@ import { Form, InputGroup, Button, Container, Card } from 'react-bootstrap';
 const Registration = () => {
     const [phon, setPhon] = useState("")
     const [password, setPassword] = useState("")
+    const [form, setForm] = useState({
+        phon: '',
+        password: '',
+        name: '',
+        surname: ''
+    }
+    )
+    const update = e => {
+        setForm({
+          ...form,
+          [e.target.name]: e.target.value
+        });
+        console.log(JSON.stringify(form))
+      }; 
+    
     const getRegistration = event => {
         event.preventDefault()
         registration(phon, password)
     }
+
 
     return (
         <Card className='mt-4 p-3'>
@@ -24,6 +40,10 @@ const Registration = () => {
                 <Form.Group controlId="fromBasicPassword">
                     <Form.Label>Пароль</Form.Label>
                     <Form.Control type="password" placeholder='Введите пароль' value={password} onChange={(event) => setPassword(event.target.value)} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Имя</Form.Label>
+                    <Form.Control type='text' name='name' placeholder='Введите имя ученика' value={form.name} onChange={update}/>
                 </Form.Group>
                 <Form.Group className="mt-3">
                     <Button type="submit" className="btn-primary" >Зарегистрировать</Button>

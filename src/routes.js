@@ -4,6 +4,8 @@ import { Admin } from './сomponents/pages/account/admin/Admin';
 import EditTheme from './сomponents/pages/themes/editTheme/EditTheme';
 import VeiwTheme from './сomponents/pages/themes/viewTheme/ViewTheme';
 import { Navigate } from "react-router-dom";
+import Guest from './сomponents/pages/account/guest/Guest';
+import Student from './сomponents/pages/account/student/Student';
 
 export const adminRoutes = [
     {
@@ -16,7 +18,17 @@ export const adminRoutes = [
     },
 ]
 
+export const studentRoutes = [
+    {
+        path: '/',
+        Component: <Student/>
+    }
+]
 export const publicRoutes = [
+    {
+        path: '/',
+        Component: <Guest />
+    },
     {
         path: '/themes',
         Component: <Themes/>

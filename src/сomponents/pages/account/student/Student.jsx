@@ -2,8 +2,8 @@ import React from 'react';
 
 const Student = () => {
     return (
-        <div>
-            
+        <div >
+            <h1 style={{textAlign: 'center'}}>Здесь будет личный кабинет ученика=)</h1>
         </div>
     );
 };
