@@ -7,10 +7,12 @@ import LeftMenu from './leftMenu/LeftMenu';
 import ControlUsers from './controlUsers/ControlUsers.jsx';
 import ControlGeneral from './controlGeneral/ControlGeneral';
 import ControlThemes from './controlThemes/ControlThemes';
+import { Route, Routes } from 'react-router-dom';
 
 export function Admin() {
 	const userRole = useSelector(state => state.user.currentUser.role)
 	const contentPage = useSelector(state => state.app.contentPage)
+
 
 	const content = () => {
 		switch (contentPage) {
@@ -25,6 +27,7 @@ export function Admin() {
 		}
 	}
 
+
 	return (
 		<Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
 			<Row className="gap-3">
@@ -32,7 +35,11 @@ export function Admin() {
 					<LeftMenu />
 				</Col>
 				<Col>
-					{content()}
+					{/* {content()} */}
+					<Routes>
+						<Route path={`11`} element={<ControlThemes/>}/>
+						<Route path={`*`} element={<ControlGeneral/>}/>
+					</Routes>
 				</Col>
 			</Row>
 		</Container>

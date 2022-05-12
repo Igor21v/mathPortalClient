@@ -12,14 +12,12 @@ const Registration = () => {
         surname: ''
     }
     )
-    const update = e => {
+    const update = e => 
         setForm({
           ...form,
           [e.target.name]: e.target.value
         });
-        console.log(JSON.stringify(form))
-      }; 
-    
+        
     const getRegistration = event => {
         event.preventDefault()
         registration(phon, password)
@@ -34,16 +32,20 @@ const Registration = () => {
                     <Form.Label>Номер телефона</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>+7</InputGroup.Text>
-                        <Form.Control type="text" placeholder='Введите номер телефона' value={phon} onChange={(event) => setPhon(event.target.value)} />
+                        <Form.Control type="text" name='phon' placeholder='Введите номер телефона' value={phon} onChange={(event) => setPhon(event.target.value)} />
                     </InputGroup>
                 </Form.Group>
-                <Form.Group controlId="fromBasicPassword">
+                <Form.Group controlId="fromBasicPassword" className="mb-2">
                     <Form.Label>Пароль</Form.Label>
-                    <Form.Control type="password" placeholder='Введите пароль' value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <Form.Control type="password" name='password' placeholder='Введите пароль' value={password} onChange={(event) => setPassword(event.target.value)} />
                 </Form.Group>
-                <Form.Group>
+                <Form.Group controlId="fromBasicName" className="mb-2">
                     <Form.Label>Имя</Form.Label>
                     <Form.Control type='text' name='name' placeholder='Введите имя ученика' value={form.name} onChange={update}/>
+                </Form.Group>
+                <Form.Group controlId="fromBasicSurname">
+                    <Form.Label>Фамилия</Form.Label>
+                    <Form.Control type='text' name='surname' placeholder='Введите фамилию ученика' value={form.surname} onChange={update}/>
                 </Form.Group>
                 <Form.Group className="mt-3">
                     <Button type="submit" className="btn-primary" >Зарегистрировать</Button>
