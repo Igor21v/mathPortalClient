@@ -56,7 +56,7 @@ export default function Navibar() {
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className='me-auto'>
                                  <Link className='me-2' to="/themes">Темы</Link> 
-                                 <Link className='me-2' to="/account">Личный кабинет</Link> 
+                                 <Link className='me-2' to="/">Личный кабинет</Link> 
                                  <Link className='me-2' to="/about">О портале</Link> 
                             </Nav>
                             {!userRole &&

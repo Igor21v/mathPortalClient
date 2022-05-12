@@ -9,7 +9,7 @@ import Student from './сomponents/pages/account/student/Student';
 
 export const adminRoutes = [
     {
-        path: '/account/*',
+        path: '/*',
         Component: <Admin/>
     },
     {
@@ -26,7 +26,7 @@ export const studentRoutes = [
 ]
 export const publicRoutes = [
     {
-        path: '/account/*',
+        path: '/*',
         Component: <Guest />
     },
     {
