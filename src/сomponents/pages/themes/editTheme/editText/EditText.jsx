@@ -27,7 +27,7 @@ const EditText = ({theme}) => {
       };
     return (
         <>
-            <Form className='border p-3 rounded-3 mb-3' onSubmit={SaveChanges}>
+            <Form className='border p-3 rounded-3 mb-3 bg-white' onSubmit={SaveChanges}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Наименование темы</Form.Label>
                     <Form.Control

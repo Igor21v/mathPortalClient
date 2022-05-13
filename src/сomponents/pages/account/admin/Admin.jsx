@@ -31,14 +31,15 @@ export function Admin() {
 	return (
 		<Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
 			<Row className="gap-3">
-				<Col lg={2}>
+				<Col lg={2} className='p-0'>
 					<LeftMenu />
 				</Col>
 				<Col>
 					{/* {content()} */}
 					<Routes>
-						<Route path={`11`} element={<ControlThemes/>}/>
-						<Route path={`*`} element={<ControlGeneral/>}/>
+						<Route path={`*`} element={<ControlUsers/>}/>
+						<Route path={`themes`} element={<ControlThemes/>}/>
+						<Route path={`general`} element={<ControlGeneral/>}/>
 					</Routes>
 				</Col>
 			</Row>

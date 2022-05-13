@@ -17,7 +17,7 @@ const ControlThemes = () => {
 
     return (
         <>
-            <Form className='border p-3 rounded-3' onSubmit={AddTheme}>
+            <Form className='border p-3 rounded-3 bg-white shadow-sm' onSubmit={AddTheme}>
                 <h2 style={{ textAlign: 'center' }}>Создание темы</h2>
                 <Form.Group className="mb-3">
                     <Form.Label>Наименование темы</Form.Label>

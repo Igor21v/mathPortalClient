@@ -3,11 +3,13 @@ import { setUser } from "../reducers/userReducer";
 import { API_URL } from "../config";
 import { $authHost, $host } from '.';
 
-export const registration = async (phon, password) => {
+export const registration = async (phon, password, name, surname) => {
     try {
         const response = await $authHost.post(`api/auth/registration`, {
             phon,
-            password
+            password,
+            name,
+            surname
         })
         alert(response.data.message)
     } catch (e) {

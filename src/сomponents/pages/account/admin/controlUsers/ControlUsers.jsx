@@ -11,12 +11,12 @@ import Registration from './registration/Registration';
 
 const ControlUsers = () => {
     const currentUser = useSelector(state => state.user.currentUser)
-const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
+    const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
     return (
         <>
+            <Registration />
             <img className="navbar__avatar" src={avatar} alt="" />
             <Profile />
-            <Registration />
         </>
     );
 };

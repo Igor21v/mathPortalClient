@@ -1,15 +1,19 @@
 import React from 'react';
-import { Stack, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { contentPage } from '../../../../../reducers/appReducer';
+import { Stack, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const LeftMenu = () => {
-    const dispatch = useDispatch()
     return (
-        <Stack gap={3}>
-            <Button onClick={() => dispatch(contentPage('users'))}> Управление пользователями</Button>
-            <Button onClick={() => dispatch(contentPage('themes'))}> Управление темами</Button>
-            <Button onClick={() => dispatch(contentPage('settings'))}> Настройки</Button>
+        <Stack  gap={3} className='border rounded-3 p-3 bg-white shadow-sm'>
+            <Link to="/account/users">
+                <Button className='w-100'>Управление пользователями</Button>
+            </Link>
+            <Link to="/account/themes">
+                <Button className='w-100'>Управление темами</Button>
+            </Link>
+            <Link to="/account/general">
+                <Button className='w-100'>Настройки</Button>
+            </Link>
         </Stack>
     );
 };

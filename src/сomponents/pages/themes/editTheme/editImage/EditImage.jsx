@@ -12,7 +12,7 @@ const EditImage = ({theme}) => {
         dispatch(postPicture(theme, file))
     }
     return (
-        <Form className='border p-3 rounded-3 mb-3 '>
+        <Form className='border p-3 rounded-3 mb-3 shadow-sm bg-white'>
             <Row>
                 <Col  xs='auto'>
                     <Card style={{ width: '16rem' }} className="mb-3 ">

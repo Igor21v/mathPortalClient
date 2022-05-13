@@ -3,8 +3,6 @@ import { registration } from "../../../../../../actions/user";
 import { Form, InputGroup, Button, Container, Card } from 'react-bootstrap';
 
 const Registration = () => {
-    const [phon, setPhon] = useState("")
-    const [password, setPassword] = useState("")
     const [form, setForm] = useState({
         phon: '',
         password: '',
@@ -20,24 +18,24 @@ const Registration = () => {
         
     const getRegistration = event => {
         event.preventDefault()
-        registration(phon, password)
+        registration(form.phon, form.password, form.name, form.surname)
     }
 
 
     return (
-        <Card className='mt-4 p-3'>
+        <Card className='mb-4 p-3 shadow-sm'>
             <h3 style={{textAlign: 'center'}}>Регистрация нового ученика</h3>
             <Form onSubmit={getRegistration}>
                 <Form.Group controlId="fromBasicPhon" className="mb-2">
                     <Form.Label>Номер телефона</Form.Label>
                     <InputGroup>
                         <InputGroup.Text>+7</InputGroup.Text>
-                        <Form.Control type="text" name='phon' placeholder='Введите номер телефона' value={phon} onChange={(event) => setPhon(event.target.value)} />
+                        <Form.Control type="text" name='phon' placeholder='Введите номер телефона' value={form.phon} onChange={update} />
                     </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="fromBasicPassword" className="mb-2">
                     <Form.Label>Пароль</Form.Label>
-                    <Form.Control type="password" name='password' placeholder='Введите пароль' value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <Form.Control type="password" name='password' placeholder='Введите пароль' value={form.password} onChange={update} />
                 </Form.Group>
                 <Form.Group controlId="fromBasicName" className="mb-2">
                     <Form.Label>Имя</Form.Label>

@@ -11,8 +11,8 @@ const Theme = ({ theme }) => {
     console.log('theme.pictureName ' + theme.pictureName)
     return (
         <Col md="auto" >
-            <Card style={{ width: '16rem' }} className="mb-3" border={borderRed}>
-                <Card.Img variant="top" src={picturePath} alt=''/>
+            <Card style={{ width: '16rem' }} className="mb-3 shadow-sm" border={borderRed}>
+                <Card.Img variant="top" src={picturePath} alt='' onClick={() => router(`/themes/view/${theme._id}`)} style={{cursor: 'pointer'}}/>
                 <Card.Body>
                     <Card.Title>{theme.name}</Card.Title>
                     <Card.Text>{theme.discription}</Card.Text>

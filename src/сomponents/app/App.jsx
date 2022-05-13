@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.scss';
+import './app.css'
 import Navibar from '../navibar/Navibar';
 import Footer from '../footer/Footer';
 import {
@@ -23,7 +24,7 @@ function App() {
       case 'ADMIN':
         return (
           adminRoutes.map(({ path, Component }) =>
-            <Route exact key={path} path={path} element={Component} />)
+            <Route key={path} path={path} element={Component} />)
         )
       case 'STUDENT':
         return (
@@ -37,7 +38,7 @@ function App() {
     dispatch(auth())
   }, [])
   return (
-    <>
+    <div className='app'>
       <BrowserRouter>
         <Navibar />
         <Routes>
@@ -48,7 +49,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
-    </>
+    </div>
   );
 }
 

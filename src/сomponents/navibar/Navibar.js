@@ -39,9 +39,9 @@ export default function Navibar() {
     return (
         <>
             <Stales>
-                <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
+                <Navbar collapseOnSelect expand="md" bg="primary" variant="dark" className='shadow'>
                     <Container>
-                        <Link to="/themes">
+                        <Link to="/">
                             <Navbar.Brand>
                                 <img
                                     src="/logo.svg"
@@ -55,8 +55,8 @@ export default function Navibar() {
                         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className='me-auto'>
-                                 <Link className='me-2' to="/themes">Темы</Link> 
-                                 <Link className='me-2' to="/">Личный кабинет</Link> 
+                                 <Link className='me-2' to="/">Темы</Link> 
+                                 <Link className='me-2' to="/account">Личный кабинет</Link> 
                                  <Link className='me-2' to="/about">О портале</Link> 
                             </Nav>
                             {!userRole &&
