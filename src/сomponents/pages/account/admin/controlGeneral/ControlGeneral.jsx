@@ -3,7 +3,7 @@ import Disk from '../../../../disk/Disk';
 import { useSelector, useDispatch } from "react-redux";
 import { showLoader } from "../../../../../reducers/appReducer";
 import { getFiles, searchFiles } from "../../../../../actions/file";
-
+import { Card } from 'react-bootstrap';
 
 const ControlGeneral = () => {
     const [searchName, setSearchName] = useState('')
@@ -25,10 +25,8 @@ const ControlGeneral = () => {
         }
     }
     return (
-        <>
-            <h5>Счетчик событий useEffect: {" "}
-                {localStorage.getItem('useEffectCont')}</h5>
-            <h2>Управление файловой системой проекта</h2>
+        <Card className='p-3 shadow-sm' >
+            <h2 style={{textAlign: 'center', marginBottom: '30px'}}>Управление файловой системой проекта</h2>
             <input
                 value={searchName}
                 onChange={e => searchChangeHandler(e)}
@@ -36,8 +34,8 @@ const ControlGeneral = () => {
                 type="text"
                 placeholder="Название файла..." />
             <Disk />
-        </>
+        </Card>
     );
 }
-    
+
 export default ControlGeneral;

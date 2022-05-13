@@ -15,8 +15,8 @@ const ControlUsers = () => {
     return (
         <>
             <Registration />
-            <img className="navbar__avatar" src={avatar} alt="" />
-            <Profile />
+            {/* <img className="navbar__avatar" src={avatar} alt="" />
+            <Profile /> */}
         </>
     );
 };

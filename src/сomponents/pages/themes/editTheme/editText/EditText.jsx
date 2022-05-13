@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { deleteTheme, editTheme } from '../../../../../actions/theme';
-import EditStatus from './editStatus/EditStatus';
+import ProcState from '../../../../procState/ProcState';
 
 
-const EditText = ({theme}) => {
+const EditText = ({ theme }) => {
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         _id: theme._id,
@@ -17,14 +17,17 @@ const EditText = ({theme}) => {
     const SaveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы' + theme._id)
-        dispatch ( editTheme(form))
+        dispatch(editTheme(form))
     }
     const update = e => {
         setForm({
-          ...form,
-          [e.target.name]: e.target.value
+            ...form,
+            [e.target.name]: e.target.value
         });
-      };
+    };
+    const procState = {
+        state: ['Сохранение изменений...', 'Тема успешно отредактирована', 'Ошибка при редактировании темы']
+    }
     return (
         <>
             <Form className='border p-3 rounded-3 mb-3 bg-white' onSubmit={SaveChanges}>
@@ -64,8 +67,8 @@ const EditText = ({theme}) => {
                             id="custom-switch"
                             label="Опубликовать"
                             name='isPablic'
-                            onChange={() => setForm({...form, isPublic: !form.isPublic})}
-                            checked={form.isPublic}/>
+                            onChange={() => setForm({ ...form, isPublic: !form.isPublic })}
+                            checked={form.isPublic} />
                     </Col>
                 </Row>
                 <div className='d-flex flex-row'>
@@ -81,7 +84,7 @@ const EditText = ({theme}) => {
 
                         Удалить тему  </p>
                 </div>
-                <EditStatus/>
+                <ProcState procState={procState} />
             </Form>
         </>
     );

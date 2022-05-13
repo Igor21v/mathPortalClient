@@ -14,7 +14,6 @@ const ThemesList = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getListThemes(showThemes, searchThemes))
-        localStorage.setItem('useEffectCont', Number(localStorage.getItem('useEffectCont')) + 1);
      }, [showThemes, searchThemes])
 
     if (themes ) {

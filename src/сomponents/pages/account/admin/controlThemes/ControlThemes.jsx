@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { addTheme } from '../../../../../actions/theme';
-import { useDispatch } from "react-redux";
-import AddStatus from './addStatus/AddStatus';
+import { useDispatch, useSelector } from "react-redux";
+import ProcState from '../../../../procState/ProcState';
 
 const ControlThemes = () => {
+    const theme = useSelector(state => state.themes.theme)
     const [nameTheme, setName] = useState('');
     const [discription, setDiscription] = useState('');
     const dispatch = useDispatch()
     const AddTheme = (event) => {
         event.preventDefault()
         dispatch(addTheme(nameTheme, discription))
-        console.log(nameTheme + '  ' + discription)
     }
-
-
+    const procState = {
+        state: ['Сохранение изменений...', 'Тема успешно добавлена, ', 'Ошибка при добавлении темы'],
+        ref: {
+            ref: `/themes/edit/${theme._id}`,
+            text: 'перейти к редактированию'
+        }
+    }
+ 
     return (
         <>
             <Form className='border p-3 rounded-3 bg-white shadow-sm' onSubmit={AddTheme}>
@@ -38,7 +44,7 @@ const ControlThemes = () => {
                 <Button variant="primary" type="submit" className='me-3'>
                     Добавить тему
                 </Button>
-                <AddStatus />
+                <ProcState procState={procState}/>
             </Form>
         </>
     );
