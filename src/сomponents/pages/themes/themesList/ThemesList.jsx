@@ -13,6 +13,7 @@ const ThemesList = () => {
     const themes = useSelector(state => state.themes.listThemes)
     const dispatch = useDispatch()
     useEffect(() => {
+        console.log('Запрос списка тем')
         dispatch(getListThemes(showThemes, searchThemes))
      }, [showThemes, searchThemes])
 
@@ -29,7 +30,6 @@ const ThemesList = () => {
     else {
         return (
             <><h1>Сервер сдох</h1>
-            {console.log('Вот те раз')}
             </>
         )
     }

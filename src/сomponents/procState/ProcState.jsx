@@ -12,6 +12,7 @@ const ProcState = ({procState}) => {
     }, [])
     let content = ''
     let className = ''
+    let content2 = ''
     switch (processStatus) {
         case 'Processing':
             content = procState.state[0]
@@ -20,6 +21,7 @@ const ProcState = ({procState}) => {
         case 'Success':
             content = procState.state[1]
             className = 'text-success'
+            content2 = procState.ref?.text
             break;
         case 'Error' :
             content = procState.state[2]
@@ -32,7 +34,7 @@ const ProcState = ({procState}) => {
     return (
         <>
             <span className={className}>{content} </span>
-            {procState.ref && <span className='text-success text-decoration-underline' onClick={() => router(procState.ref.ref)} style={{cursor: 'pointer'}}>{procState.ref.text} </span>}
+            {procState.ref && <span className='text-success text-decoration-underline' onClick={() => router(procState.ref.ref)} style={{cursor: 'pointer'}}>{content2} </span>}
         </>
     );
 };

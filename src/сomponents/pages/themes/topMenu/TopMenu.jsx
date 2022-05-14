@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown, Form, Stack } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowThemes, setSearchThemes } from '../../../../reducers/themeReduser';
@@ -9,6 +9,8 @@ const TopMenu = () => {
     const [searchTimeout, setSearchTimout] = useState(false)
     const searchThemes = useSelector(state => state.themes.searchThemes)
     const [searchField, setSearchField] = useState(searchThemes)
+    const userRole = useSelector(state => state.user.currentUser.role)
+    console.log('DDDD' + JSON.stringify(userRole))
     const dispatch = useDispatch()
 
     function searchChangeHandler(e) {
@@ -21,6 +23,16 @@ const TopMenu = () => {
         }, 500, e.target.value))
     }
 
+
+    useEffect(() => {
+        if (userRole === 'ADMIN') {
+            dispatch(setShowThemes('all'))
+        } else {
+            dispatch(setShowThemes('onlyPublic'))
+            }
+    }, [userRole]
+    )
+
     return (
 
         <>
@@ -31,7 +43,7 @@ const TopMenu = () => {
                     value={searchField}
                     onChange={e => searchChangeHandler(e)} />
 
-                < Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
+                {(userRole === 'ADMIN')&&< Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
                     <Dropdown.Toggle variant="primary" id="dropdown-basic" >
                         Отображать
                     </Dropdown.Toggle>
@@ -40,7 +52,7 @@ const TopMenu = () => {
                         <Dropdown.Item eventKey='onlyPublic'>Только опубликованные</Dropdown.Item>
                         <Dropdown.Item eventKey='onlyDev'>В разработке</Dropdown.Item>
                     </Dropdown.Menu>
-                </Dropdown >
+                </Dropdown >}
             </Stack>
         </>
 

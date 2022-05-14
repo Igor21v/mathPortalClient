@@ -1,19 +1,25 @@
 import axios from 'axios'
 import { setUser } from "../reducers/userReducer";
+import { setProcessStatus } from "../reducers/appReducer";
 import { API_URL } from "../config";
 import { $authHost, $host } from '.';
 
-export const registration = async (phon, password, name, surname) => {
-    try {
-        const response = await $authHost.post(`api/auth/registration`, {
-            phon,
-            password,
-            name,
-            surname
-        })
-        alert(response.data.message)
-    } catch (e) {
-        alert(e.response.data.message)
+export const registration = (phon, password, name, surname) => {
+    return async dispatch => {
+        try {
+            dispatch(setProcessStatus('Processing'))
+            const response = await $authHost.post(`api/auth/registration`, {
+                phon,
+                password,
+                name,
+                surname
+            })
+            alert(response.data.message)
+            dispatch(setProcessStatus('Success'))
+        } catch (e) {
+            alert(e.response.data.message)
+            dispatch(setProcessStatus("Error"))
+        }
     }
 }
 

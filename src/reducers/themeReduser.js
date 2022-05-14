@@ -6,7 +6,7 @@ const SET_SEARCH_THEMES = "SET_SEARCH_THEMES"
 const defaultState = {
     listThemes: [],
     theme: "",
-    showThemes: "all",
+    showThemes: "onlyPublic",
     searchThemes: "",
     addStatus: ""
 }
