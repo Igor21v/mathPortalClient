@@ -1,7 +1,6 @@
 import React from 'react';
-import Slider from '../../slider/Slider';
 
 export const About = () => (
-        <Slider/>
+        <h1 style={{textAlign: 'center'}}> Здесь будет информация о портале </h1>
     )
 

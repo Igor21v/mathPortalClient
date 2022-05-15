@@ -4,6 +4,7 @@ import { API_URL } from "../../../../../config";
 import { useSelector, useDispatch } from "react-redux";
 import avatarLogo from '../../../../../assets/img/avatar.svg'
 import Registration from './registration/Registration';
+import UserList from './userList/UserList';
 
 
 
@@ -15,6 +16,7 @@ const ControlUsers = () => {
     return (
         <>
             <Registration />
+            <UserList/>
             {/* <img className="navbar__avatar" src={avatar} alt="" />
             <Profile /> */}
         </>

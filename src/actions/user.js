@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setUser } from "../reducers/userReducer";
+import { setUser, setUserList } from "../reducers/userReducer";
 import { setProcessStatus } from "../reducers/appReducer";
 import { API_URL } from "../config";
 import { $authHost, $host } from '.';
@@ -71,6 +71,20 @@ export const deleteAvatar = () => {
             dispatch(setUser(response.data))
         } catch (e) {
             console.log(e)
+        }
+    }
+}
+
+export const getUserList = () => {
+    return async dispatch => {
+        try {
+            console.log('Запрос в экшене ' )
+            const response = await $authHost.get(`api/auth/userList`)
+            console.log('Пользователи ' + JSON.stringify(response.data))
+            dispatch (setUserList(response.data))
+        }
+        catch (e) {
+            alert(e.response.data.message)
         }
     }
 }

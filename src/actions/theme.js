@@ -7,7 +7,6 @@ import { $authHost, $host } from ".";
 export function getTheme(themeId) {
     return async dispatch => {
         try {
-            dispatch(showLoader())
             const response = await $host.get(`api/theme`, {
                 params: {
                     themeId: themeId
@@ -18,16 +17,12 @@ export function getTheme(themeId) {
         catch (e) {
             alert(e.response.data.message)
         }
-        finally {
-            dispatch(hideLoader())
-        }
     }
 }
 
 export function getListThemes(showThemes, searchTheme) {
     return async dispatch => {
         try {
-            dispatch(showLoader())
             const response = await $host.get(`api/theme/getListThemes`, {
                 params: {
                     showThemes: showThemes,
@@ -38,9 +33,6 @@ export function getListThemes(showThemes, searchTheme) {
         }
         catch (e) {
             alert(e.response.data.message)
-        }
-        finally {
-            dispatch(hideLoader())
         }
     }
 }

@@ -13,7 +13,7 @@ const Theme = ({ theme }) => {
     return (
         <>
             {/* <Col md="auto" > */}
-            <Card style={{ width: '16rem' }} className="mb-3 shadow-sm" border={borderRed}>
+            <Card style={{ width: '16rem' }} className="mb-2 shadow-sm" border={borderRed}>
                 <Card.Img variant="top" src={picturePath} alt='' onClick={() => router(`/themes/view/${theme._id}`)} style={{ cursor: 'pointer' }} />
                 <Card.Body className="d-flex justify-content-between flex-column">
                     <Card.Title>{theme.name}</Card.Title>

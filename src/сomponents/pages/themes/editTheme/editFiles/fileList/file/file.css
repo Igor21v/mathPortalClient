@@ -17,7 +17,7 @@
 .file-theme:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
-  /* animation: file-theme 10s linear infinite; */
+  /*   animation: file-theme 1s linear infinite; */
 }
 
 .file-theme:hover .file-theme__basket {
@@ -38,8 +38,9 @@
             transform: rotate(0deg);
   }
   50% {
-    -webkit-transform: rotate(180deg) scale(1.5);
-            transform: rotate(180deg) scale(1.5);
+    opacity: 0;
+    -webkit-transform: rotate(180deg) scale(2);
+            transform: rotate(180deg) scale(2);
   }
   100% {
     -webkit-transform: rotate(360deg);
@@ -53,8 +54,9 @@
             transform: rotate(0deg);
   }
   50% {
-    -webkit-transform: rotate(180deg) scale(1.5);
-            transform: rotate(180deg) scale(1.5);
+    opacity: 0;
+    -webkit-transform: rotate(180deg) scale(2);
+            transform: rotate(180deg) scale(2);
   }
   100% {
     -webkit-transform: rotate(360deg);
