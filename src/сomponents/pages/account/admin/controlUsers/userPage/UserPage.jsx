@@ -9,9 +9,9 @@ const UserPage = () => {
     const user = userList.find(user => user._id === param.id)
     return (
         <Card className='p-3'>
-            <h3 style={{ textAlign: 'center' }}>Страничка ученика </h3>
+            <h3 style={{ textAlign: 'center' }}>Страничка ученика: {user.surname} {user.name} </h3>
             {/* <Form> */}
-                {JSON.stringify(userList)}
+ 
             {/* </Form> */}
         </Card>
     );
