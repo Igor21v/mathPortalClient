@@ -78,9 +78,7 @@ export const deleteAvatar = () => {
 export const getUserList = () => {
     return async dispatch => {
         try {
-            console.log('Запрос в экшене ' )
             const response = await $authHost.get(`api/auth/userList`)
-            console.log('Пользователи ' + JSON.stringify(response.data))
             dispatch (setUserList(response.data))
         }
         catch (e) {

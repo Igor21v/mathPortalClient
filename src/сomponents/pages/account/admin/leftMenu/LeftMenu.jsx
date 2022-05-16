@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LeftMenu = () => {
     return (
-        <Stack  gap={3} className='border rounded-3 p-3 bg-white shadow-sm'>
+        <Stack  gap={2} className='border rounded-2 p-2 bg-white shadow-sm'>
             <Link to="/account/users">
                 <Button className='w-100'>Управление пользователями</Button>
             </Link>

@@ -1,10 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const User = () => {
+const User = ({ user }) => {
+    const router = useNavigate()
     return (
-        <div>
-            
-        </div>
+        <>
+            <tr style={{cursor: 'pointer'}} onClick={() => router(`/account/userPage/${user._id}`)}>
+                <td> {user.name}</td>
+                <td> {user.surname}</td>
+                <td> +7{user.phon}</td>
+            </tr>
+        </>
     );
 };
 
