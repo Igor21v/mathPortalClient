@@ -11,7 +11,13 @@ const UserPage = () => {
         <Card className='p-3'>
             <h3 style={{ textAlign: 'center' }}>Страничка ученика: {user.surname} {user.name} </h3>
             {/* <Form> */}
- 
+            <div className='text-decoration-underline text-danger mt-auto ms-3'
+                style={{ cursor: 'pointer', textAlign: 'right' }}>
+                <p onClick={() => console.log('Переход')}>
+                    Изменить данные пользователя </p>
+                <p onClick={() => console.log('Переход2')}>
+                    Удалить пользователя </p>
+            </div>
             {/* </Form> */}
         </Card>
     );
