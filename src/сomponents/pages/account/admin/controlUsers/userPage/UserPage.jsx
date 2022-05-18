@@ -1,25 +1,22 @@
 import React, { useEffect } from 'react';
-import { Card, Form } from 'react-bootstrap';
+import { Button, Card, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import IconEdit from '../../../../../icons/iconEdit/IconEdit';
 
 const UserPage = () => {
     const param = useParams()
-    const router = useNavigate ()
+    
     const userList = useSelector(state => state.user.userList)
     const user = userList.find(user => user._id === param.id)
     return (
         <Card className='p-3'>
-            <h3 style={{ textAlign: 'center' }}>Страничка ученика: {user.surname} {user.name} </h3>
-            <img style={{ cursor: 'pointer', position: 'absolute', right: '8px' }}
-                onClick={() => router(`/themes/edit/${user._id}`)}
-                src="/edit.svg"
-                width="36"
-                height="36"
-                alt=""
-            />
-
+            <h3 style={{textAlign: 'center'}}> Страничка ученика: {user.surname} {user.name}</h3>
+            <div style= {{position: 'absolute', right: '8px'}}>
+            <IconEdit props={{ref: `/account/userEdit/${user._id}`, hint: 'Редактировать данные пользователя'}}/>
+            </div>
         </Card>
+    
     );
 };
 

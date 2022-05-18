@@ -1,7 +1,5 @@
 import React from 'react';
-import Login from "../../../authorization/Login";
 import { useSelector } from "react-redux";
-import './admin.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftMenu from './leftMenu/LeftMenu';
 import ControlUsers from './controlUsers/ControlUsers.jsx';
@@ -9,6 +7,7 @@ import ControlGeneral from './controlGeneral/ControlGeneral';
 import ControlThemes from './controlThemes/ControlThemes';
 import { Route, Routes } from 'react-router-dom';
 import UserPage from './controlUsers/userPage/UserPage';
+import UserEdit from './controlUsers/userEdit/UserEdit';
 
 export function Admin() {
 	const userRole = useSelector(state => state.user.currentUser.role)
@@ -26,6 +25,7 @@ export function Admin() {
 						<Route path={`themes`} element={<ControlThemes/>}/>
 						<Route path={`general`} element={<ControlGeneral/>}/>
 						<Route path={`userPage/:id`} element={<UserPage/>}/>
+						<Route path={`userEdit/:id`} element={<UserEdit/>}/>
 					</Routes>
 				</Col>
 			</Row>
