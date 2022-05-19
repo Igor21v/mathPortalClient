@@ -1,0 +1,29 @@
+@import '../../app/app.scss';
+
+.iconedit {
+    position: relative;
+    display: inline-block;
+
+    &__text {
+        position: absolute;
+        bottom: 90%;
+        left: 90%;
+        border: 2px solid;
+        border-radius: 10px;
+        color: $primary;
+        text-align: center;
+        font-family: cursive;
+        font-size: 14px;
+        padding: 3px;
+        transition: all 0.6s;
+        transform: scale(0);
+    }
+    
+    &__icon {
+        cursor: pointer;
+    }
+
+    &:hover &__text {
+        transform: scale(1);
+    }
+}

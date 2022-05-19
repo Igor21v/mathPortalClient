@@ -11969,4 +11969,35 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
-/*# sourceMappingURL=app.css.map */
+
+.iconedit {
+  position: relative;
+  display: inline-block;
+}
+
+.iconedit__text {
+  position: absolute;
+  bottom: 90%;
+  left: 90%;
+  border: 2px solid;
+  border-radius: 10px;
+  color: #558b2f;
+  text-align: center;
+  font-family: cursive;
+  font-size: 14px;
+  padding: 3px;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.iconedit__icon {
+  cursor: pointer;
+}
+
+.iconedit:hover .iconedit__text {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+/*# sourceMappingURL=iconEdit.css.map */
