@@ -13,7 +13,7 @@ const UserPage = () => {
         <Card className='p-3'>
             <h3 style={{textAlign: 'center'}}> Страничка ученика: {user.surname} {user.name}</h3>
             <div style= {{position: 'absolute', right: '8px'}}>
-            <IconEdit props={{ref: `/account/userEdit/${user._id}`, hint: 'Редактировать данные пользователя'}}/>
+            <IconEdit props={{ref: `/account/userEdit/${user._id}`, hint: 'Редактировать или удалить данные пользователя'}}/>
             </div>
         </Card>
     

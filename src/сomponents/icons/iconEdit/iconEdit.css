@@ -20,8 +20,14 @@
           transform: scale(0);
 }
 
-.iconedit__icon {
+.iconedit__text-bottom {
+  bottom: -70%;
+  left: 100%;
+}
+
+.iconedit:hover .iconedit__icon {
   cursor: pointer;
+  fill: #558b2f;
 }
 
 .iconedit:hover .iconedit__text {

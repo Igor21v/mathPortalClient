@@ -16,11 +16,17 @@
         font-size: 14px;
         padding: 3px;
         transition: all 0.6s;
-        transform: scale(0);
-    }
+        transform: scale(0);   
+        &-bottom {
+            bottom: -70%;
+            left: 100%;    
+        }       
+}
 
-    &__icon {
+
+    &:hover &__icon {
         cursor: pointer;
+        fill: $primary;
     }
 
     &:hover &__text {
