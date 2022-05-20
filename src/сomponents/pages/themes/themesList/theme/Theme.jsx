@@ -3,6 +3,7 @@ import { Button, Card, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from "../../../../../config";
+import IconEdit from '../../../../icons/iconEdit/IconEdit';
 
 
 const Theme = ({ theme }) => {
@@ -18,14 +19,11 @@ const Theme = ({ theme }) => {
                 <Card.Body className="d-flex justify-content-between flex-column">
                     <Card.Title>{theme.name}</Card.Title>
                     <Card.Text>{theme.discription}</Card.Text>
-                    <div className='d-flex flex-row justify-content-between'>
+                    <div className='d-flex flex-row justify-content-between gap-1'>
                         <Button className='flex-grow-1' onClick={() => router(`/themes/view/${theme._id}`)}>Перейти к изучению</Button>
-                        {userRole==='ADMIN' && <img style={{ cursor: 'pointer', marginLeft: '5px'}}
-                            onClick={() => router(`/themes/edit/${theme._id}`)}
-                            src="/edit.svg"
-                            width="36"
-                            height="36"
-                            alt=""
+                        {userRole==='ADMIN' && <IconEdit
+                            props={{ref: `/themes/edit/${theme._id}`, 
+                            hint: 'Редактировать'}}
                         />}
                     </div>
                 </Card.Body>

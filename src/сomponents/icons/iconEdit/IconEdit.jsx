@@ -6,6 +6,16 @@ import {ReactComponent as Icon} from './icon.svg'
 const IconEdit = ({props}) => {
     const router = useNavigate()
     console.log(JSON.stringify(props))
+    let position
+    console.log(props.position)
+    switch (props.position) {
+        case 'bottom':
+            position = 'iconedit__text-bottom'
+            break;
+        default:
+            position = 'iconedit__text'
+    }
+    console.log(position)
     return (
 
         <div className='iconedit'>
@@ -14,7 +24,7 @@ const IconEdit = ({props}) => {
                 width="36"
                 height="36"
                 />
-            <div className='iconedit__text iconedit__text-bottom'>{props.hint}</div>
+            <div className= {position}>{props.hint}</div>
         </div>
     );
 };

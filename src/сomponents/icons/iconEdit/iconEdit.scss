@@ -1,23 +1,29 @@
 @import '../../app/colors';
+    
+%text {
+    position: absolute;
+    bottom: 120%;
+    left: -100%;
+    border: 2px solid;
+    border-radius: 10px;
+    color: $primary;
+    text-align: center;
+    font-family: cursive;
+    font-size: 14px;
+    padding: 3px;
+    transition: all 0.6s;
+    transform: scale(0);
+    z-index: 1
+}
 
 .iconedit {
     position: relative;
     display: inline-block;
 
     &__text {
-        position: absolute;
-        bottom: 90%;
-        left: 90%;
-        border: 2px solid;
-        border-radius: 10px;
-        color: $primary;
-        text-align: center;
-        font-family: cursive;
-        font-size: 14px;
-        padding: 3px;
-        transition: all 0.6s;
-        transform: scale(0);   
-        &-bottom {
+        @extend %text;
+        &-bottom {  
+            @extend %text;
             bottom: -70%;
             left: 100%;    
         }       
@@ -29,7 +35,7 @@
         fill: $primary;
     }
 
-    &:hover &__text {
+    &:hover &__text, &:hover &__text-bottom {
         transform: scale(1);
     }
 }
