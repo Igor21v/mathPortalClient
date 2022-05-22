@@ -12,13 +12,7 @@ import { getUserList } from '../../../../../actions/user';
 const ControlUsers = () => {
     const currentUser = useSelector(state => state.user.currentUser)
     const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
-    const dispatch = useDispatch()
-	useEffect(() => {
-		console.log('Запрос пользователей')
-		dispatch(getUserList())
-	},
-		[]
-	)
+
     return (
         <>
             <Registration />

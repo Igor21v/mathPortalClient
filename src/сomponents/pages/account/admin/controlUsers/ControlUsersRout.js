@@ -25,9 +25,9 @@ const ControlUsersRout = () => {
     return (
         <>
             <Routes>
-                <Route path={`*`} element={<ControlUsers />} />
                 <Route path={`userPage/:id`} element={<UserPage />} />
                 <Route path={`userEdit/:id`} element={<UserEdit />} />
+                <Route path={`*`} element={<ControlUsers />} />
             </Routes>
 
         </>

@@ -24,7 +24,7 @@ function App() {
       case 'ADMIN':
         return (
           adminRoutes.map(({ path, Component }) =>
-            <Route key={path} path={path} element={Component} />)
+            <Route exact key={path} path={path} element={Component} />)
         )
       case 'STUDENT':
         return (
@@ -46,6 +46,7 @@ function App() {
           {publicRoutes.map(({ path, Component }) =>
             <Route exact key={path} path={path} element={Component} />
           )}
+
         </Routes>
       </BrowserRouter>
       <Footer />

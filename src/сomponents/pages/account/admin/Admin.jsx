@@ -21,9 +21,8 @@ export function Admin() {
 					<Routes>
 						<Route path={`controlUser/*`} element={<ControlUsersRout />} />
 						<Route path={`themes`} element={<ControlThemes />} />
-						<Route path={`*`} element={<ControlGeneral />} />
-						<Route path={`userPage/:id`} element={<UserPage />} />
-						<Route path={`userEdit/:id`} element={<UserEdit />} />
+						<Route path={`general`} element={<ControlGeneral />} />
+						{/* <Route path={`*`} element={<ControlUsersRout />} /> */}
 					</Routes>
 				</Col>
 			</Row>
