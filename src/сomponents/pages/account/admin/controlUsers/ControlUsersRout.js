@@ -10,10 +10,12 @@ import { Route, Routes } from 'react-router-dom';
 import UserPage from './userPage/UserPage';
 import UserEdit from './userEdit/UserEdit';
 import ControlUsers from './ControlUsers'
+import Loader from '../../../../../utils/loader/Loader';
 
 
 const ControlUsersRout = () => {
     const currentUser = useSelector(state => state.user.currentUser)
+    const userList = useSelector(state => state.user.userList)
     const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
     const dispatch = useDispatch()
     useEffect(() => {
@@ -24,12 +26,15 @@ const ControlUsersRout = () => {
     )
     return (
         <>
-            <Routes>
-                <Route path={`userPage/:id`} element={<UserPage />} />
-                <Route path={`userEdit/:id`} element={<UserEdit />} />
-                <Route path={`*`} element={<ControlUsers />} />
-            </Routes>
-
+            {(userList != '') ?
+                <Routes>
+                    <Route path={`userPage/:id`} element={<UserPage />} />
+                    <Route path={`userEdit/:id`} element={<UserEdit />} />
+                    <Route path={`*`} element={<ControlUsers />} />
+                </Routes>
+                :
+                <Loader />
+            }
         </>
     );
 };
