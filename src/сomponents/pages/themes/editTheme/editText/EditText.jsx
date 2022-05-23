@@ -14,7 +14,7 @@ const EditText = ({ theme }) => {
         order: theme.order,
         isPublic: theme.isPublic
     });
-    const SaveChanges = (event) => {
+    const saveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы' + theme._id)
         dispatch(editTheme(form))
@@ -30,7 +30,7 @@ const EditText = ({ theme }) => {
     }
     return (
         <>
-            <Form className='border p-3 rounded-3 mb-3 bg-white' onSubmit={SaveChanges}>
+            <Form className='border p-3 rounded-3 mb-3 bg-white' onSubmit={saveChanges}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Наименование темы</Form.Label>
                     <Form.Control
@@ -72,7 +72,7 @@ const EditText = ({ theme }) => {
                     </Col>
                 </Row>
                 <div className='d-flex flex-row'>
-                    <Button variant="primary" type="submit" className='me-3' onClick={SaveChanges}>
+                    <Button variant="primary" type="submit" className='me-3' >
                         Сохранить изменения
                     </Button>
                     <Button variant="primary" type="submit" className='me-auto'>

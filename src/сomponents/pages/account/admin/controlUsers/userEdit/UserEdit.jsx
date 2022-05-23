@@ -22,16 +22,20 @@ const UserEdit = () => {
     }
     const procState = {
         state: [
-            'Выполняется сохраненеие пользователя...',
-            'Пользователь успeшно добавлен',
-            'Ошибка при добавлении пользователя'
+            'Выполняется сохраненеие изменений...',
+            'Изменения сохранены',
+            'Ошибка при сохранении изменений'
         ]
+    }
+    const saveChanges = (e) => {
+        e.preventDefault()
+        console.log('сохранение изменений')
     }
     return (
         <>
             <Card className='p-3'>
                 <h3 style={{ textAlign: 'center', marginBottom: '30px' }}> Редактирование данных пользователя </h3>
-                <Form>
+                <Form onSubmit={saveChanges}>
                     <Stack gap={'3'}>
                         <FormGroup controlId='name'>
                             <Form.Label> Имя ученика </Form.Label>
@@ -58,9 +62,13 @@ const UserEdit = () => {
                                 <Form.Control type="text" name='phon' placeholder='Введите номер телефона' value={form.phon} onChange={update} />
                             </InputGroup>
                         </Form.Group>
-                        <div className='d-flex align-items-center mt-3 flex-wrap'>
-                            <Button type="submit" className="btn-primary me-3" >Сохранить изменения</Button>
-                            <ProcState procState={procState}/>
+                        <div className='d-flex flex-row flex-wrap'>
+                            <Button type="submit" className="btn-primary me-auto" >Сохранить изменения</Button>
+                            <p onClick={() => console.log('ff')}
+                                className='text-decoration-underline text-danger'
+                                style={{ cursor: 'pointer' }}>
+                                Удалить пользователя</p>
+                            <ProcState procState={procState} />
                         </div>
                     </Stack>
                 </Form>
@@ -73,7 +81,7 @@ const UserEdit = () => {
                         <Form.Label>Пароль</Form.Label>
                         <Form.Control type="password" name='password' placeholder='Введите новый пароль' value={form.password} onChange={update} />
                     </Form.Group>
-                    <Button type='submit' className='me-3'> Сохранить пароль</Button>
+                    <Button type='submit' className='me-3 mt-3'> Сохранить пароль</Button>
                 </Form>
             </Card>
         </>
