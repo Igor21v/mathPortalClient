@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, FormGroup, Stack, InputGroup, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { saveUserChanges } from '../../../../../../actions/user';
+import { deleteUser, saveUserChanges } from '../../../../../../actions/user';
 import ProcState from '../../../../../procState/ProcState';
 
 const UserEdit = () => {
@@ -34,6 +34,7 @@ const UserEdit = () => {
         console.log('сохранение изменений')
         dispatch(saveUserChanges(user._id, form))
     }
+
     return (
         <>
             <Card className='p-3'>
@@ -67,7 +68,7 @@ const UserEdit = () => {
                         </Form.Group>
                         <div className='d-flex flex-row flex-wrap'>
                             <Button type="submit" className="btn-primary me-auto" >Сохранить изменения</Button>
-                            <p onClick={() => console.log('ff')}
+                            <p onClick={() => dispatch(deleteUser(user._id))}
                                 className='text-decoration-underline text-danger'
                                 style={{ cursor: 'pointer' }}>
                                 Удалить пользователя</p>

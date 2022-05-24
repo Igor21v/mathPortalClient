@@ -103,3 +103,19 @@ export const saveUserChanges = (id, form) => {
         }
     }
 }
+
+export const deleteUser = (id) => {
+    return async dispatch => {
+        try {
+            console.log('ffss' + id)
+            const response = await $authHost.delete(`api/auth/user?id=${id}`)
+            
+            dispatch(setUserList(response.data))
+            alert('Пользователь успешно удален')
+        }
+        catch {
+            alert('Ошибка при удалении пользователя')
+        }
+    }
+
+}
