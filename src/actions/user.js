@@ -79,7 +79,24 @@ export const getUserList = () => {
     return async dispatch => {
         try {
             const response = await $authHost.get(`api/auth/userList`)
-            dispatch (setUserList(response.data))
+            dispatch(setUserList(response.data))
+        }
+        catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
+export const saveUserChanges = (id, form) => {
+    return async dispatch => {
+        try {
+            const response = await $authHost.put('api/auth/user', {
+                id,
+                phon: form.phon,
+                name: form.name,
+                surname: form.surname
+            })
+            dispatch(setUserList(response.data))
         }
         catch (e) {
             alert(e.response.data.message)

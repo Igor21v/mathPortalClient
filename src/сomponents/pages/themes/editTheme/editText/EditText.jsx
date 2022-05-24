@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
-import { deleteTheme, editTheme } from '../../../../../actions/theme';
+import { deleteTheme, editTheme, getTheme } from '../../../../../actions/theme';
 import ProcState from '../../../../procState/ProcState';
 
 
@@ -18,6 +18,15 @@ const EditText = ({ theme }) => {
         event.preventDefault()
         console.log('Редактирование темы' + theme._id)
         dispatch(editTheme(form))
+    }
+    const cancelChanges = () => {
+        setForm({
+            _id: theme._id,
+            name: theme.name,
+            discription: theme.discription,
+            order: theme.order,
+            isPublic: theme.isPublic
+        })
     }
     const update = e => {
         setForm({
@@ -75,7 +84,7 @@ const EditText = ({ theme }) => {
                     <Button variant="primary" type="submit" className='me-3' >
                         Сохранить изменения
                     </Button>
-                    <Button variant="primary" type="submit" className='me-auto'>
+                    <Button variant="primary" className='me-auto' onClick={cancelChanges}> 
                         Отменить изменения
                     </Button>
                     <p onClick={() => deleteTheme(theme._id)}

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Form, FormGroup, Stack, InputGroup, Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { saveUserChanges } from '../../../../../../actions/user';
 import ProcState from '../../../../../procState/ProcState';
 
 const UserEdit = () => {
+    const dispatch = useDispatch()
     const param = useParams()
     const userList = useSelector(state => state.user.userList)
     const user = (userList != '') && userList.find(user => user._id == param.id)
@@ -30,6 +32,7 @@ const UserEdit = () => {
     const saveChanges = (e) => {
         e.preventDefault()
         console.log('сохранение изменений')
+        dispatch(saveUserChanges(user._id, form))
     }
     return (
         <>
