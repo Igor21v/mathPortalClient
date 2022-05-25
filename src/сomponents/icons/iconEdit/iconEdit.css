@@ -1,6 +1,5 @@
 .iconedit__text, .iconedit__text-bottom {
   position: absolute;
-  bottom: 120%;
   left: -100%;
   border: 2px solid;
   border-radius: 10px;
@@ -21,9 +20,12 @@
   display: inline-block;
 }
 
+.iconedit__text {
+  bottom: 120%;
+}
+
 .iconedit__text-bottom {
-  bottom: -70%;
-  left: 100%;
+  top: 120%;
 }
 
 .iconedit:hover .iconedit__icon {

@@ -13,11 +13,11 @@ export function Admin() {
 
 	return (
 		<Container style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-			<Row className="gap-3 flex-nowrap">
+			<Row className="gap-3">
 				<Col lg={2} className='p-0 m-0'>
 					<LeftMenu />
 				</Col>
-				<Col lg={10} className='p-0'>
+				<Col className='p-0'>
 					<Routes>
 						<Route path={`controlUser/*`} element={<ControlUsersRout />} />
 						<Route path={`themes`} element={<ControlThemes />} />

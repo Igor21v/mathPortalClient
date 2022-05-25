@@ -2,7 +2,6 @@
     
 %text {
     position: absolute;
-    bottom: 120%;
     left: -100%;
     border: 2px solid;
     border-radius: 10px;
@@ -19,13 +18,12 @@
 .iconedit {
     position: relative;
     display: inline-block;
-
     &__text {
         @extend %text;
+        bottom: 120%;
         &-bottom {  
             @extend %text;
-            bottom: -70%;
-            left: 100%;    
+            top: 120%; 
         }       
 }
 
