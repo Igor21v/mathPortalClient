@@ -14,8 +14,8 @@ export const registration = (phon, password, name, surname) => {
                 name,
                 surname
             })
-            alert(response.data.message)
             dispatch(setProcessStatus('Success'))
+            dispatch(setUserList(response.data))
         } catch (e) {
             alert(e.response.data.message)
             dispatch(setProcessStatus("Error"))
@@ -90,6 +90,7 @@ export const getUserList = () => {
 export const saveUserChanges = (id, form) => {
     return async dispatch => {
         try {
+            dispatch(setProcessStatus('Processing'))
             const response = await $authHost.put('api/auth/user', {
                 id,
                 phon: form.phon,
@@ -97,9 +98,11 @@ export const saveUserChanges = (id, form) => {
                 surname: form.surname
             })
             dispatch(setUserList(response.data))
+            dispatch(setProcessStatus('Success'))
         }
         catch (e) {
             alert(e.response.data.message)
+            dispatch(setProcessStatus('Error'))
         }
     }
 }
@@ -109,7 +112,6 @@ export const deleteUser = (id) => {
         try {
             console.log('ffss' + id)
             const response = await $authHost.delete(`api/auth/user?id=${id}`)
-            
             dispatch(setUserList(response.data))
             alert('Пользователь успешно удален')
         }

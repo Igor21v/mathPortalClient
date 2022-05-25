@@ -26,7 +26,7 @@ const ControlUsersRout = () => {
     )
     return (
         <>
-            {(userList != '') ?
+            {(userList != {}) ?
                 <Routes>
                     <Route path={`userPage/:id`} element={<UserPage />} />
                     <Route path={`userEdit/:id`} element={<UserEdit />} />

@@ -33,7 +33,7 @@ const Registration = () => {
     }
 
     return (
-        <Card className='mb-4 p-3 shadow-sm'>
+        <Card className='mt-4 p-3 shadow-sm'>
 
             <Form onSubmit={getRegistration}>
                 <h3 style={{ textAlign: 'center' }}>Регистрация нового ученика</h3>

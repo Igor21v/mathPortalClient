@@ -17,7 +17,7 @@ export function Admin() {
 				<Col lg={2} className='p-0 m-0'>
 					<LeftMenu />
 				</Col>
-				<Col className='p-0'>
+				<Col lg={10} className='p-0'>
 					<Routes>
 						<Route path={`controlUser/*`} element={<ControlUsersRout />} />
 						<Route path={`themes`} element={<ControlThemes />} />

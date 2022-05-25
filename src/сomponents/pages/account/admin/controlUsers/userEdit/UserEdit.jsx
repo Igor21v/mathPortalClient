@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Form, FormGroup, Stack, InputGroup, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { deleteUser, saveUserChanges } from '../../../../../../actions/user';
 import ProcState from '../../../../../procState/ProcState';
 
 const UserEdit = () => {
+    const router = useNavigate()
     const dispatch = useDispatch()
     const param = useParams()
     const userList = useSelector(state => state.user.userList)
@@ -33,6 +34,11 @@ const UserEdit = () => {
         e.preventDefault()
         console.log('сохранение изменений')
         dispatch(saveUserChanges(user._id, form))
+    }
+    const delUser = () => {
+        console.log('llllllllllll')
+        dispatch(deleteUser(user._id))
+        router('/account/controlUser/')
     }
 
     return (
@@ -68,12 +74,13 @@ const UserEdit = () => {
                         </Form.Group>
                         <div className='d-flex flex-row flex-wrap'>
                             <Button type="submit" className="btn-primary me-auto" >Сохранить изменения</Button>
-                            <p onClick={() => dispatch(deleteUser(user._id))}
+                            <p onClick={delUser}
                                 className='text-decoration-underline text-danger'
                                 style={{ cursor: 'pointer' }}>
                                 Удалить пользователя</p>
-                            <ProcState procState={procState} />
+
                         </div>
+                        <ProcState procState={procState} />
                     </Stack>
                 </Form>
             </Card>
@@ -85,7 +92,10 @@ const UserEdit = () => {
                         <Form.Label>Пароль</Form.Label>
                         <Form.Control type="password" name='password' placeholder='Введите новый пароль' value={form.password} onChange={update} />
                     </Form.Group>
-                    <Button type='submit' className='me-3 mt-3'> Сохранить пароль</Button>
+                    <div className='d-flex-wrap align-items-center'>
+                        <Button type='submit' className='me-3'> Сохранить пароль</Button>
+                        <ProcState procState={procState} />
+                    </div>
                 </Form>
             </Card>
         </>
