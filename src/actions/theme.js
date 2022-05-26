@@ -40,18 +40,18 @@ export function getListThemes(showThemes, searchTheme) {
 export function addTheme(name, discription) {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus('Processing'))
+            dispatch(setProcessStatus({index: 0, state: 'Processing'}))
             console.log('555 ' + name + '  ' + discription)
             const response = await $authHost.post(`api/theme`, {
                 name: name,
                 discription: discription})
             console.log(response.data)
-            dispatch(setProcessStatus('Success'))
+            dispatch(setProcessStatus({index: 0, state: 'Success'}))
             dispatch(setTheme(response.data))
         }
         catch (e) {
             alert(e.response.data.message)
-            dispatch(setProcessStatus("Error"))
+            dispatch(setProcessStatus({index: 0, state: "Error"}))
         }
     }
 }
@@ -96,17 +96,17 @@ export function postPicture(theme, file) {
 export function editTheme(theme) {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus('Processing'))
+            dispatch(setProcessStatus({index: 0, state: 'Processing'}))
             console.log('111 ' + theme)
             const response = await $authHost.put(`api/theme/edit`, {
                 ...theme
             })
             console.log(response.data)
-            dispatch(setProcessStatus('Success'))
+            dispatch(setProcessStatus({index: 0, state: 'Success'}))
         }
         catch (e) {
             alert(e.response.data.message)
-            dispatch(setProcessStatus("Error"))
+            dispatch(setProcessStatus({index: 0, state: "Error"}))
         }
     }
 }

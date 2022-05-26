@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom';
 
 const ProcState = ({procState}) => {
-    const processStatus = useSelector(state => state.app.processStatus)
+    const processStatus = useSelector(state => state.app.processStatus[procState.index])
     const router = useNavigate()
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(setProcessStatus(''))
+        dispatch(setProcessStatus({index: 0, state: ''}))
     }, [])
     let content = ''
     let className = ''

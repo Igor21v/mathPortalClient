@@ -7,18 +7,18 @@ import { $authHost, $host } from '.';
 export const registration = (phon, password, name, surname) => {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus('Processing'))
+            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
             const response = await $authHost.post(`api/auth/registration`, {
                 phon,
                 password,
                 name,
                 surname
             })
-            dispatch(setProcessStatus('Success'))
+            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
             dispatch(setUserList(response.data))
         } catch (e) {
             alert(e.response.data.message)
-            dispatch(setProcessStatus("Error"))
+            dispatch(setProcessStatus({ index: 0, state: "Error" }))
         }
     }
 }
@@ -90,7 +90,7 @@ export const getUserList = () => {
 export const saveUserChanges = (id, form) => {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus('Processing'))
+            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
             const response = await $authHost.put('api/auth/user', {
                 id,
                 phon: form.phon,
@@ -98,11 +98,11 @@ export const saveUserChanges = (id, form) => {
                 surname: form.surname
             })
             dispatch(setUserList(response.data))
-            dispatch(setProcessStatus('Success'))
+            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
         }
         catch (e) {
             alert(e.response.data.message)
-            dispatch(setProcessStatus('Error'))
+            dispatch(setProcessStatus({ index: 0, state: 'Error' }))
         }
     }
 }
@@ -119,5 +119,22 @@ export const deleteUser = (id) => {
             alert('Ошибка при удалении пользователя')
         }
     }
+}
 
+export const changePassword = (id, password) => {
+    return async dispatch => {
+        try {
+            dispatch(setProcessStatus({ index: 1, state: 'Processing' }))
+            const response = await $authHost.put('api/auth/changePassword',
+                {
+                    id,
+                    password,
+                })
+            dispatch(setProcessStatus({ index: 1, state: 'Success' }))
+        }
+        catch (e) {
+            alert(e.response.data.message)
+            dispatch(setProcessStatus({ index: 1, state: 'Error' }))
+        }
+    }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, FormGroup, Stack, InputGroup, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteUser, saveUserChanges } from '../../../../../../actions/user';
+import { changePassword, deleteUser, saveUserChanges } from '../../../../../../actions/user';
 import ProcState from '../../../../../procState/ProcState';
 
 const UserEdit = () => {
@@ -23,12 +23,21 @@ const UserEdit = () => {
             [e.target.name]: e.target.value
         })
     }
-    const procState = {
+    const procStateEdit = {
         state: [
             'Выполняется сохраненеие изменений...',
             'Изменения сохранены',
             'Ошибка при сохранении изменений'
-        ]
+        ],
+        index: 0
+    }
+    const procStateDelete = {
+        state: [
+            'Выполняется сохраненеие изменений...',
+            'Пароль успешно изменен',
+            'Ошибка при сохранении изменений'
+        ],
+        index: 1
     }
     const saveChanges = (e) => {
         e.preventDefault()
@@ -39,6 +48,10 @@ const UserEdit = () => {
         console.log('llllllllllll')
         dispatch(deleteUser(user._id))
         router('/account/controlUser/')
+    }
+    const changePass = (e) => {
+        e.preventDefault()
+        dispatch(changePassword(user._id, form.password))
     }
 
     return (
@@ -80,21 +93,21 @@ const UserEdit = () => {
                                 Удалить пользователя</p>
 
                         </div>
-                        <ProcState procState={procState} />
+                        <ProcState procState={procStateEdit} />
                     </Stack>
                 </Form>
             </Card>
 
             <Card className='p-4 mt-4'>
                 <h3 style={{ textAlign: 'center', marginBottom: '20px' }}> Изменение пароля </h3>
-                <Form>
+                <Form onSubmit={changePass}>
                     <Form.Group controlId="fromBasicPassword" className="mb-2">
                         <Form.Label>Пароль</Form.Label>
                         <Form.Control type="password" name='password' placeholder='Введите новый пароль' value={form.password} onChange={update} />
                     </Form.Group>
                     <div className='d-flex-wrap align-items-center'>
                         <Button type='submit' className='me-3'> Сохранить пароль</Button>
-                        <ProcState procState={procState} />
+                        <ProcState procState={procStateDelete} />
                     </div>
                 </Form>
             </Card>
