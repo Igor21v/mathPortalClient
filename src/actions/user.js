@@ -8,7 +8,7 @@ export const registration = (phon, password, name, surname) => {
     return async dispatch => {
         try {
             dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            const response = await $authHost.post(`api/auth/registration`, {
+            const response = await $authHost.post(`api/user/registration`, {
                 phon,
                 password,
                 name,
@@ -78,7 +78,7 @@ export const deleteAvatar = () => {
 export const getUserList = () => {
     return async dispatch => {
         try {
-            const response = await $authHost.get(`api/auth/userList`)
+            const response = await $authHost.get(`api/user/userList`)
             dispatch(setUserList(response.data))
         }
         catch (e) {
@@ -91,7 +91,7 @@ export const saveUserChanges = (id, form) => {
     return async dispatch => {
         try {
             dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            const response = await $authHost.put('api/auth/user', {
+            const response = await $authHost.put('api/user/user', {
                 id,
                 phon: form.phon,
                 name: form.name,
@@ -111,7 +111,7 @@ export const deleteUser = (id) => {
     return async dispatch => {
         try {
             console.log('ffss' + id)
-            const response = await $authHost.delete(`api/auth/user?id=${id}`)
+            const response = await $authHost.delete(`api/user/user?id=${id}`)
             dispatch(setUserList(response.data))
             alert('Пользователь успешно удален')
         }
@@ -125,7 +125,7 @@ export const changePassword = (id, password) => {
     return async dispatch => {
         try {
             dispatch(setProcessStatus({ index: 1, state: 'Processing' }))
-            const response = await $authHost.put('api/auth/changePassword',
+            const response = await $authHost.put('api/user/changePassword',
                 {
                     id,
                     password,
