@@ -22,7 +22,8 @@ export const login = (phon, password) => {
 export const auth = () => {
     return async dispatch => {
         try {
-            const response = await $authHost.get(`api/auth/auth`)
+            const response = await $authHost.get(`api/auth/refresh`, {withCredentials: true})
+            console.log(response)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
