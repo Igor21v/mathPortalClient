@@ -23,34 +23,6 @@ export const registration = (phon, password, name, surname) => {
     }
 }
 
-export const login = (phon, password) => {
-    return async dispatch => {
-        try {
-            const response = await $host.post(`api/auth/login`, {
-                phon,
-                password
-            })
-            dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-        } catch (e) {
-            alert(e.response.data.message)
-        }
-    }
-}
-
-export const auth = () => {
-    return async dispatch => {
-        try {
-            const response = await $authHost.get(`api/auth/auth`)
-            dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-        } catch (e) {
-            alert(e.response.data.message)
-            localStorage.removeItem('token')
-        }
-    }
-}
-
 export const uploadAvatar = (file) => {
     return async dispatch => {
         try {

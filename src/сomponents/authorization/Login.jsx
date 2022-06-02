@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './authorization.css'
 import { useDispatch } from "react-redux";
-import { login } from "../../actions/user";
+import { login } from "../../actions/auth";
 import { Button } from 'react-bootstrap';
 import { Form, InputGroup, Container, Row, Stack } from 'react-bootstrap';
 

@@ -10,7 +10,7 @@ import {
   Route
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { auth } from "../../actions/user";
+import { auth } from "../../actions/auth";
 import { useSelector } from 'react-redux'
 import { adminRoutes, publicRoutes, studentRoutes } from '../../routes';
 
