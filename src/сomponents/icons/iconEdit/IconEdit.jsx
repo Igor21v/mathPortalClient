@@ -5,9 +5,7 @@ import {ReactComponent as Icon} from './icon.svg'
 
 const IconEdit = ({props}) => {
     const router = useNavigate()
-    console.log(JSON.stringify(props))
     let position
-    console.log(props.position)
     switch (props.position) {
         case 'bottom':
             position = 'iconedit__text-bottom'
@@ -15,7 +13,6 @@ const IconEdit = ({props}) => {
         default:
             position = 'iconedit__text'
     }
-    console.log(position)
     return (
 
         <div className='iconedit'>
