@@ -1,7 +1,4 @@
-import axios from 'axios'
-import { setUser, setUserList } from "../reducers/userReducer";
-import { setProcessStatus } from "../reducers/appReducer";
-import { API_URL } from "../config";
+import { setUser, clearDataUser } from "../reducers/userReducer";
 import { $authHost, $host } from '.';
 
 export const login = (phon, password) => {
@@ -19,7 +16,7 @@ export const login = (phon, password) => {
     }
 }
 
-export const auth = () => {
+export const refresh = () => {
     return async dispatch => {
         try {
             const response = await $authHost.get(`api/auth/refresh`)
@@ -29,6 +26,17 @@ export const auth = () => {
         } catch (e) {
             alert(e.response.data.message)
             localStorage.removeItem('token')
+        }
+    }
+}
+
+export const logout = () => {
+    return async dispatch => {
+        try {
+            const response = await $authHost.post('api/auth/logout')
+            dispatch(clearDataUser())
+        } catch (e) {
+            console.log('Ошибка!' + e)
         }
     }
 }

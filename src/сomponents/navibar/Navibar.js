@@ -3,7 +3,7 @@ import {Nav, Navbar, Container, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../reducers/userReducer";
+import { logout } from "../../actions/auth";
 import Login from "../authorization/Login";
 
 

@@ -10,9 +10,9 @@ import {
   Route
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { auth } from "../../actions/auth";
+import { refresh } from "../../actions/auth";
 import { useSelector } from 'react-redux'
-import { adminRoutes, publicRoutes, studentRoutes } from '../../routes';
+import { adminRoutes, publicRoutes, studentRoutes, loadingRoutes } from '../../routes';
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   const dispatch = useDispatch()
   console.log('Role' + userRole)
   const authRoutes = () => {
+    console.log('eee ' + userRole)
     switch (userRole) {
       case 'ADMIN':
         return (
@@ -31,11 +32,15 @@ function App() {
           studentRoutes.map(({ path, Component }) =>
             <Route exact key={path} path={path} element={Component} />)
         )
+      case undefined:
+        return (
+          loadingRoutes.map(({ path, Component }) =>
+            <Route exact key={path} path={path} element={Component} />)
+        )
     }
   }
-
   useEffect(() => {
-    dispatch(auth())
+    dispatch(refresh())
   }, [])
   return (
     <div className='app'>
@@ -43,7 +48,7 @@ function App() {
         <Navibar />
         <Routes>
           {authRoutes()}
-          {publicRoutes.map(({ path, Component }) =>
+          {userRole && publicRoutes.map(({ path, Component }) =>
             <Route exact key={path} path={path} element={Component} />
           )}
 

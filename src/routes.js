@@ -6,6 +6,7 @@ import VeiwTheme from './сomponents/pages/themes/viewTheme/ViewTheme';
 import { Navigate } from "react-router-dom";
 import Guest from './сomponents/pages/account/guest/Guest';
 import Student from './сomponents/pages/account/student/Student';
+import Loading from './сomponents/pages/loading/Loading';
 
 export const adminRoutes = [
     {
@@ -22,6 +23,16 @@ export const studentRoutes = [
     {
         path: '/account/*',
         Component: <Student/>
+    }
+]
+export const loadingRoutes = [
+    {
+        path: '*',
+        Component: <Loading />
+    },
+    {
+        path: '/about',
+        Component: <About/>
     }
 ]
 export const publicRoutes = [
