@@ -15,7 +15,7 @@ export default function userReducer(state = defaultState, action) {
             return {...state, currentUser: action.payload}
         case CLEAR_DATA_USER:
             localStorage.removeItem('token')
-            return {...state, currentUser: {}}
+            return {...state, currentUser: {role: 'PUBLIC'}}
         case SET_USER_LIST: return {...state, userList: action.payload}
         default:
             return state

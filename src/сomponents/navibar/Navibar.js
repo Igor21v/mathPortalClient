@@ -31,9 +31,10 @@ export default function Navibar() {
     const handleShow = () => setShow(true);
 
     const userRole = useSelector(state => state.user.currentUser.role);
+    const registred = userRole && userRole != 'PUBLIC'
     const dispatch = useDispatch();
     const getLogout = () => dispatch(logout());
-    if (userRole && show) {
+    if (registred && show) {
         handleClose();
     }
     return (
@@ -59,11 +60,11 @@ export default function Navibar() {
                                  <Link className='me-2' to="/account/controlUser">Личный кабинет</Link> 
                                  <Link className='me-2' to="/about">О портале</Link> 
                             </Nav>
-                            {!userRole &&
+                            {!registred ?
                                 <Nav onSelect={handleShow}> <Nav.Link eventKey="0">
                                     <StalesAll>Войти</StalesAll>
-                                </Nav.Link> </Nav>}
-                            {userRole &&
+                                </Nav.Link> </Nav>
+                            :
                                 <Nav onSelect={getLogout}> <Nav.Link eventKey="0">
                                     <StalesAll>Выйти</StalesAll>
                                 </Nav.Link> </Nav>}

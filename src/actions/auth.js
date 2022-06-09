@@ -23,9 +23,10 @@ export const refresh = () => {
             console.log(response)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
+            console.log('Запрос рефреш')
         } catch (e) {
-            alert(e.response.data.message)
-            localStorage.removeItem('token')
+            console.log(e.response.data.message)
+            dispatch(clearDataUser())
         }
     }
 }
