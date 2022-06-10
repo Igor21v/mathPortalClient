@@ -1,5 +1,6 @@
 import { setUser, clearDataUser } from "../reducers/userReducer";
 import { $authHost, $host } from '.';
+import clearUser from "../hooks/clearUser";
 
 export const login = (phon, password) => {
     return async dispatch => {
@@ -25,6 +26,7 @@ export const refresh = () => {
             localStorage.setItem('token', response.data.token)
             console.log('Запрос рефреш')
         } catch (e) {
+
             console.log(e.response.data.message)
             dispatch(clearDataUser())
         }
@@ -40,6 +42,11 @@ export const logout = () => {
             console.log('Ошибка!' + e)
         }
     }
+}
+
+
+export const logoutClient = () => {
+    clearUser()
 }
 
 /* export const refresh  */

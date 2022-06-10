@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { API_URL } from "../config";
+import clearUser from "../hooks/clearUser";
 import { clearDataUser } from "../reducers/userReducer";
 
 const $host = axios.create({
@@ -21,8 +22,12 @@ $authHost.interceptors.request.use(config => {
 $authHost.interceptors.response.use((config) => {
     return config;
 },async (error) => {
-    const dispatch = useDispatch()
+    console.log('работает интерсептор ответа')
+    
+    console.log(' error.response.status ' + error.response.status + ' error.config ' + error.config + ' error.config._isRetry ' + error.config._isRetry)
+    console.log(' Условие ' + error.response.status == 401 && error.config && !error.config._isRetry)
     const originalRequest = error.config;
+    
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         console.log('Запрос рефреш токена')
         originalRequest._isRetry = true;
@@ -33,9 +38,11 @@ $authHost.interceptors.response.use((config) => {
         } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
         }
-    }
-    dispatch(clearDataUser())
+    } 
+    console.log('clear')
+    clearUser()
     throw error
+    
 })
 
 export {
