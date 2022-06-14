@@ -1,0 +1,66 @@
+.file-theme {
+  position: relative;
+  width: 7rem;
+  text-align: center;
+  color: black;
+  margin: 2px;
+  cursor: default;
+}
+
+.file-theme__basket {
+  position: absolute;
+  right: 3px;
+  width: 2rem;
+  display: none;
+}
+
+.file-theme:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  /*   animation: file-theme 1s linear infinite; */
+}
+
+.file-theme:hover .file-theme__basket {
+  display: block;
+  cursor: pointer;
+}
+
+.file-theme__basket:hover {
+  display: block;
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+@-webkit-keyframes file-theme {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: rotate(180deg) scale(2);
+            transform: rotate(180deg) scale(2);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes file-theme {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: rotate(180deg) scale(2);
+            transform: rotate(180deg) scale(2);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=file.css.map */

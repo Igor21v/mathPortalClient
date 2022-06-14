@@ -10,7 +10,6 @@ const TopMenu = () => {
     const searchThemes = useSelector(state => state.themes.searchThemes)
     const [searchField, setSearchField] = useState(searchThemes)
     const userRole = useSelector(state => state.user.currentUser.role)
-    console.log('DDDD' + JSON.stringify(userRole))
     const dispatch = useDispatch()
 
     function searchChangeHandler(e) {

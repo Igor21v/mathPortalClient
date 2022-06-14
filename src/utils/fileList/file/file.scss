@@ -1,0 +1,41 @@
+.file-theme {
+  position: relative;
+  width:7rem;
+  text-align: center;
+  color: black;
+  margin: 2px;
+  cursor: default;
+
+  &__basket{
+    position: absolute;
+    right: 3px;
+    width: 2rem;
+    display: none;
+  }
+  
+  &:hover {
+  transform: scale(1.02);
+/*   animation: file-theme 1s linear infinite; */
+  }
+  &:hover &__basket{
+    display: block;
+    cursor: pointer;
+  }
+  &__basket:hover {
+    display: block;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+@keyframes file-theme {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0;
+    transform: rotate(180deg) scale(2) 
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

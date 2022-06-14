@@ -1,6 +1,6 @@
 import { setUser, clearDataUser } from "../reducers/userReducer";
 import { $authHost, $host } from '.';
-import clearUser from "../hooks/clearUser";
+
 
 export const login = (phon, password) => {
     return async dispatch => {
@@ -21,7 +21,6 @@ export const refresh = () => {
     return async dispatch => {
         try {
             const response = await $authHost.get(`api/auth/refresh`)
-            console.log(response)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
             console.log('Запрос рефреш')
@@ -45,8 +44,3 @@ export const logout = () => {
 }
 
 
-export const logoutClient = () => {
-    clearUser()
-}
-
-/* export const refresh  */

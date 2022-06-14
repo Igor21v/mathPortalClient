@@ -18,9 +18,8 @@ import { adminRoutes, publicRoutes, studentRoutes, loadingRoutes } from '../../r
 function App() {
   const userRole = useSelector(state => state.user.currentUser.role)
   const dispatch = useDispatch()
-  console.log('Role' + userRole)
   const authRoutes = () => {
-    console.log('eee ' + userRole)
+    console.log('userRole:  ' + userRole)
     switch (userRole) {
       case 'ADMIN':
         return (

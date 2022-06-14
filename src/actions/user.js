@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setUser, setUserList } from "../reducers/userReducer";
+import { setUser, setUserList, setUserExtend } from "../reducers/userReducer";
 import { setProcessStatus } from "../reducers/appReducer";
 import { API_URL } from "../config";
 import { $authHost, $host } from '.';
@@ -54,7 +54,7 @@ export const getUserList = () => {
             dispatch(setUserList(response.data))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e.response.data.message)
         }
     }
 }
@@ -107,6 +107,18 @@ export const changePassword = (id, password) => {
         catch (e) {
             alert(e.response.data.message)
             dispatch(setProcessStatus({ index: 1, state: 'Error' }))
+        }
+    }
+}
+
+export const getUserExtend = () => {
+    return async dispatch => {
+        try {
+            const response = await $authHost.get(`api/user/getUserExtend`)
+            dispatch(setUserExtend(response.data))
+        }
+        catch (e) {
+            console.log(e.response.data.message)
         }
     }
 }
