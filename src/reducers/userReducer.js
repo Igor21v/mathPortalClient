@@ -7,14 +7,15 @@ const SET_USER_EXTEND = "SET_USER_EXTEND"
 const defaultState = {
     currentUser: {},
     userList: [],
+    userExtend: {},
 }
 
 export default function userReducer(state = defaultState, action) {
     switch (action.type) {
         case SET_USER:
             return { ...state, currentUser: action.payload }
-        case SET_USER:
-            return { ...state, extendUser: action.payload }
+        case SET_USER_EXTEND:
+            return { ...state, userExtend: action.payload }
         case CLEAR_DATA_USER:
             localStorage.removeItem('token')
             return { ...state, currentUser: { role: 'PUBLIC' } }

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Button, Card, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getUserExtend } from '../../../../../../actions/user';
+import { setUserExtend } from '../../../../../../reducers/userReducer';
 import FileList from '../../../../../../utils/fileList/FileList';
 import IconEdit from '../../../../../icons/iconEdit/IconEdit';
 
@@ -11,6 +13,16 @@ const UserPage = () => {
     const userList = useSelector(state => state.user.userList)
     const user = (userList != '') && userList.find(user => user._id === param.id)
     console.log('user' + JSON.stringify(user))
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUserExtend(param.id))
+        return () => {
+            setUserExtend({})
+            console.log('Compontnt did unmount')
+        }
+    }, [])
+    const userExtend = useSelector(state => state.user.userExtend)
+    console.log('extend' + userExtend)
     return (
         <>
             <Card className='p-3'>
@@ -21,12 +33,12 @@ const UserPage = () => {
             </Card>
             <Card className='p-3 mt-3'>
                 <h4 style={{ textAlign: 'center' }}> Файлы</h4>
-                <FileList files = {user.files} userId = {user._id} />
-                
+                <FileList files={userExtend.files} />
+
             </Card><Card className='p-3 mt-3'>
                 <h4 style={{ textAlign: 'center' }}> Сообщения</h4>
-                
-                
+
+
             </Card>
 
         </>

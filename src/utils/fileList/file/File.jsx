@@ -20,7 +20,7 @@ const File = (props) => {
     
 
     return (
-        <div className='file-theme' onClick={getUserFile()}>
+        <div className='file-theme' onClick={getUserFile}>
            <img src={icon_basket} alt="" className='file-theme__basket' onClick={delUserFile}/>   
             <img src={icon_pdf} alt="" />
             <span> {props.file} </span>
