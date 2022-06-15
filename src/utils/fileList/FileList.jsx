@@ -3,7 +3,6 @@ import File from './file/File';
 import './fileList.css'
 
 const FileList = (props) => {
-    console.log('props.files' + props.files)
     return (
         <>
             {props.files && props.files != 0 ?

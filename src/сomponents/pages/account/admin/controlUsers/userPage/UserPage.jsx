@@ -12,17 +12,14 @@ const UserPage = () => {
     const param = useParams()
     const userList = useSelector(state => state.user.userList)
     const user = (userList != '') && userList.find(user => user._id === param.id)
-    console.log('user' + JSON.stringify(user))
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getUserExtend(param.id))
         return () => {
-            setUserExtend({})
-            console.log('Compontnt did unmount')
+            dispatch(setUserExtend({}))
         }
     }, [])
     const userExtend = useSelector(state => state.user.userExtend)
-    console.log('extend' + userExtend)
     return (
         <>
             <Card className='p-3'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import icon_pdf from '../../../assets/img/pdf.svg';
+import icon_pdf from '../../../assets/img/file.svg';
 import icon_basket from '../../../assets/img/basket.svg';
 import './file.css'
 import { useDispatch } from 'react-redux';
@@ -20,8 +20,8 @@ const File = (props) => {
     
 
     return (
-        <div className='file-theme' onClick={getUserFile}>
-           <img src={icon_basket} alt="" className='file-theme__basket' onClick={delUserFile}/>   
+        <div className='file-one' onClick={getUserFile}>
+           <img src={icon_basket} alt="" className='file-one__basket' onClick={delUserFile}/>   
             <img src={icon_pdf} alt="" />
             <span> {props.file} </span>
         </div>
