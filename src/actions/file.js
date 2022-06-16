@@ -130,13 +130,17 @@ export function searchFiles(search) {
 
 export async function downloadUserFile (userId, file) {
         try {
-            const response = await $authHost.fetch(`api/files/downloadUserFile?userId=${userId}&file=${file}`)
+            const response = await fetch(`${API_URL}api/files/downloadUserFile?userId=${userId}&file=${file}`,{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
             if (response.status === 200) {
                 const blob = await response.blob()
                 const downloadUrl = window.URL.createObjectURL(blob)
                 const link = document.createElement('a')
                 link.href = downloadUrl
-                link.download = file.name
+                link.download = file
                 document.body.appendChild(link)
                 link.click()
                 link.remove()
