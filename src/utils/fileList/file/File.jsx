@@ -8,13 +8,13 @@ import { useDispatch } from 'react-redux';
 const File = (props) => {
     const dispatch = useDispatch()
     const delUserFile = e => {
-        e.preventDefault()
+        e.stopPropagation()
         console.log('удалить файл')
         /* dispatch(deleteUserFile(props.userId, props.file)) */
     }
 
     const getUserFile = () => {
-        console.log('Будет экщен!')
+        console.log('Будет экщен!' + props.userId)
     }
 
     

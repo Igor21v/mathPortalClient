@@ -30,7 +30,7 @@ const UserPage = () => {
             </Card>
             <Card className='p-3 mt-3'>
                 <h4 style={{ textAlign: 'center' }}> Файлы</h4>
-                <FileList files={userExtend.files} />
+                <FileList files={userExtend.files} userId = {param.id}/>
 
             </Card><Card className='p-3 mt-3'>
                 <h4 style={{ textAlign: 'center' }}> Сообщения</h4>
