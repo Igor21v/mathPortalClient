@@ -3,6 +3,7 @@ import icon_pdf from '../../../assets/img/file.svg';
 import icon_basket from '../../../assets/img/basket.svg';
 import './file.css'
 import { useDispatch } from 'react-redux';
+import { downloadUserFile } from '../../../actions/file';
 /* import { deleteUserFile } from '../../../../../../../actions/user'; */
 
 const File = (props) => {
@@ -14,7 +15,7 @@ const File = (props) => {
     }
 
     const getUserFile = () => {
-        console.log('Будет экщен!' + props.userId)
+        downloadUserFile(props.userId, props.file)
     }
 
     

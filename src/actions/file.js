@@ -3,6 +3,7 @@ import {addFile, deleteFileAction, setFiles} from "../reducers/fileReducer";
 import {addUploadFile, changeUploadFile, showUploader} from "../reducers/uploadReducer";
 import {hideLoader, showLoader} from "../reducers/appReducer";
 import {API_URL} from "../config";
+import { $authHost, $host } from '.';
 
 export function getFiles(dirId, sort) {
     return async dispatch => {
@@ -124,4 +125,26 @@ export function searchFiles(search) {
             dispatch(hideLoader())
         }
     }
+}
+
+
+export async function downloadUserFile (userId, file) {
+        try {
+            const response = await $authHost.fetch(`api/files/downloadUserFile?userId=${userId}&file=${file}`)
+            if (response.status === 200) {
+                const blob = await response.blob()
+                const downloadUrl = window.URL.createObjectURL(blob)
+                const link = document.createElement('a')
+                link.href = downloadUrl
+                link.download = file.name
+                document.body.appendChild(link)
+                link.click()
+                link.remove()
+            } 
+            console.log('action222')
+            
+        }
+        catch (e) {
+            console.log(e)
+        }
 }
