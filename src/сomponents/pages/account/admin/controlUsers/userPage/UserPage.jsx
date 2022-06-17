@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { Button, Card, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getUserExtend } from '../../../../../../actions/user';
 import { setUserExtend } from '../../../../../../reducers/userReducer';
+import DropdownFilter from '../../../../../../utils/dropdownFilter/DropdownFilter';
 import FileList from '../../../../../../utils/fileList/FileList';
 import IconEdit from '../../../../../icons/iconEdit/IconEdit';
 
@@ -20,17 +21,23 @@ const UserPage = () => {
         }
     }, [])
     const userExtend = useSelector(state => state.user.userExtend)
+
     return (
         <>
-            <Card className='p-3'>
-                <h3 style={{ textAlign: 'center' }}> Страничка ученика: {user?.surname} {user?.name}</h3>
-                <div style={{ position: 'absolute', right: '8px' }}>
-                    <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать или удалить данные пользователя', position: 'bottom' }} />
+            <h3 style={{ textAlign: 'center' }}>
+                Страничка ученика: {user?.surname} {user?.name}
+                &#160;
+                <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
+            </h3>
+            <Card className='p-3 mt-3' >
+                <div>
+                    <h4 className='text-center' >Файлы</h4>
+                    &#160;
+                    <div style={{ position: 'absolute', right: '3rem', top: '1rem' }}>
+                        <DropdownFilter />
+                    </div>
                 </div>
-            </Card>
-            <Card className='p-3 mt-3'>
-                <h4 style={{ textAlign: 'center' }}> Файлы</h4>
-                <FileList files={userExtend.files} userId = {param.id}/>
+                <FileList files={userExtend.files} userId={param.id} />
 
             </Card><Card className='p-3 mt-3'>
                 <h4 style={{ textAlign: 'center' }}> Сообщения</h4>
