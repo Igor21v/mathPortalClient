@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Dropdown } from 'react-bootstrap';
 
-const DropdownFilter = () => {
-
+const DropdownFilter = (props) => {
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
         <a
             href=""
@@ -37,8 +36,8 @@ const DropdownFilter = () => {
                     />
                     <ul className="list-unstyled">
                         {React.Children.toArray(children).filter(
-                            (child) =>
-                                !value || child.props.children.toLowerCase().startsWith(value.toLowerCase()),
+                            (child, index) => 
+                                (!value || index===props.general.length || child.props.children.toLowerCase().startsWith(value.toLowerCase()))
                         )}
                     </ul>
                 </div>
@@ -48,15 +47,17 @@ const DropdownFilter = () => {
     return (
         <Dropdown onSelect={(eventKey) => console.log('Press: ' + eventKey)}>
             <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                Отображать
+                Режим отображения
             </Dropdown.Toggle>
 
             <Dropdown.Menu as={CustomMenu}>
-                <Dropdown.Item eventKey="1" active>Общие файлы</Dropdown.Item>
-                {/* <Dropdown.Divider /> */}
-                <Dropdown.Item eventKey="2">Тема1</Dropdown.Item>
-                <Dropdown.Item eventKey="3" >Не тема</Dropdown.Item>
-                <Dropdown.Item eventKey="4">что то ещё</Dropdown.Item>
+                {props.general.map(item => 
+                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
+                )}
+                <Dropdown.Divider />
+                {props.private.map(item => 
+                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
+                )}
             </Dropdown.Menu>
         </Dropdown>
 
