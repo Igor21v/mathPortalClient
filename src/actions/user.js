@@ -111,10 +111,10 @@ export const changePassword = (id, password) => {
     }
 }
 
-export const getUserExtend = (id) => {
+export const getUserExtend = (id,folder) => {
     return async dispatch => {
         try {
-            const response = await $authHost.get(`api/user/getUserExtend?id=${id}`)
+            const response = await $authHost.get(`api/user/getUserExtend?id=${id}&folder=${folder}`)
             dispatch(setUserExtend(response.data))
         }
         catch (e) {

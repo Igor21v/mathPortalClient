@@ -45,9 +45,9 @@ const DropdownFilter = (props) => {
         },
     );
     return (
-        <Dropdown onSelect={(eventKey) => console.log('Press: ' + eventKey)}>
-            <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-                Режим отображения
+        <Dropdown onSelect={(eventKey) => props.function(eventKey)}>
+            <Dropdown.Toggle /* as={CustomToggle} */ id="dropdown-custom-components">
+                {props.toggleText}
             </Dropdown.Toggle>
 
             <Dropdown.Menu as={CustomMenu}>

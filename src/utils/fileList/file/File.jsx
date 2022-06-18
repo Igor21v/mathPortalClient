@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { downloadUserFile } from '../../../actions/file';
 /* import { deleteUserFile } from '../../../../../../../actions/user'; */
 
-const File = (props) => {
+const File = ({props}) => {
     const dispatch = useDispatch()
     const delUserFile = e => {
         e.stopPropagation()
@@ -15,9 +15,9 @@ const File = (props) => {
     }
 
     const getUserFile = () => {
-        downloadUserFile(props.userId, props.file)
+        downloadUserFile(props.userId, props.folder, props.file)
     }
-
+    console.log(props)
     
 
     return (

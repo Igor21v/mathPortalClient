@@ -15,49 +15,59 @@ const UserPage = () => {
     const userList = useSelector(state => state.user.userList)
     const user = (userList != '') && userList.find(user => user._id === param.id)
     const dispatch = useDispatch()
+    const [dropdown, setDropdown] = useState('General')
+    console.log(dropdown)
     useEffect(() => {
-        dispatch(getUserExtend(param.id))
-        dispatch(getListThemes('onlyPublic',''))
+        console.log(param.id)
+        dispatch(getUserExtend(param.id, dropdown))
         return () => {
             dispatch(setUserExtend({}))
         }
+    }, [dropdown])
+    useEffect(() => {
+        dispatch(getListThemes('onlyPublic', ''))
     }, [])
     const themes = useSelector(state => state.themes.listThemes)
     console.log(themes)
     const userExtend = useSelector(state => state.user.userExtend)
     const dropDownListGen = [
-        { name: 'Общие', eventKey: '1' },
+        { name: 'Общие', eventKey: 'General' },
     ]
-    const dropDownListPriv = themes.map (theme => {
-        return {name: theme.name,
-        eventKey: theme._id}
+    const dropDownListPriv = themes.map(theme => {
+        return {
+            name: theme.name,
+            eventKey: theme._id
+        }
     })
 
-return (
-    <>
-        <h3 style={{ textAlign: 'center' }}>
-            Страничка ученика: {user?.surname} {user?.name}
-            &#160;
-            <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
-        </h3>
-        <Card className='p-3 mt-3' >
-            <div  className='text-center d-flex justify-content-center align-items-center' >
-                <h4>Файлы</h4>
-                &#160; &#160;
-                <div >
-                    <DropdownFilter general={dropDownListGen} private={dropDownListPriv} />
-                </div>
+    return (
+        <>
+            <h3 style={{ textAlign: 'center' }}>
+                Страничка ученика: {user?.surname} {user?.name}
+                &#160;
+                <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
+            </h3>
+            <div className='text-end'>
+                <DropdownFilter general={dropDownListGen} private={dropDownListPriv} function={setDropdown} toggleText='Выберите тему'/>
             </div>
-            <FileList files={userExtend.files} userId={param.id} />
+            <Card className='p-3 mt-3' >
+                <div className='text-center d-flex justify-content-center align-items-center' >
+                    <h4>Файлы</h4>
+                    &#160; &#160;
+                    <div >
 
-        </Card><Card className='p-3 mt-3'>
-            <h4 style={{ textAlign: 'center' }}> Сообщения</h4>
+                    </div>
+                </div>
+                <FileList files={userExtend.files} userId={param.id} folder={dropdown} />
+
+            </Card><Card className='p-3 mt-3'>
+                <h4 style={{ textAlign: 'center' }}> Сообщения</h4>
 
 
-        </Card>
+            </Card>
 
-    </>
-);
+        </>
+    );
 };
 
 export default UserPage;

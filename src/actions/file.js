@@ -128,9 +128,9 @@ export function searchFiles(search) {
 }
 
 
-export async function downloadUserFile (userId, file) {
+export async function downloadUserFile (userId, folder, file) {
         try {
-            const response = await fetch(`${API_URL}api/files/downloadUserFile?userId=${userId}&file=${file}`,{
+            const response = await fetch(`${API_URL}api/files/downloadUserFile?userId=${userId}&file=${file}&folder=${folder}`,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

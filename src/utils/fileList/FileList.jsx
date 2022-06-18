@@ -8,7 +8,7 @@ const FileList = (props) => {
             {props.files && props.files != 0 ?
                 <div className='file-list'>
                     {props.files.map(file =>
-                        <File key={file} file={file} userId={props.userId}/>
+                        <File key={file} props={{file, ...props}}/>
                     )}
                 </div>
                 :
