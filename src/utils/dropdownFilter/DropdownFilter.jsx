@@ -2,19 +2,6 @@ import React, { useState } from 'react';
 import { Form, Dropdown } from 'react-bootstrap';
 
 const DropdownFilter = (props) => {
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <a
-            href=""
-            ref={ref}
-            onClick={(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
-        >
-            {children}
-            &#x25bc;
-        </a>
-    ));
 
     const CustomMenu = React.forwardRef(
         ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -36,8 +23,8 @@ const DropdownFilter = (props) => {
                     />
                     <ul className="list-unstyled">
                         {React.Children.toArray(children).filter(
-                            (child, index) => 
-                                (!value || index===props.general.length || child.props.children.toLowerCase().startsWith(value.toLowerCase()))
+                            (child, index) =>
+                                (!value || index === props.general.length || child.props.children.toLowerCase().startsWith(value.toLowerCase()))
                         )}
                     </ul>
                 </div>
@@ -46,16 +33,15 @@ const DropdownFilter = (props) => {
     );
     return (
         <Dropdown onSelect={(eventKey) => props.function(eventKey)}>
-            <Dropdown.Toggle /* as={CustomToggle} */ id="dropdown-custom-components">
+            <Dropdown.Toggle >
                 {props.toggleText}
             </Dropdown.Toggle>
-
             <Dropdown.Menu as={CustomMenu}>
-                {props.general.map(item => 
+                {props.general.map(item =>
                     <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
                 )}
                 <Dropdown.Divider />
-                {props.private.map(item => 
+                {props.private.map(item =>
                     <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
                 )}
             </Dropdown.Menu>
