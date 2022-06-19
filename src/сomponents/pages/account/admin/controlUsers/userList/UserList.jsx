@@ -12,8 +12,8 @@ const UserList = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Фамилия</th>
                         <th>Имя</th>
+                        <th>Фамилия</th>
                         <th>Номер телефона</th>
                     </tr>
                 </thead>
