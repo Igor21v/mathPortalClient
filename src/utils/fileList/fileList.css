@@ -1,9 +1,30 @@
-.file-list {
-  /* border: dashed 2px $blue; */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+.filelist {
+  margin: 20px 0;
+}
+
+.filelist__header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr (1fr)[3];
+      grid-template-columns: 1fr 4fr repeat(3, 1fr);
+}
+
+.filelist__name {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+}
+
+.filelist__date {
+  -ms-grid-column: 4;
+      grid-column-start: 4;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.filelist__size {
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 /*# sourceMappingURL=fileList.css.map */

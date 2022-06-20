@@ -1,5 +1,5 @@
 import React from 'react';
-import './fileList.css'
+/* import './fileList.css' */
 import {useSelector} from "react-redux";
 import File from "./file/File";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
@@ -37,9 +37,9 @@ const FileList = () => {
                     {files.map(file =>
                         <CSSTransition
                             key={file._id}
-                            timeout={500}
+                            timeout={900}
                             classNames={'file'}
-                            exit={false}
+                            exit={true}
                         >
                             <File file={file}/>
                         </CSSTransition>

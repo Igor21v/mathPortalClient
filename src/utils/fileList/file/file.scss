@@ -1,41 +1,41 @@
-.file-one {
-  position: relative;
-  width:5rem;
-  text-align: center;
-  color: black;
-  margin: 2px;
-  cursor: default;
+@import "../../../сomponents/app/colors";
 
-  &__basket{
-    position: absolute;
-    left: 3px;
-    width: 2rem;
-    display: none;
-  }
-  
+.file {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr repeat(3, 1fr);
+  align-items: center;
+
   &:hover {
-  transform: scale(1.02);
-/*   animation: file-theme 1s linear infinite; */
+    border-bottom: solid 1px $primary ; 
   }
-  &:hover &__basket{
-    display: block;
-    cursor: pointer;
+  &__img {
+    justify-self: center;
+    width: 3rem;
   }
-  &__basket:hover {
-    display: block;
+  &__img:hover {
     cursor: pointer;
     transform: scale(1.1);
   }
-}
-@keyframes file-theme {
-  0% {
-    transform: rotate(0deg);
+
+  &__date {
+    grid-column-start: 4;
+    justify-self: center;
   }
-  50% {
-    opacity: 0;
-    transform: rotate(180deg) scale(2) 
+  &__size {
+    grid-column-start: 5;
+    justify-self: center;
   }
-  100% {
-    transform: rotate(360deg);
+  &__basket {
+    width: 2rem;
+    display: none;
   }
+
+  &:hover &__basket {
+    display: block;
+  }
+  &__basket:hover {
+    cursor: pointer;
+    transform: scale(1.15)
+  };
 }

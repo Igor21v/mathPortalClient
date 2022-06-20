@@ -1,66 +1,56 @@
-.file-one {
-  position: relative;
-  width: 5rem;
-  text-align: center;
-  color: black;
-  margin: 2px;
-  cursor: default;
+.file {
+  margin: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr (1fr)[3];
+      grid-template-columns: 1fr 4fr repeat(3, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.file-one__basket {
-  position: absolute;
-  left: 3px;
-  width: 2rem;
-  display: none;
+.file:hover {
+  border-bottom: solid 1px #558b2f;
 }
 
-.file-one:hover {
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-  /*   animation: file-theme 1s linear infinite; */
+.file__img {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 3rem;
 }
 
-.file-one:hover .file-one__basket {
-  display: block;
-  cursor: pointer;
-}
-
-.file-one__basket:hover {
-  display: block;
+.file__img:hover {
   cursor: pointer;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-@-webkit-keyframes file-theme {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  50% {
-    opacity: 0;
-    -webkit-transform: rotate(180deg) scale(2);
-            transform: rotate(180deg) scale(2);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.file__date {
+  -ms-grid-column: 4;
+      grid-column-start: 4;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
-@keyframes file-theme {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  50% {
-    opacity: 0;
-    -webkit-transform: rotate(180deg) scale(2);
-            transform: rotate(180deg) scale(2);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.file__size {
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.file__basket {
+  width: 2rem;
+  display: none;
+}
+
+.file:hover .file__basket {
+  display: block;
+}
+
+.file__basket:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
 }
 /*# sourceMappingURL=file.css.map */

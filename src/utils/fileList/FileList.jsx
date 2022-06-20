@@ -4,16 +4,21 @@ import './fileList.css'
 
 const FileList = (props) => {
     return (
-        <>
+        <div className='file-list'>
+            <div className="filelist__header">
+                <div className="filelist__name">Название</div>
+                <div className="filelist__date">Дата</div>
+                <div className="filelist__size">Размер</div>
+            </div>
             {props.files && props.files != 0 ?
-                <div className='file-list'>
+                <>
                     {props.files.map(file =>
-                        <File key={file} props={{file, ...props}}/>
+                        <File key={file} props={{ file, ...props }} />
                     )}
-                </div>
+                </>
                 :
                 <span> Файлов пока нет... </span>}
-        </>
+        </div>
     );
 };
 
