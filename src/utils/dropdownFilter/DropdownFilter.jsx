@@ -38,11 +38,11 @@ const DropdownFilter = (props) => {
             </Dropdown.Toggle>
             <Dropdown.Menu as={CustomMenu}>
                 {props.general.map(item =>
-                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
+                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey} active= {props.activeItem===item.eventKey}>{item.name}</Dropdown.Item>
                 )}
                 <Dropdown.Divider />
                 {props.private.map(item =>
-                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey}>{item.name}</Dropdown.Item>
+                    <Dropdown.Item key={item.eventKey} eventKey={item.eventKey} active= {props.activeItem===item.eventKey}>{item.name}</Dropdown.Item>
                 )}
             </Dropdown.Menu>
         </Dropdown>

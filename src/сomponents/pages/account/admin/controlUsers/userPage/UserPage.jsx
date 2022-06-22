@@ -39,6 +39,11 @@ const UserPage = () => {
             eventKey: theme._id
         }
     })
+    let dropDownListAll = dropDownListGen
+    dropDownListAll.concat(dropDownListAll)
+    console.log('lll' + JSON.stringify(dropDownListAll))
+    const activDropdown = dropDownListAll.find(item => item.eventKey===dropdown)
+    console.log('ttt' + JSON.stringify(activDropdown))
 
     return (
         <>
@@ -47,8 +52,13 @@ const UserPage = () => {
                 &#160;
                 <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
             </h3>
-            <div className='text-end'>
-                <DropdownFilter general={dropDownListGen} private={dropDownListPriv} function={setDropdown} toggleText='Выберите тему'/>
+            <div className='d-flex flex-wrap justify-content-between'>
+                <h4>
+                    {/* activDropdown.name */}
+                </h4>
+                <div>
+                    <DropdownFilter general={dropDownListGen} private={dropDownListPriv} function={setDropdown} toggleText='Выберите тему' activeItem={dropdown}/>
+                </div>
             </div>
             <Card className='p-3 mt-3' >
                 <div className='text-center d-flex justify-content-center align-items-center' >

@@ -12,9 +12,11 @@
   &__date {
     grid-column-start: 4;
     justify-self: center;
+    text-align: center;
   }
   &__size {
     grid-column-start: 5;
     justify-self: center;
+    text-align: center;
   }
 }

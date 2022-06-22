@@ -19,6 +19,7 @@
       grid-column-start: 4;
   -ms-grid-column-align: center;
       justify-self: center;
+  text-align: center;
 }
 
 .filelist__size {
@@ -26,5 +27,6 @@
       grid-column-start: 5;
   -ms-grid-column-align: center;
       justify-self: center;
+  text-align: center;
 }
 /*# sourceMappingURL=fileList.css.map */

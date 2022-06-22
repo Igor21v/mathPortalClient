@@ -13,7 +13,7 @@ const FileList = (props) => {
             {props.files && props.files != 0 ?
                 <>
                     {props.files.map(file =>
-                        <File key={file} props={{ file, ...props }} />
+                        <File key={file.name} props={{ file, ...props }} />
                     )}
                 </>
                 :
