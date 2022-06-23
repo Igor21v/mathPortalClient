@@ -130,7 +130,7 @@ export function searchFiles(search) {
 
 export async function downloadUserFile (userId, folder, file) {
         try {
-            const response = await fetch(`${API_URL}api/files/downloadUserFile?userId=${userId}&file=${file}&folder=${folder}`,{
+            const response = await fetch(`${API_URL}api/files/downloadUserFile?userId=${userId}&file=${file.name}&folder=${folder}`,{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -145,7 +145,8 @@ export async function downloadUserFile (userId, folder, file) {
                 link.click()
                 link.remove()
             } 
-            console.log('action222')
+            console.log('action222 ' + response.status)
+            console.log('mes ')
             
         }
         catch (e) {

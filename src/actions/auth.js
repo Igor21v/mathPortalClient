@@ -12,7 +12,7 @@ export const login = (phon, password) => {
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e?.response?.data?.message)
         }
     }
 }
@@ -26,7 +26,7 @@ export const refresh = () => {
             console.log('Запрос рефреш')
         } catch (e) {
 
-            console.log(e.response.data.message)
+            console.log(e?.response?.data?.message)
             dispatch(clearDataUser())
         }
     }

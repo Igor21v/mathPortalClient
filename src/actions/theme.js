@@ -15,7 +15,7 @@ export function getTheme(themeId) {
             dispatch(setTheme(response.data))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e?.response?.data?.message)
         }
     }
 }
@@ -32,7 +32,7 @@ export function getListThemes(showThemes, searchTheme) {
             dispatch(setListThemes(response.data))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e?.response?.data?.message)
         }
     }
 }
@@ -50,7 +50,7 @@ export function addTheme(name, discription) {
             dispatch(setTheme(response.data))
         }
         catch (e) {
-            alert(e.response.data.message)
+            alert(e?.response?.data?.message)
             dispatch(setProcessStatus({index: 0, state: "Error"}))
         }
     }
@@ -69,7 +69,7 @@ export function postFile(themeId, file) {
             console.log('Ответ сервера: ' + response.data)
         }
         catch (e) {
-            alert(e.response.data.message)
+            alert(e?.response?.data?.message)
         }
     }
 }
@@ -88,7 +88,7 @@ export function postPicture(theme, file) {
             console.log('Ответ сервера: ' + response.data)
         }
         catch (e) {
-            console.log('Ошибка: ' + e.response.data.message)
+            console.log('Ошибка: ' + e?.response?.data?.message)
         }
     }
 }
@@ -105,7 +105,7 @@ export function editTheme(theme) {
             dispatch(setProcessStatus({index: 0, state: 'Success'}))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e?.response?.data?.message)
             dispatch(setProcessStatus({index: 0, state: "Error"}))
         }
     }

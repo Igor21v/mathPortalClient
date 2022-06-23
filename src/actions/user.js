@@ -17,7 +17,7 @@ export const registration = (phon, password, name, surname) => {
             dispatch(setProcessStatus({ index: 0, state: 'Success' }))
             dispatch(setUserList(response.data))
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e?.response?.data?.message)
             dispatch(setProcessStatus({ index: 0, state: "Error" }))
         }
     }
@@ -31,7 +31,7 @@ export const uploadAvatar = (file) => {
             const response = await $authHost.post(`api/files/avatar`, formData)
             dispatch(setUser(response.data))
         } catch (e) {
-            console.log(e)
+            console.log(e?.response?.data?.message)
         }
     }
 }
@@ -42,7 +42,7 @@ export const deleteAvatar = () => {
             const response = await $authHost.delete(`api/files/avatar`)
             dispatch(setUser(response.data))
         } catch (e) {
-            console.log(e)
+            console.log(e?.response?.data?.message)
         }
     }
 }
@@ -54,7 +54,7 @@ export const getUserList = () => {
             dispatch(setUserList(response.data))
         }
         catch (e) {
-            console.log(e.response.data.message)
+            console.log(e?.response?.data?.message)
         }
     }
 }
@@ -73,7 +73,7 @@ export const saveUserChanges = (id, form) => {
             dispatch(setProcessStatus({ index: 0, state: 'Success' }))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e?.response?.data?.message)
             dispatch(setProcessStatus({ index: 0, state: 'Error' }))
         }
     }
@@ -105,7 +105,7 @@ export const changePassword = (id, password) => {
             dispatch(setProcessStatus({ index: 1, state: 'Success' }))
         }
         catch (e) {
-            alert(e.response.data.message)
+            console.log(e?.response?.data?.message)
             dispatch(setProcessStatus({ index: 1, state: 'Error' }))
         }
     }
@@ -118,7 +118,7 @@ export const getUserExtend = (id,folder) => {
             dispatch(setUserExtend(response.data))
         }
         catch (e) {
-            console.log(e.response.data.message)
+            console.log(e?.response?.data?.message)
         }
     }
 }
