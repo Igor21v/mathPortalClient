@@ -88,7 +88,7 @@ export function postPicture(theme, file) {
             console.log('Ответ сервера: ' + response.data)
         }
         catch (e) {
-            alert('Ошибка: ' + e.response.data.message)
+            console.log('Ошибка: ' + e.response.data.message)
         }
     }
 }
@@ -128,7 +128,7 @@ export function deletePicture(theme) {
             const response = await $authHost.delete(`api/theme/deletePicture?themeId=${theme._id}`)
             dispatch(setTheme(response.data))
         } catch (error) {
-            alert(error?.response?.data?.message)
+            console.log(error?.response?.data?.message)
         }
     }
 }

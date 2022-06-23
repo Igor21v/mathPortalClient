@@ -32,7 +32,7 @@ $authHost.interceptors.response.use((config) => {
             console.log('НЕ АВТОРИЗОВАН')
         }
     } 
-    store.dispatch(clearDataUser())
+    if (error.response.status == 401) store.dispatch(clearDataUser())
     throw error
     
 })
