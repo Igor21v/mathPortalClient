@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { postUserFile } from '../../../../../../actions/file';
 import { getListThemes } from '../../../../../../actions/theme';
 import { getUserExtend } from '../../../../../../actions/user';
 import { setUserExtend } from '../../../../../../reducers/userReducer';
@@ -16,7 +17,6 @@ const UserPage = () => {
     const user = (userList != '') && userList.find(user => user._id === param.id)
     const dispatch = useDispatch()
     const [dropdown, setDropdown] = useState('General')
-    console.log(dropdown)
     useEffect(() => {
         console.log(param.id)
         dispatch(getUserExtend(param.id, dropdown))
@@ -27,8 +27,12 @@ const UserPage = () => {
     useEffect(() => {
         dispatch(getListThemes('onlyPublic', ''))
     }, [])
+    function fileUploadHandler (event) {
+        const files = [...event.target.files]
+        files.forEach(file => dispatch(postUserFile(param.id, dropdown, file)))
+        console.log('отправка файла на сервер')
+    }
     const themes = useSelector(state => state.themes.listThemes)
-    console.log(themes)
     const userExtend = useSelector(state => state.user.userExtend)
     const dropDownListGen = [
         { name: 'Общие', eventKey: 'General' },
@@ -66,7 +70,7 @@ const UserPage = () => {
                 <Form className='border p-3 rounded-3 mt-4'>
                     <Form.Group controlId="Add files">
                         <Form.Label>Добавить файлы</Form.Label>
-                        <Form.Control type="file" multiple className='mb-3' onChange={() => console.log('add files')} />
+                        <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler} />
                     </Form.Group>
                 </Form>
             </Card>

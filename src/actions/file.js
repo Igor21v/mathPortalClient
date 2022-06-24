@@ -4,6 +4,7 @@ import {addUploadFile, changeUploadFile, showUploader} from "../reducers/uploadR
 import {hideLoader, showLoader} from "../reducers/appReducer";
 import {API_URL} from "../config";
 import { $authHost, $host } from '.';
+import { setUserExtend } from '../reducers/userReducer';
 
 export function getFiles(dirId, sort) {
     return async dispatch => {
@@ -152,4 +153,23 @@ export async function downloadUserFile (userId, folder, file) {
         catch (e) {
             console.log(e)
         }
+}
+
+export function postUserFile(userId, folder, file) {
+    return async dispatch => {
+        try {
+            console.log('add user file ' + userId)
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('userId', userId)
+            formData.append('folder', folder)
+            console.log('Отправка запроса ' + formData)
+            const response = await $authHost.post(`api/files/postUserFile`, formData)
+            dispatch(setUserExtend(response.data))
+            console.log('Ответ сервера: ' + response.data)
+        }
+        catch (e) {
+            console.log('Error post user file ' + e?.response?.data?.message + e)
+        }
+    }
 }
