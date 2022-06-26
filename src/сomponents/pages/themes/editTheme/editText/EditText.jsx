@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { deleteTheme, editTheme, getTheme } from '../../../../../actions/theme';
-import ProcState from '../../../../procState/ProcState';
+import ProcState from '../../../../../utils/procState/ProcState';
 
 
 const EditText = ({ theme }) => {

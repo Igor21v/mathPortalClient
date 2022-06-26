@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { registration } from "../../../../../../actions/user";
 import { Form, InputGroup, Button, Container, Card } from 'react-bootstrap';
-import ProcState from '../../../../../procState/ProcState';
+import ProcState from '../../../../../../utils/procState/ProcState';
 import { useDispatch } from 'react-redux';
 
 const Registration = () => {

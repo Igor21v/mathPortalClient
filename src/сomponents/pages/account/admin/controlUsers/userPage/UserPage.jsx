@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form } from 'react-bootstrap';
+import { Card, Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postUserFile } from '../../../../../../actions/file';
@@ -8,6 +8,7 @@ import { getUserExtend } from '../../../../../../actions/user';
 import { setUserExtend } from '../../../../../../reducers/userReducer';
 import DropdownFilter from '../../../../../../utils/dropdownFilter/DropdownFilter';
 import FileList from '../../../../../../utils/fileList/FileList';
+import ProcState from '../../../../../../utils/procState/ProcState';
 import IconEdit from '../../../../../icons/iconEdit/IconEdit';
 
 const UserPage = () => {
@@ -17,6 +18,7 @@ const UserPage = () => {
     const user = (userList != '') && userList.find(user => user._id === param.id)
     const dispatch = useDispatch()
     const [dropdown, setDropdown] = useState('General')
+    let inputFiles = React.createRef()
     useEffect(() => {
         console.log(param.id)
         dispatch(getUserExtend(param.id, dropdown))
@@ -28,7 +30,7 @@ const UserPage = () => {
         dispatch(getListThemes('onlyPublic', ''))
     }, [])
     function fileUploadHandler (event) {
-        const files = [...event.target.files]
+        const files = [...inputFiles.current.files]
         files.forEach(file => dispatch(postUserFile(param.id, dropdown, file)))
         console.log('отправка файла на сервер')
     }
@@ -47,6 +49,14 @@ const UserPage = () => {
     console.log('lll' + JSON.stringify(dropDownListAll))
     const activDropdown = dropDownListAll.find(item => item.eventKey === dropdown)
     console.log('ttt' + JSON.stringify(activDropdown))
+    const procState = {
+        state: [
+            'Выполняется добавление файлов...',
+            'Файлы успешно добавлены',
+            'Ошибка при добавлении файлов.'
+        ],
+        index: 0
+    }
 
     return (
         <>
@@ -70,7 +80,9 @@ const UserPage = () => {
                 <Form className='border p-3 rounded-3 mt-4'>
                     <Form.Group controlId="Add files">
                         <Form.Label>Добавить файлы</Form.Label>
-                        <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler} />
+                        <Form.Control type="file" multiple className='mb-3' ref = {inputFiles}/*  onChange={fileUploadHandler} */ />
+                        <Button className='me-2' onClick={fileUploadHandler}>Добавить</Button>
+                        <ProcState procState={procState} />
                     </Form.Group>
                 </Form>
             </Card>

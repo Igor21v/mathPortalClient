@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {addFile, deleteFileAction, setFiles} from "../reducers/fileReducer";
 import {addUploadFile, changeUploadFile, showUploader} from "../reducers/uploadReducer";
-import {hideLoader, showLoader} from "../reducers/appReducer";
+import {hideLoader, showLoader, setProcessStatus} from "../reducers/appReducer";
 import {API_URL} from "../config";
 import { $authHost, $host } from '.';
 import { setUserExtend } from '../reducers/userReducer';
@@ -158,6 +158,7 @@ export async function downloadUserFile (userId, folder, file) {
 export function postUserFile(userId, folder, file) {
     return async dispatch => {
         try {
+            dispatch(setProcessStatus({index: 0, state: 'Processing'}))
             console.log('add user file ' + userId)
             const formData = new FormData()
             formData.append('file', file)
@@ -166,10 +167,12 @@ export function postUserFile(userId, folder, file) {
             console.log('Отправка запроса ' + formData)
             const response = await $authHost.post(`api/files/postUserFile`, formData)
             dispatch(setUserExtend(response.data))
+            dispatch(setProcessStatus({index: 0, state: 'Success'}))
             console.log('Ответ сервера: ' + response.data)
         }
         catch (e) {
-            console.log('Error post user file ' + e?.response?.data?.message + e)
+            console.log('Error post user file ' + e?.response?.data?.message)
+            dispatch(setProcessStatus({index: 0, state: "Error", mess: e?.response?.data?.message}))
         }
     }
 }

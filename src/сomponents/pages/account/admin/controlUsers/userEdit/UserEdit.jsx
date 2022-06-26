@@ -3,7 +3,7 @@ import { Card, Form, FormGroup, Stack, InputGroup, Button } from 'react-bootstra
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { changePassword, deleteUser, saveUserChanges } from '../../../../../../actions/user';
-import ProcState from '../../../../../procState/ProcState';
+import ProcState from '../../../../../../utils/procState/ProcState';
 
 const UserEdit = () => {
     const router = useNavigate()

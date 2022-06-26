@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { addTheme } from '../../../../../actions/theme';
 import { useDispatch, useSelector } from "react-redux";
-import ProcState from '../../../../procState/ProcState';
+import ProcState from '../../../../../utils/procState/ProcState';
 
 const ControlThemes = () => {
     const theme = useSelector(state => state.themes.theme)
