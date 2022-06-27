@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
-import { setTheme, setListThemes } from "../reducers/themeReduser";
+import { setTheme, setListThemes } from "../reducers/themeReducer";
 import { setProcessStatus, hideLoader, showLoader } from "../reducers/appReducer";
 import { $authHost, $host } from ".";
 

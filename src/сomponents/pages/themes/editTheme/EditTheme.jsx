@@ -6,7 +6,7 @@ import EditText from './editText/EditText';
 import EditFiles from './editFiles/EditFiles';
 import EditImage from './editImage/EditImage';
 import { getTheme } from '../../../../actions/theme';
-import { setTheme } from '../../../../reducers/themeReduser';
+import { setTheme } from '../../../../reducers/themeReducer';
 import Loader from '../../../../utils/loader/Loader';
 
 

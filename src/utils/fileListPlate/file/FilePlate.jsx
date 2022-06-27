@@ -12,8 +12,6 @@ const File = (props) => {
         e.preventDefault()
         dispatch(deleteThemeFile(props.themeId, props.file))
     }
-    
-
     return (
         <a className='file-plate' href={ API_URL + 'themes/' + props.themeId + '/' + props.file}>
             {props.changeable && <img src={icon_basket} alt="" className='file-plate__basket' onClick={delThemeFile}/> }  

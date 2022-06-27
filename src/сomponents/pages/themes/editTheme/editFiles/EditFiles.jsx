@@ -17,11 +17,8 @@ const EditFiles = ({ theme }) => {
             <Form className='border p-3 rounded-3 mb-3 bg-white'>
                 <Form.Group controlId="Add files">
                     <Form.Label>Добавить файлы для обучения</Form.Label>
-                    <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler}/>
-                    {theme.files && theme.files!=0 ?
-                        <FileListPlate theme={theme} changeable={true}/>
-                        :
-                        <span> Файлов для обучения пока что нет... </span>}
+                    <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler} />
+                    <FileListPlate theme={theme} changeable />
                 </Form.Group>
             </Form>
         </>

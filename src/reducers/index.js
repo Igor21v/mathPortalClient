@@ -5,7 +5,7 @@ import userReducer from "./userReducer";
 import fileReducer from "./fileReducer";
 import uploadReducer from "./uploadReducer";
 import appReducer from "./appReducer";
-import themeReduser from "./themeReduser";
+import themeReduser from "./themeReducer";
 
 
 const rootReducer = combineReducers({
