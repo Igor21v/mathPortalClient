@@ -3,16 +3,13 @@ import icon_download from '../../../assets/img/download.svg';
 import icon_basket from '../../../assets/img/basket.svg';
 import './file.css'
 import { useDispatch } from 'react-redux';
-import { downloadUserFile } from '../../../actions/file';
+import { downloadUserFile, deleteUserFile } from '../../../actions/file';
 import sizeFormat from '../../sizeFormat';
-/* import { deleteUserFile } from '../../../../../../../actions/user'; */
 
 const File = ({ props }) => {
     const dispatch = useDispatch()
     const delUserFile = e => {
-       /*  e.stopPropagation() */
-        console.log('удалить файл')
-        /* dispatch(deleteUserFile(props.userId, props.file)) */
+        dispatch(deleteUserFile(props.userId, props.folder, props.file.name))
     }
 
     const getUserFile = () => {

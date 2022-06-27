@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAGA,AAAA,gBAAgB,CAAC;EACf,+BAA+B;EAC/B,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;CAChB",
     "sources": [
-        "fileList.scss"
+        "fileListPlate.scss"
     ],
     "names": [],
-    "file": "fileList.css"
+    "file": "fileListPlate.css"
 }
