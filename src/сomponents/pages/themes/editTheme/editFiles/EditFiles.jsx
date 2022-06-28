@@ -18,7 +18,9 @@ const EditFiles = ({ theme }) => {
                 <Form.Group controlId="Add files">
                     <Form.Label>Добавить файлы для обучения</Form.Label>
                     <Form.Control type="file" multiple className='mb-3' onChange={fileUploadHandler} />
-                    <FileListPlate theme={theme} changeable />
+                    <div className='d-flex flex-wrap'>
+                        <FileListPlate theme={theme} changeable />
+                    </div>
                 </Form.Group>
             </Form>
         </>

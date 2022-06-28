@@ -1,9 +1,0 @@
-.file-list-plate {
-  /* border: dashed 2px $blue; */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-/*# sourceMappingURL=fileListPlate.css.map */

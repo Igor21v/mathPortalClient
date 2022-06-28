@@ -19,8 +19,10 @@ const VeiwTheme = () => {
         <Container className='text-center mt-3 mb-3'>
             <h3>{theme.name}</h3>
             <Card className='p-3 mt-3'>
-                <h4>Материалы для изучения</h4>
-                    <FileListPlate theme={theme}/>
+                <h4 className='mb-4'>Материалы для изучения</h4>
+                <div className='d-flex justify-content-center flex-wrap'>
+                    <FileListPlate theme={theme} />
+                </div>
             </Card>
             <Card className='p-3 mt-3'>
                 <h4>Комментарии</h4>
