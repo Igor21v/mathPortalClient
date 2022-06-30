@@ -5,7 +5,7 @@ const User = ({ user }) => {
     const router = useNavigate()
     return (
         <>
-            <tr style={{ cursor: 'pointer' }} onClick={() => router(`/account/controlUser/userPage/${user._id}`)}>
+            <tr style={{ cursor: 'pointer' }} onClick={() => router(`/account/controlUser/userView/${user._id}`)}>
                 <td> {user.surname} </td>
                 <td> {user.name} </td>
                 <td> +7{user.phon} </td>

@@ -2,27 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { postUserFile } from '../../../../../../actions/file';
-import { getListThemes } from '../../../../../../actions/theme';
-import { getUserExtend } from '../../../../../../actions/user';
-import { setUserExtend } from '../../../../../../reducers/userReducer';
-import DropdownFilter from '../../../../../../utils/dropdownFilter/DropdownFilter';
-import FileList from '../../../../../../utils/fileList/FileList';
-import ProcState from '../../../../../../utils/procState/ProcState';
-import IconEdit from '../../../../../icons/iconEdit/IconEdit';
-import icon_tel from '../../../../../../assets/img/tel.svg';
+import { postUserFile } from '../../../../actions/file';
+import { getListThemes } from '../../../../actions/theme';
+import { getUserExtend } from '../../../../actions/user';
+import { setUserExtend } from '../../../../reducers/userReducer';
+import DropdownFilter from '../../../../utils/dropdownFilter/DropdownFilter';
+import FileList from '../../../../utils/fileList/FileList';
+import ProcState from '../../../../utils/procState/ProcState';
+import IconEdit from '../../../icons/iconEdit/IconEdit';
+import icon_tel from '../../../../assets/img/tel.svg';
 
 const UserPage = () => {
-
+    const currentUser = useSelector(state => state.user.currentUser)
     const param = useParams()
-    const userList = useSelector(state => state.user.userList)
-    const user = (userList != '') && userList.find(user => user._id === param.id)
+    let userId
+    if (currentUser.role === 'ADMIN') {
+        userId = param.id
+    } else {
+        userId = currentUser.id
+    }
     const dispatch = useDispatch()
     const [dropdown, setDropdown] = useState('General')
     let inputFiles = React.createRef()
     useEffect(() => {
-        console.log(param.id)
-        dispatch(getUserExtend(param.id, dropdown))
+        console.log('user.id' + userId)
+        dispatch(getUserExtend(userId, dropdown))
         return () => {
             dispatch(setUserExtend({}))
         }
@@ -32,7 +36,7 @@ const UserPage = () => {
     }, [])
     function fileUploadHandler(event) {
         const files = [...inputFiles.current.files]
-        files.forEach(file => dispatch(postUserFile(param.id, dropdown, file)))
+        files.forEach(file => dispatch(postUserFile(userId, dropdown, file)))
         console.log('отправка файла на сервер')
     }
     const themes = useSelector(state => state.themes.listThemes)
@@ -61,15 +65,6 @@ const UserPage = () => {
 
     return (
         <>
-            <h3 style={{ textAlign: 'center' }}>
-                Страничка ученика: {user?.surname} {user?.name}
-                &#160;
-                <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
-                &#160;
-                <a href='https://t.me/+79501166910'>
-                    <img src={icon_tel} alt="" />
-                </a>
-            </h3>
             <div className='d-flex flex-wrap justify-content-between align-items-end ps-3'>
                 <h4 className='m-0'>
                     {activDropdown.name}
@@ -81,7 +76,7 @@ const UserPage = () => {
 
             <Card className='p-3 mt-3' >
                 <h4 className='text-center'>Файлы</h4>
-                <FileList files={userExtend.files} userId={param.id} folder={dropdown} />
+                <FileList files={userExtend.files} userId={userId} folder={dropdown} />
                 <Form className='border p-3 rounded-3 mt-4'>
                     <Form.Group controlId="Add files">
                         <Form.Label>Добавить файлы</Form.Label>

@@ -7,7 +7,7 @@ import Registration from './registration/Registration';
 import UserList from './userList/UserList';
 import { getUserList } from '../../../../../actions/user';
 import { Route, Routes } from 'react-router-dom';
-import UserPage from './userPage/UserPage';
+import UserView from './userView/UserView';
 import UserEdit from './userEdit/UserEdit';
 import ControlUsers from './ControlUsers'
 import Loader from '../../../../../utils/loader/Loader';
@@ -28,7 +28,7 @@ const ControlUsersRout = () => {
         <>
             {(userList != {}) ?
                 <Routes>
-                    <Route path={`userPage/:id`} element={<UserPage />} />
+                    <Route path={`userView/:id`} element={<UserView />} />
                     <Route path={`userEdit/:id`} element={<UserEdit />} />
                     <Route path={`*`} element={<ControlUsers />} />
                 </Routes>

@@ -21,7 +21,7 @@ export const adminRoutes = [
 
 export const studentRoutes = [
     {
-        path: '/account/:id',
+        path: '/account/*',
         Component: <Student/>
     }
 ]

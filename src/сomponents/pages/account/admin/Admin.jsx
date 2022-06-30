@@ -6,7 +6,7 @@ import ControlUsersRout from './controlUsers/ControlUsersRout.js';
 import ControlGeneral from './controlGeneral/ControlGeneral';
 import ControlThemes from './controlThemes/ControlThemes';
 import { Route, Routes } from 'react-router-dom';
-import UserPage from './controlUsers/userPage/UserPage';
+import UserPage from './controlUsers/userView/UserView';
 import UserEdit from './controlUsers/userEdit/UserEdit';
 
 export function Admin() {
