@@ -30,9 +30,6 @@ const Login = () => {
                     <Form.Control type="password" placeholder='Введите пароль' value={password} onChange={(event) => setPassword(event.target.value)} />
                 </Form.Group>
                 <Stack direction="horizontal" className="mt-3">
-                    <Form.Group controlId="fromBasicCheckbox">
-                        <Form.Check type="checkbox" label='запомнить меня' />
-                    </Form.Group>
                     <Form.Group className="ms-auto ">
                         <Button type="submit" className="btn-primary" >Войти</Button>
                     </Form.Group>
