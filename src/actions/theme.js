@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
-import { setTheme, setListThemes } from "../reducers/themeReducer";
+import { setTheme, setListThemes, setAmountThemes } from "../reducers/themeReducer";
 import { setProcessStatus, hideLoader, showLoader } from "../reducers/appReducer";
 import { $authHost, $host } from ".";
 
@@ -31,6 +31,7 @@ export function getListThemes(showThemes, searchTheme, page) {
                 }
             })
             dispatch(setListThemes(response.data.themeList))
+            dispatch(setAmountThemes(response.data.amount))
         }
         catch (e) {
             console.log(e?.response?.data?.message)
