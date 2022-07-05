@@ -20,16 +20,17 @@ export function getTheme(themeId) {
     }
 }
 
-export function getListThemes(showThemes, searchTheme) {
+export function getListThemes(showThemes, searchTheme, page) {
     return async dispatch => {
         try {
             const response = await $host.get(`api/theme/getListThemes`, {
                 params: {
                     showThemes: showThemes,
                     searchTheme: searchTheme,
+                    page
                 }
             })
-            dispatch(setListThemes(response.data))
+            dispatch(setListThemes(response.data.themeList))
         }
         catch (e) {
             console.log(e?.response?.data?.message)
