@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container } from 'react-bootstrap';
 
 const Footer = () => (
@@ -13,7 +12,7 @@ const Footer = () => (
                 height="50rem"
                 className="d-inline-block align-top"
                 alt="Ошибка импорта логотипа"
-                style={{marginRight: '15px'}}
+                style={{ marginRight: '15px' }}
             />
             <div>
                 <p>2022 г. Усть-Илимск, Иркутская область.</p>
