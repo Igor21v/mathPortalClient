@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
-import { setTheme, setListThemes, setAmountThemes } from "../reducers/themeReducer";
+import { setTheme, addListThemes, setAmountThemes, setFetchingThemes, setListThemes } from "../reducers/themeReducer";
 import { setProcessStatus, hideLoader, showLoader } from "../reducers/appReducer";
 import { $authHost, $host } from ".";
 
@@ -30,11 +30,18 @@ export function getListThemes(showThemes, searchTheme, page) {
                     page
                 }
             })
-            dispatch(setListThemes(response.data.themeList))
+            if (page == 1) {
+                dispatch(setListThemes(response.data.themeList))
+            } else {
+                dispatch(addListThemes(response.data.themeList))
+            }
             dispatch(setAmountThemes(response.data.amount))
         }
         catch (e) {
             console.log(e?.response?.data?.message)
+        }
+        finally {
+            dispatch(setFetchingThemes(false))
         }
     }
 }
@@ -42,18 +49,19 @@ export function getListThemes(showThemes, searchTheme, page) {
 export function addTheme(name, discription) {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus({index: 0, state: 'Processing'}))
+            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
             console.log('555 ' + name + '  ' + discription)
             const response = await $authHost.post(`api/theme`, {
                 name: name,
-                discription: discription})
+                discription: discription
+            })
             console.log(response.data)
-            dispatch(setProcessStatus({index: 0, state: 'Success'}))
+            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
             dispatch(setTheme(response.data))
         }
         catch (e) {
             alert(e?.response?.data?.message)
-            dispatch(setProcessStatus({index: 0, state: "Error"}))
+            dispatch(setProcessStatus({ index: 0, state: "Error" }))
         }
     }
 }
@@ -98,17 +106,17 @@ export function postPicture(theme, file) {
 export function editTheme(theme) {
     return async dispatch => {
         try {
-            dispatch(setProcessStatus({index: 0, state: 'Processing'}))
+            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
             console.log('111 ' + theme)
             const response = await $authHost.put(`api/theme/edit`, {
                 ...theme
             })
             console.log(response.data)
-            dispatch(setProcessStatus({index: 0, state: 'Success'}))
+            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
         }
         catch (e) {
             console.log(e?.response?.data?.message)
-            dispatch(setProcessStatus({index: 0, state: "Error"}))
+            dispatch(setProcessStatus({ index: 0, state: "Error" }))
         }
     }
 }
