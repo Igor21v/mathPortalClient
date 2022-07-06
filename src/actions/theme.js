@@ -23,6 +23,7 @@ export function getTheme(themeId) {
 export function getListThemes(showThemes, searchTheme, page) {
     return async dispatch => {
         try {
+            dispatch(setFetchingThemes(true))
             const response = await $host.get(`api/theme/getListThemes`, {
                 params: {
                     showThemes: showThemes,

@@ -15,27 +15,41 @@ const ThemesList = () => {
     const fetchingThemes = useSelector(state => state.themes.fetching)
     const dispatch = useDispatch()
     const lastElement = useRef() 
-    console.log('gggbbb ' + lastElement)
+    const observer = useRef()
 
+    useEffect(() => {
+        console.log('сброс номера страницы')
+        setCurrentPage(1)
+    }, [])
     useEffect(() => {
         console.log('Запрос списка тем')
-        setCurrentPage(1)
-        dispatch(getListThemes(showThemes, searchThemes, 1))
+        dispatch(getListThemes(showThemes, searchThemes, currentPage))
 
-    }, [showThemes, searchThemes])
+    }, [showThemes, searchThemes, currentPage])
     useEffect(() => {
-        if (fetchingThemes) {
-            dispatch(getListThemes(showThemes, searchThemes, currentPage))
-            setCurrentPage(prevState => prevState + 1)
-            console.log('Запрос списка тем из слушателя событий')
+        if (fetchingThemes) return;
+        if (observer.current) observer.current.disconnect();
+        var options = {
+            rootMargin: '0px 0px 0px 0px',
+            threshold: [ 0 ]
         }
-    }, [fetchingThemes])
+        var callback = function(entries, observer) {
+            console.log('callback ' + entries[0].isIntersecting)
+            console.log('amountThemes ' + amountThemes + ' themes.length ' + themes.length)
+            if (entries[0].isIntersecting && (themes.length<amountThemes)) {
+                setCurrentPage(prevState => prevState + 1)
+                console.log('в зоне видимости')
+            }
+        };
+        observer.current = new IntersectionObserver(callback, options);
+        observer.current.observe(lastElement.current);
+    }, [fetchingThemes, amountThemes])
+    console.log('obnovlenie')
+    console.log('fetchingThemes ' + fetchingThemes)
+    console.log('amountThemes777 ' + amountThemes + ' themes.length777' + themes.length)
 
-    useEffect(() => {
 
-    }, [])
-    console.log('amountThemes ' + amountThemes + ' themes.length' + themes.length)
-
+ 
 
     return (
         <>
