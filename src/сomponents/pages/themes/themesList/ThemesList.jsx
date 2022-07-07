@@ -18,10 +18,11 @@ const ThemesList = () => {
     const lastElement = useRef()
     const observer = useRef()
 
+
     useEffect(() => {
         console.log('сброс номера страницы')
         setCurrentPage(1)
-    }, [])
+    }, [showThemes, searchThemes])
     useEffect(() => {
         if (!lockRequest) {
             console.log('Запрос списка тем')
@@ -50,16 +51,13 @@ const ThemesList = () => {
     }, [fetchingThemes])
 
 
-
-
-
     return (
         <>
             {themes ?
-                <>{themes.map(theme =>
+                <div className="d-flex flex-wrap justify-content-around position-relative" > {themes.map(theme =>
                     <Theme key={theme._id} theme={theme} />)}
-                    <div ref={lastElement} style={{ height: '200px', background: 'red', width: '200px', border: '4mm ridge green', borderRadius: '50px' }}></div>
-                </>
+                    <div ref={lastElement} className='position-absolute bottom-0' ></div>
+                </div>
                 :
                 <h1>Сервер сдох</h1>}
 

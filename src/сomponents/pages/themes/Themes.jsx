@@ -15,10 +15,7 @@ export const Themes = () => {
                     <TopMenu />
                 </Row>
                 <Row >
-                    <div className="d-flex flex-wrap justify-content-around" >
-                        < ThemesList />
-                    </div>
-
+                    < ThemesList />
                 </Row>
             </Container >
         </ >
