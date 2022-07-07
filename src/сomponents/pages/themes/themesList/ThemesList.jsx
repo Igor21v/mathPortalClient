@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFetchingThemes, setListThemes } from '../../../../reducers/themeReducer';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { useObserver } from '../../../../hooks/useObserver';
 
 const ThemesList = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -16,7 +17,6 @@ const ThemesList = () => {
     const lockRequest = useSelector(state => state.app.lockRequest)
     const dispatch = useDispatch()
     const lastElement = useRef()
-    const observer = useRef()
 
 
     useEffect(() => {
@@ -25,31 +25,15 @@ const ThemesList = () => {
     }, [showThemes, searchThemes])
     useEffect(() => {
         if (!lockRequest) {
-            console.log('Запрос списка тем')
+            console.log('Запрос списка тем' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' +amountThemes)
             dispatch(getListThemes(showThemes, searchThemes, currentPage))
         }
     }, [showThemes, searchThemes, currentPage, lockRequest])
-    console.log('obnovlenie amountThemes ' + amountThemes + ' themes.length ' + themes.length + ' fetchingThemes ' + fetchingThemes)
-    useEffect(() => {
-        console.log('useEffect fetch' + ' fetchingThemes ' + fetchingThemes)
-        if (fetchingThemes) return;
-        if (observer.current) observer.current.disconnect();
-        var options = {
-            rootMargin: '0px 0px 0px 0px',
-            threshold: [0]
-        }
-
-        var callback = function (entries, observer) {
-            console.log('callback ' + 'amountThemes ' + amountThemes + ' themes.length ' + themes.length + 'entries[0].isIntersecting' + entries[0].isIntersecting)
-            if (entries[0].isIntersecting && (themes.length < amountThemes)) {
-                setCurrentPage(prevState => prevState + 1)
-                console.log('в зоне видимости')
-            }
-        };
-        observer.current = new IntersectionObserver(callback, options);
-        observer.current.observe(lastElement.current);
-    }, [fetchingThemes])
-
+    
+    useObserver(lastElement, fetchingThemes, (themes.length < amountThemes), () => {
+        setCurrentPage(prevState => prevState + 1)
+    }, themes.length, amountThemes)
+    console.log('Themes: ' + themes.map(theme=> theme.name))
 
     return (
         <>
