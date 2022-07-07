@@ -37,12 +37,14 @@ export function getListThemes(showThemes, searchTheme, page) {
                 dispatch(addListThemes(response.data.themeList))
             }
             dispatch(setAmountThemes(response.data.amount))
+            console.log('dispath amount themes')
         }
         catch (e) {
             console.log(e?.response?.data?.message)
         }
         finally {
             dispatch(setFetchingThemes(false))
+            console.log('disp fetching')
         }
     }
 }

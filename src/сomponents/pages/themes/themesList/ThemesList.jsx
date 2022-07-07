@@ -13,8 +13,9 @@ const ThemesList = () => {
     const themes = useSelector(state => state.themes.listThemes)
     const amountThemes = useSelector(state => state.themes.amountThemes)
     const fetchingThemes = useSelector(state => state.themes.fetching)
+    const lockRequest = useSelector(state => state.app.lockRequest)
     const dispatch = useDispatch()
-    const lastElement = useRef() 
+    const lastElement = useRef()
     const observer = useRef()
 
     useEffect(() => {
@@ -22,45 +23,46 @@ const ThemesList = () => {
         setCurrentPage(1)
     }, [])
     useEffect(() => {
-        console.log('Запрос списка тем')
-        dispatch(getListThemes(showThemes, searchThemes, currentPage))
-
-    }, [showThemes, searchThemes, currentPage])
+        if (!lockRequest) {
+            console.log('Запрос списка тем')
+            dispatch(getListThemes(showThemes, searchThemes, currentPage))
+        }
+    }, [showThemes, searchThemes, currentPage, lockRequest])
+    console.log('obnovlenie amountThemes ' + amountThemes + ' themes.length ' + themes.length + ' fetchingThemes ' + fetchingThemes)
     useEffect(() => {
+        console.log('useEffect fetch' + ' fetchingThemes ' + fetchingThemes)
         if (fetchingThemes) return;
         if (observer.current) observer.current.disconnect();
         var options = {
             rootMargin: '0px 0px 0px 0px',
-            threshold: [ 0 ]
+            threshold: [0]
         }
-        var callback = function(entries, observer) {
-            console.log('callback ' + entries[0].isIntersecting)
-            console.log('amountThemes ' + amountThemes + ' themes.length ' + themes.length)
-            if (entries[0].isIntersecting && (themes.length<amountThemes)) {
+
+        var callback = function (entries, observer) {
+            console.log('callback ' + 'amountThemes ' + amountThemes + ' themes.length ' + themes.length + 'entries[0].isIntersecting' + entries[0].isIntersecting)
+            if (entries[0].isIntersecting && (themes.length < amountThemes)) {
                 setCurrentPage(prevState => prevState + 1)
                 console.log('в зоне видимости')
             }
         };
         observer.current = new IntersectionObserver(callback, options);
         observer.current.observe(lastElement.current);
-    }, [fetchingThemes, amountThemes])
-    console.log('obnovlenie')
-    console.log('fetchingThemes ' + fetchingThemes)
-    console.log('amountThemes777 ' + amountThemes + ' themes.length777' + themes.length)
+    }, [fetchingThemes])
 
 
- 
+
+
 
     return (
         <>
             {themes ?
                 <>{themes.map(theme =>
                     <Theme key={theme._id} theme={theme} />)}
-                    <div ref={lastElement} style={{height: '200px', background: 'red', width: '200px', border: '4mm ridge green', borderRadius: '50px'}}></div>
-                    </>
+                    <div ref={lastElement} style={{ height: '200px', background: 'red', width: '200px', border: '4mm ridge green', borderRadius: '50px' }}></div>
+                </>
                 :
                 <h1>Сервер сдох</h1>}
-                
+
         </>
     );
 }
