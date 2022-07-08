@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const useObserver = (ref, isFetching, canFetching, callback, currentLength, amount) => {
+export const useObserver = (ref, isFetching, canFetching, callback) => {
     const observer = useRef()
 
     useEffect(() => {
@@ -12,7 +12,6 @@ export const useObserver = (ref, isFetching, canFetching, callback, currentLengt
             threshold: [0]
         }
         var cb = function (entries, observer) {
-            console.log('Obser ' + 'entries[0].isIntersecting' +entries[0].isIntersecting + 'canFetching' + canFetching + 'currentLength' + currentLength + 'amount' + amount)
             if (entries[0].isIntersecting && canFetching) {
                 callback()
             }

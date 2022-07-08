@@ -17,24 +17,28 @@ const ThemesList = () => {
     const lockRequest = useSelector(state => state.app.lockRequest)
     const dispatch = useDispatch()
     const lastElement = useRef()
-
+    const [needUpdate, setNeedUpdate] = useState()
 
     useEffect(() => {
         console.log('сброс номера страницы')
+        dispatch(setListThemes([]))
+        window.scrollTo(0, 0)
         setCurrentPage(1)
+        setNeedUpdate(prevState => !prevState)
     }, [showThemes, searchThemes])
     useEffect(() => {
         if (!lockRequest) {
             console.log('Запрос списка тем' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' +amountThemes)
             dispatch(getListThemes(showThemes, searchThemes, currentPage))
         }
-    }, [showThemes, searchThemes, currentPage, lockRequest])
+    }, [currentPage, lockRequest, needUpdate])
     
     useObserver(lastElement, fetchingThemes, (themes.length < amountThemes), () => {
         setCurrentPage(prevState => prevState + 1)
-    }, themes.length, amountThemes)
-    console.log('Themes: ' + themes.map(theme=> theme.name))
-
+    })
+   /*  console.log('Themes: ' + themes.map(theme=> theme.name)) */
+/*     console.log ('window.innerHeight ' + window.innerHeight)
+    console.log('document.documentElement.clientHeight ' + document.documentElement.clientHeight) */
     return (
         <>
             {themes ?

@@ -23,7 +23,6 @@ export function getTheme(themeId) {
 export function getListThemes(showThemes, searchTheme, page) {
     return async dispatch => {
         try {
-            console.log('action getList ' + page)
             await dispatch(setFetchingThemes(true))
             const response = await $host.get(`api/theme/getListThemes`, {
                 params: {
@@ -32,21 +31,14 @@ export function getListThemes(showThemes, searchTheme, page) {
                     page
                 }
             })
-            console.log('page ' + page)
-            if (page == 1) {
-                dispatch(setListThemes(response.data.themeList))
-            } else {
-                await dispatch(addListThemes(response.data.themeList))
-            }
-            await dispatch(setAmountThemes(response.data.amount))
-            console.log('dispath amount themes')
+            dispatch(addListThemes(response.data.themeList))
+            dispatch(setAmountThemes(response.data.amount))
         }
         catch (e) {
             console.log(e?.response?.data?.message)
         }
         finally {
             await dispatch(setFetchingThemes(false))
-            console.log('disp fetching')
         }
     }
 }
