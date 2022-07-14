@@ -32,7 +32,7 @@ const ThemesList = () => {
 
     useEffect(() => {
         if (!lockRequest) {
-            console.log('Запрос списка тем' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes, ' lockRequest ' + lockRequest + ' needUpdate ' + needUpdate.current)
+            console.log('Запрос списка тем ' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes, ' lockRequest ' + lockRequest + ' needUpdate ' + needUpdate.current)
             dispatch(getListThemes(showThemes, searchThemes, currentPage))
         }
     }, [currentPage, lockRequest, needUpdate.current])

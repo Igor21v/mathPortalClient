@@ -11,4 +11,9 @@ export const useNonInitialEffect = (effect, deps) => {
             return effect();
         }
     }, deps);
+    useEffect (() => {
+        return () => {
+            initialRender.current = true;
+        }
+    }, [])
 }
