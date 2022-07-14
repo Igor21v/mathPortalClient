@@ -6,6 +6,7 @@ import { setFetchingThemes, setListThemes } from '../../../../reducers/themeRedu
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useObserver } from '../../../../hooks/useObserver';
+import { useNonInitialEffect } from '../../../../hooks/useNonInitialEffect';
 
 const ThemesList = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -17,32 +18,36 @@ const ThemesList = () => {
     const lockRequest = useSelector(state => state.app.lockRequest)
     const dispatch = useDispatch()
     const lastElement = useRef()
-    const [needUpdate, setNeedUpdate] = useState(undefined)
+   /*  const [needUpdate, setNeedUpdate] = useState(undefined)d */
+    const needUpdate = useRef(false)
 
-    useEffect(() => {
+    useNonInitialEffect(() => {
         console.log('сброс номера страницы')
         dispatch(setListThemes([]))
         window.scrollTo(0, 0)
         setCurrentPage(1)
-        setNeedUpdate(prevState => !prevState)
-        return (
-            dispatch(setListThemes([]))
-        )
+         /* setNeedUpdate(prevState => !prevState) */
+         needUpdate.current = !needUpdate.current
     }, [showThemes, searchThemes])
-    console.log('Follow showThemes ' +  showThemes + ' searchThemes ' + searchThemes)
+
     useEffect(() => {
         if (!lockRequest) {
-            console.log('Запрос списка тем' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' +amountThemes)
+            console.log('Запрос списка тем' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes, ' lockRequest ' + lockRequest + ' needUpdate ' + needUpdate.current)
             dispatch(getListThemes(showThemes, searchThemes, currentPage))
         }
-    }, [currentPage, lockRequest, needUpdate])
-    
+    }, [currentPage, lockRequest, needUpdate.current])
+
     useObserver(lastElement, fetchingThemes, (themes.length < amountThemes), () => {
         setCurrentPage(prevState => prevState + 1)
     })
-   /*  console.log('Themes: ' + themes.map(theme=> theme.name)) */
-/*     console.log ('window.innerHeight ' + window.innerHeight)
-    console.log('document.documentElement.clientHeight ' + document.documentElement.clientHeight) */
+       
+    useEffect( () => {
+        return () => {
+            console.log('демонтирование компонента')
+            dispatch(setListThemes([]))
+        }}, [])
+    console.log('Themes: ' + themes.map(theme => theme.name))
+
     return (
         <>
             {themes ?

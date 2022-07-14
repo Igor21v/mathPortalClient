@@ -23,14 +23,14 @@ const TopMenu = () => {
     }
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (userRole === 'ADMIN') {
             dispatch(setShowThemes('all'))
         } else {
             dispatch(setShowThemes('onlyPublic'))
             }
     }, [userRole]
-    )
+    ) */
 
     return (
 
