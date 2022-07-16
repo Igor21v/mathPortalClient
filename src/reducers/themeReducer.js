@@ -5,6 +5,9 @@ const SET_SHOW_THEMES = "SET_SHOW_THEMES"
 const SET_SEARCH_THEMES = "SET_SEARCH_THEMES"
 const SET_AMOUNT_THEMES = "SET_AMOUNT_THEMES"
 const SET_FETCHING_THEMES = 'SET_FETCHING_THEMES'
+const SET_SHOW_THEMES_LOADING = 'SET_SHOW_THEMES_LOADING'
+const SET_USER_LOADING = 'SET_USER_LOADING'
+/* const SET_NEED_UPDATE = 'SET_NEED_UPDATE' */
 
 
 const defaultState = {
@@ -14,6 +17,9 @@ const defaultState = {
     searchThemes: "",
     addStatus: "",
     amountThemes: 0,
+    showThemesLoading: true,
+    userLoading: true,
+    /* needUpdate: false, */
 }
 
 export default function themeReduser(state = defaultState, action) {
@@ -25,6 +31,10 @@ export default function themeReduser(state = defaultState, action) {
          case SET_SHOW_THEMES: return {...state, showThemes: action.payload}
          case SET_SEARCH_THEMES: return {...state, searchThemes: action.payload}
          case SET_AMOUNT_THEMES: return {...state, amountThemes: action.payload}
+         case SET_SHOW_THEMES_LOADING: return {...state, showThemesLoading: action.payload}
+         case SET_USER_LOADING: return {...state, userLoading: action.payload}
+         /* case SET_NEED_UPDATE: return {...state, needUpdate: action.payload} */
+
          default:
              return state
      }
@@ -37,3 +47,7 @@ export const setShowThemes = (payload) => ({type: SET_SHOW_THEMES, payload: payl
 export const setSearchThemes = (payload) => ({type: SET_SEARCH_THEMES, payload: payload})
 export const setAmountThemes = (payload) => ({type: SET_AMOUNT_THEMES, payload: payload})
 export const setFetchingThemes = (payload) => ({type: SET_FETCHING_THEMES, payload: payload})
+export const setShowThemesLoading = (payload) => ({type: SET_SHOW_THEMES_LOADING, payload: payload})
+export const setUserLoading = (payload) => ({type: SET_USER_LOADING, payload: payload})
+/* export const setNeedUpdate = (payload) => ({type: SET_NEED_UPDATE, payload: payload}) */
+

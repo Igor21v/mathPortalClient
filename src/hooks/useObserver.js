@@ -14,10 +14,10 @@ export const useObserver = (ref, isFetching, canFetching, callback) => {
         var cb = function (entries, observer) {
             if (entries[0].isIntersecting && canFetching) {
                 callback()
-                console.log('Вызов колбэка из useObserver')
+                console.log('Вызов колбэка из useObserver' + ' isFetching ' + isFetching)
             }
         };
         observer.current = new IntersectionObserver(cb, options);
         observer.current.observe(ref.current);
-    }, [isFetching])
+    }, [isFetching, canFetching])
 }

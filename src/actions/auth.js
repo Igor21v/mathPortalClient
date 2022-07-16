@@ -1,6 +1,6 @@
 import { setUser, clearDataUser } from "../reducers/userReducer";
 import { $authHost, $host } from '.';
-import { lockRequest, unlockRequest } from "../reducers/appReducer";
+import { setUserLoading } from "../reducers/themeReducer";
 
 
 export const login = (phon, password) => {
@@ -21,7 +21,6 @@ export const login = (phon, password) => {
 export const refresh = () => {
     return async dispatch => {
         try {
-            dispatch(lockRequest())
             const response = await $authHost.get(`api/auth/refresh`)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
@@ -32,8 +31,9 @@ export const refresh = () => {
             dispatch(clearDataUser())
         }
         finally {
-            dispatch(unlockRequest())
+            dispatch(setUserLoading(false))
         }
+
     }
 }
 

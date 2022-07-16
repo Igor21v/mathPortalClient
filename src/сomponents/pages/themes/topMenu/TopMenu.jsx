@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown, Form, Stack } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { setShowThemes, setSearchThemes } from '../../../../reducers/themeReducer';
+import { setShowThemes, setSearchThemes, setShowThemesLoading } from '../../../../reducers/themeReducer';
 
 
 
@@ -23,14 +23,20 @@ const TopMenu = () => {
     }
 
 
-    /* useEffect(() => {
+    useEffect(() => {
         if (userRole === 'ADMIN') {
             dispatch(setShowThemes('all'))
         } else {
             dispatch(setShowThemes('onlyPublic'))
             }
+        dispatch(setShowThemesLoading(false))
+        console.log('установлен setShowThemesLoading в false')
+        return ( () => {
+            console.log('установлен setShowThemesLoading в true при демонтировании компонента')
+            dispatch(setShowThemesLoading(true))
+        })
     }, [userRole]
-    ) */
+    )
 
     return (
 
