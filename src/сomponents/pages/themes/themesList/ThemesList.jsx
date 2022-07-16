@@ -28,7 +28,7 @@ const ThemesList = () => {
 
     useEffect(() => {
         return () => {
-            console.log('демонтирование компонента')
+            console.log('демонтирование компонента ')
             dispatch(setListThemes([]))
             window.scrollTo(0, 0)
             setCurrentPage(1)
