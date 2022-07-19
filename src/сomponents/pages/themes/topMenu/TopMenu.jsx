@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown, Form, Stack } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import useDebounce from '../../../../hooks/useDebounce';
 import { setShowThemes, setSearchThemes, setShowThemesLoading } from '../../../../reducers/themeReducer';
 
 
@@ -11,17 +12,12 @@ const TopMenu = () => {
     const [searchField, setSearchField] = useState(searchThemes)
     const userRole = useSelector(state => state.user.currentUser.role)
     const dispatch = useDispatch()
+    const debouncedSearch = useDebounce((value) => dispatch(setSearchThemes(value)), 500)
 
     function searchChangeHandler(e) {
         setSearchField(e.target.value)
-        if (searchTimeout !== false) {
-            clearTimeout(searchTimeout)
-        }
-        setSearchTimout(setTimeout((value) => {
-            dispatch(setSearchThemes(value));
-        }, 500, e.target.value))
+        debouncedSearch(e.target.value)
     }
-
 
     useEffect(() => {
         if (userRole === 'ADMIN') {
@@ -46,7 +42,7 @@ const TopMenu = () => {
                     type="text"
                     placeholder="Поиск темы"
                     value={searchField}
-                    onChange={e => searchChangeHandler(e)} />
+                    onChange={searchChangeHandler} />
 
                 {(userRole === 'ADMIN')&&< Dropdown className="d-grid" onSelect={(eventKey) => dispatch(setShowThemes(eventKey))}>
                     <Dropdown.Toggle variant="primary" id="dropdown-basic" >
