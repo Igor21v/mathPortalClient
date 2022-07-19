@@ -1,8 +1,7 @@
-import axios from "axios";
-import { API_URL } from "../config";
 import { setTheme, addListThemes, setAmountThemes, setFetchingThemes, setListThemes } from "../reducers/themeReducer";
 import { setProcessStatus, hideLoader, showLoader } from "../reducers/appReducer";
 import { $authHost, $host } from ".";
+import request from "../utils/request";
 
 export function getTheme(themeId) {
     return async dispatch => {
@@ -100,23 +99,17 @@ export function postPicture(theme, file) {
     }
 }
 
-export function editTheme(theme) {
-    return async dispatch => {
-        try {
-            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            console.log('111 ' + theme)
-            const response = await $authHost.put(`api/theme/edit`, {
-                ...theme
-            })
-            console.log(response.data)
-            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
-        }
-        catch (e) {
-            console.log(e?.response?.data?.message)
-            dispatch(setProcessStatus({ index: 0, state: "Error" }))
-        }
+export async function editTheme(theme) {
+    function requestFunction() {
+        return $authHost.put(`api/theme/edit`, {
+            ...theme
+        })
     }
+    const response = await request(requestFunction, 0)
+    console.log('response ' + response.data)
 }
+
+
 
 export async function deleteTheme(id) {
     try {

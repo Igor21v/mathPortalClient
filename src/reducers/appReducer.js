@@ -15,6 +15,7 @@ export default function userReducer(state = defaultState, action) {
         case HIDE_LOADER: return { ...state, loader: false }
         case RESET_PROCESS_STATUS: return {...state, processStatus: {}}
         case SET_PROCESS_STATUS: 
+            console.log('изм')
             return {
                  ...state, 
                  processStatus: {...state.processStatus, [action.payload.index] : {state: action.payload.state, mess: action.payload.mess} }}

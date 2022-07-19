@@ -17,7 +17,7 @@ const EditText = ({ theme }) => {
     const saveChanges = (event) => {
         event.preventDefault()
         console.log('Редактирование темы' + theme._id)
-        dispatch(editTheme(form))
+        editTheme(form)
     }
     const cancelChanges = () => {
         setForm({
