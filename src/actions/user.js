@@ -1,25 +1,22 @@
 import axios from 'axios'
 import { setUser, setUserList, setUserExtend } from "../reducers/userReducer";
 import { setProcessStatus } from "../reducers/appReducer";
-import { API_URL } from "../config";
+import { API_URL } from "../utils/config";
 import { $authHost, $host } from '.';
+import requestWithStatus from '../utils/requestWithStatus';
 
 export const registration = (phon, password, name, surname) => {
     return async dispatch => {
-        try {
-            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            const response = await $authHost.post(`api/user/registration`, {
+        function requestFunction() {
+            return $authHost.post(`api/user/registration`, {
                 phon,
                 password,
                 name,
                 surname
             })
-            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
-            dispatch(setUserList(response.data))
-        } catch (e) {
-            alert(e?.response?.data?.message)
-            dispatch(setProcessStatus({ index: 0, state: "Error" }))
         }
+        const response = await requestWithStatus(requestFunction, 0)
+        dispatch(setUserList(response.data))
     }
 }
 
@@ -61,21 +58,16 @@ export const getUserList = () => {
 
 export const saveUserChanges = (id, form) => {
     return async dispatch => {
-        try {
-            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            const response = await $authHost.put('api/user/user', {
+        function requestFunction() {
+            return $authHost.put('api/user/user', {
                 id,
                 phon: form.phon,
                 name: form.name,
                 surname: form.surname
             })
-            dispatch(setUserList(response.data))
-            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
         }
-        catch (e) {
-            console.log(e?.response?.data?.message)
-            dispatch(setProcessStatus({ index: 0, state: 'Error' }))
-        }
+        const response = await requestWithStatus(requestFunction, 0)
+        dispatch(setUserList(response.data))
     }
 }
 
@@ -111,7 +103,7 @@ export const changePassword = (id, password) => {
     }
 }
 
-export const getUserExtend = (id,folder) => {
+export const getUserExtend = (id, folder) => {
     return async dispatch => {
         try {
             const response = await $authHost.get(`api/user/getUserExtend?userId=${id}&folder=${folder}`)

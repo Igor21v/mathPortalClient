@@ -2,7 +2,7 @@ import axios from 'axios'
 import { addFile, deleteFileAction, setFiles } from "../reducers/fileReducer";
 import { addUploadFile, changeUploadFile, showUploader } from "../reducers/uploadReducer";
 import { hideLoader, showLoader, setProcessStatus } from "../reducers/appReducer";
-import { API_URL } from "../config";
+import { API_URL } from "../utils/config";
 import { $authHost, $host } from '.';
 import { setUserExtend } from '../reducers/userReducer';
 

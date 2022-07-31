@@ -1,7 +1,7 @@
 import { setTheme, addListThemes, setAmountThemes, setFetchingThemes, setListThemes } from "../reducers/themeReducer";
-import { setProcessStatus, hideLoader, showLoader } from "../reducers/appReducer";
+import { hideLoader, showLoader } from "../reducers/appReducer";
 import { $authHost, $host } from ".";
-import request from "../utils/request";
+import requestWithStatus from "../utils/requestWithStatus";
 
 export function getTheme(themeId) {
     return async dispatch => {
@@ -44,21 +44,16 @@ export function getListThemes(showThemes, searchTheme, page) {
 
 export function addTheme(name, discription) {
     return async dispatch => {
-        try {
-            dispatch(setProcessStatus({ index: 0, state: 'Processing' }))
-            console.log('555 ' + name + '  ' + discription)
-            const response = await $authHost.post(`api/theme`, {
+        console.log('555 ' + name + '  ' + discription)
+        function requestFunction() {
+            return $authHost.post(`api/theme`, {
                 name: name,
                 discription: discription
             })
-            console.log(response.data)
-            dispatch(setProcessStatus({ index: 0, state: 'Success' }))
-            dispatch(setTheme(response.data))
-        }
-        catch (e) {
-            alert(e?.response?.data?.message)
-            dispatch(setProcessStatus({ index: 0, state: "Error" }))
-        }
+            }
+        const response = await requestWithStatus(requestFunction, 0)
+        console.log(response.data)
+        dispatch(setTheme(response.data))
     }
 }
 
@@ -105,7 +100,7 @@ export async function editTheme(theme) {
             ...theme
         })
     }
-    const response = await request(requestFunction, 0)
+    const response = await requestWithStatus(requestFunction, 0)
     console.log('response ' + response.data)
 }
 
