@@ -1,0 +1,38 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+.messages__add {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #558b2f;
+  display: flex;
+  flex-direction: column;
+}
+.messages__add input {
+  border: #558b2f 1px solid;
+  border-radius: 8px;
+}
+.messages__add button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 5px;
+}
+.messages__list {
+  border: 1px solid #558b2f;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+.messages__connection-message {
+  text-align: center;
+}
+.messages__message {
+  border: 1px solid #558b2f;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 15px;
+}/*# sourceMappingURL=messages.css.map */

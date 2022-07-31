@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef }  from 'react'
-import AddMess from './addMess/AddMess'
-import ListMess from './listMess/ListMess'
+import { Button } from 'react-bootstrap';
+import './messages.css'
 
 export default function Chat() {
   const [username, setUsername] = useState('')
@@ -36,7 +36,8 @@ export default function Chat() {
     }
   }
 
-  const sendMessage = async () => {
+  const sendMessage = async (e) => {
+    e.preventDefault()
     const message = {
       username,
       message: value,
@@ -48,30 +49,26 @@ export default function Chat() {
   }
   return (
     <>
-      <div className="center">
-        <div>
-          <div className="form">
+      <div className="messages">
+          <form className="messages__add" onSubmit={sendMessage}>
             <input value={value} onChange={e => setValue(e.target.value)} type="text" />
-            <button onClick={sendMessage}>Отправить</button>
-          </div>
-          <div className="messages">
+            <Button type='submit'>Отправить</Button>
+          </form>
+          <div className="messages__list">
             {messages.map(mess =>
               <div key={mess.id}>
                 {mess.event === 'connection'
-                  ? <div className="connection_message">
+                  ? <div className="messages__connection-message">
                     Пользователь {mess.username} подключился
                   </div>
-                  : <div className="message">
+                  : <div className="messages__message">
                     {mess.username}. {mess.message}
                   </div>
                 }
               </div>
             )}
           </div>
-        </div>
       </div>
-      <AddMess />
-      <ListMess />
     </>
   )
 }
