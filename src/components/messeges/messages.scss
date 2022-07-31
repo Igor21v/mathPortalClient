@@ -7,20 +7,18 @@
     margin-top: 1rem;
 
     &__add {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid $primary;
         display: flex;
-        flex-direction: column;
-
+        align-items: center;
+        gap: 0.5rem;
+     
         input {
             border: $primary 1px solid;
             border-radius: 8px;
         }
-        button {
+        /* button {
             width: fit-content;
-            margin-top: 5px;
-        }
+            
+        } */
     }
 
     &__list {
