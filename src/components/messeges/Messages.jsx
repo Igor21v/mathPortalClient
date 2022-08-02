@@ -13,7 +13,7 @@ export default function Chat() {
     connect()
   }, [])
   function connect() {
-    socket.current = new WebSocket('ws://localhost:8080')
+    socket.current = new WebSocket('ws://localhost:5000/connectionWS')
 
     socket.current.onopen = () => {
       const message = {
@@ -35,7 +35,7 @@ export default function Chat() {
       console.log('Socket произошла ошибка')
     }
   }
-
+  console.log('ss' + JSON.stringify(messages))
   const sendMessage = async (e) => {
     e.preventDefault()
     const message = {
@@ -45,6 +45,7 @@ export default function Chat() {
       event: 'message'
     }
     socket.current.send(JSON.stringify(message));
+    console.log('otpr' + JSON.stringify(message))
     setValue('')
   }
   return (
