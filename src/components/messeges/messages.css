@@ -1,34 +1,52 @@
 .messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   margin-top: 1rem;
 }
+
 .messages__add {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 0.5rem;
   /* button {
-      width: fit-content;
-
-  } */
+            width: fit-content;
+            
+        } */
 }
+
 .messages__add input {
   border: #558b2f 1px solid;
   border-radius: 8px;
 }
+
 .messages__list {
   border: 1px solid #558b2f;
   border-radius: 8px;
   padding: 15px;
   margin-top: 15px;
 }
+
 .messages__connection-message {
   text-align: center;
+  color: cornflowerblue;
 }
+
 .messages__message {
   border: 1px solid #558b2f;
   border-radius: 8px;
   padding: 10px;
   margin-top: 15px;
-}/*# sourceMappingURL=messages.css.map */
+}
+/*# sourceMappingURL=messages.css.map */

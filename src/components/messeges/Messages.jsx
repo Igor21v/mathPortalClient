@@ -1,51 +1,23 @@
 import React, { useEffect, useState, useRef }  from 'react'
 import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import './messages.css'
 
 export default function Chat() {
-  const [username, setUsername] = useState('')
-  const [messages, setMessages] = useState([]);
   const [value, setValue] = useState('');
-  const socket = useRef()
-  
+  const socket = useSelector(state=>state.messages.socket)
+  const messages = useSelector(state=>state.messages.messages)
+  const user = useSelector(state=>state.user.currentUser)
 
-  useEffect(() => {
-    connect()
-  }, [])
-  function connect() {
-    socket.current = new WebSocket('ws://localhost:5000/connectionWS')
-
-    socket.current.onopen = () => {
-      const message = {
-        event: 'connection',
-        username,
-        id: Date.now()
-      }
-      socket.current.send(JSON.stringify(message))
-      console.log('Socket открыт')
-    }
-    socket.current.onmessage = (event) => {
-      const message = JSON.parse(event.data)
-      setMessages(prev => [message, ...prev])
-    }
-    socket.current.onclose = () => {
-      console.log('Socket закрыт')
-    }
-    socket.current.onerror = () => {
-      console.log('Socket произошла ошибка')
-    }
-  }
-  console.log('ss' + JSON.stringify(messages))
   const sendMessage = async (e) => {
     e.preventDefault()
     const message = {
-      username,
+      username: user.name,
       message: value,
       id: Date.now(),
       event: 'message'
     }
-    socket.current.send(JSON.stringify(message));
-    console.log('otpr' + JSON.stringify(message))
+    socket.send(JSON.stringify(message));
     setValue('')
   }
   return (
@@ -60,10 +32,10 @@ export default function Chat() {
               <div key={mess.id}>
                 {mess.event === 'connection'
                   ? <div className="messages__connection-message">
-                    Пользователь {mess.username} подключился
+                    Пользователь подключился
                   </div>
                   : <div className="messages__message">
-                    {mess.username}. {mess.message}
+                    {mess.username}: {mess.message}
                   </div>
                 }
               </div>

@@ -1,20 +1,32 @@
 .filelist {
   margin: 20px 0;
 }
+
 .filelist__header {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 4fr repeat(3, 1fr);
+  -ms-grid-columns: 1fr 4fr (1fr)[3];
+      grid-template-columns: 1fr 4fr repeat(3, 1fr);
 }
+
 .filelist__name {
-  grid-column-start: 2;
+  -ms-grid-column: 2;
+      grid-column-start: 2;
 }
+
 .filelist__date {
-  grid-column-start: 4;
-  justify-self: center;
+  -ms-grid-column: 4;
+      grid-column-start: 4;
+  -ms-grid-column-align: center;
+      justify-self: center;
   text-align: center;
 }
+
 .filelist__size {
-  grid-column-start: 5;
-  justify-self: center;
+  -ms-grid-column: 5;
+      grid-column-start: 5;
+  -ms-grid-column-align: center;
+      justify-self: center;
   text-align: center;
-}/*# sourceMappingURL=fileList.css.map */
+}
+/*# sourceMappingURL=fileList.css.map */

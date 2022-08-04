@@ -13,14 +13,25 @@ import { useDispatch } from "react-redux";
 import { refresh } from "../actions/auth";
 import { useSelector } from 'react-redux'
 import { adminRoutes, publicRoutes, studentRoutes, loadingRoutes } from './routes';
+import ws from './ws';
 
 
 function App() {
-  const userRole = useSelector(state => state.user.currentUser.role)
+  const user = useSelector(state =>state.user.currentUser)
   const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(refresh())
+  }, [])
+
+  useEffect(() => {
+    dispatch(ws())
+  }, [])
+
   const authRoutes = () => {
-    console.log('userRole:  ' + userRole)
-    switch (userRole) {
+    console.log('user.role:  ' + user.role)
+    switch (user.role) {
       case 'ADMIN':
         return (
           adminRoutes.map(({ path, Component }) =>
@@ -38,16 +49,14 @@ function App() {
         )
     }
   }
-  useEffect(() => {
-    dispatch(refresh())
-  }, [])
+
   return (
     <div className='app'>
       <BrowserRouter>
         <Navibar />
         <Routes>
           {authRoutes()}
-          {userRole && publicRoutes.map(({ path, Component }) =>
+          {user.role && publicRoutes.map(({ path, Component }) =>
             <Route exact key={path} path={path} element={Component} />
           )}
 
