@@ -3,12 +3,12 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import './messages.css'
 
-export default function Chat() {
+export default function Chat({chatId}) {
   const [value, setValue] = useState('');
   const socket = useSelector(state=>state.messages.socket)
   const messages = useSelector(state=>state.messages.messages)
   const user = useSelector(state=>state.user.currentUser)
-
+  console.log('ChatID ' + chatId)
   const sendMessage = async (e) => {
     e.preventDefault()
     const message = {
