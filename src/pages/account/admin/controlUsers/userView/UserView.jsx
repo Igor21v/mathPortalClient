@@ -16,7 +16,7 @@ const UserView = () => {
     return (
         <>
             <h3 style={{ textAlign: 'center' }}>
-                Страничка ученика: {user?.surname} {user?.name}
+                Страница: {user?.surname} {user?.name}
                 &#160;
                 <IconEdit props={{ ref: `/account/controlUser/userEdit/${user._id}`, hint: 'Редактировать данные или удалить пользователя', position: 'bottom' }} />
                 &#160;

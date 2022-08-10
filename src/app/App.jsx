@@ -14,20 +14,22 @@ import { refresh } from "../actions/auth";
 import { useSelector } from 'react-redux'
 import { adminRoutes, publicRoutes, studentRoutes, loadingRoutes } from './routes';
 import ws from './ws';
+import { useNonInitialEffect } from '../hooks/useNonInitialEffect';
 
 
 function App() {
   const user = useSelector(state =>state.user.currentUser)
   const dispatch = useDispatch()
+  let socket = useSelector(state=>state.messages.socket)
 
 
   useEffect(() => {
     dispatch(refresh())
   }, [])
 
-  useEffect(() => {
-    dispatch(ws())
-  }, [])
+  useNonInitialEffect(() => {
+    user && dispatch(ws(user, socket))
+  }, [user])
 
   const authRoutes = () => {
     console.log('user.role:  ' + user.role)

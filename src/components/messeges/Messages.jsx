@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef }  from 'react'
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { sendMessage } from '../../actions/messages';
 import './messages.css'
 
 export default function Chat({chatId}) {
@@ -8,22 +9,15 @@ export default function Chat({chatId}) {
   const socket = useSelector(state=>state.messages.socket)
   const messages = useSelector(state=>state.messages.messages)
   const user = useSelector(state=>state.user.currentUser)
-  console.log('ChatID ' + chatId)
-  const sendMessage = async (e) => {
+  const sendHandler = async (e) => {
     e.preventDefault()
-    const message = {
-      username: user.name,
-      message: value,
-      id: Date.now(),
-      event: 'message'
-    }
-    socket.send(JSON.stringify(message));
+    sendMessage(value, chatId)
     setValue('')
   }
   return (
     <>
       <div className="messages">
-          <form className="messages__add" onSubmit={sendMessage}>
+          <form className="messages__add" onSubmit={sendHandler}>
             <input value={value} onChange={e => setValue(e.target.value)} type="text" />
             <Button type='submit'>Отправить</Button>
           </form>
