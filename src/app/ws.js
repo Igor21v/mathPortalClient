@@ -1,5 +1,5 @@
-import { getMessage } from "../actions/messages";
-import { setMessage, setSocket } from "../reducers/messagesReducer"
+import { getMessage } from "../actions/message";
+import { setMessage, setSocket } from "../reducers/messageReducer"
 import { WS_API_URL } from "../utils/config";
 
 export default function (user, socket) {
@@ -13,7 +13,7 @@ export default function (user, socket) {
         }
         dispatch(setSocket(socket))
         socket.onopen = () => {
-            console.log('Socket открыт1')
+            console.log('Socket открыт ' + user?.id)
             const message = {
                 event: 'connection',
                 username: 'ffff',
@@ -21,7 +21,6 @@ export default function (user, socket) {
                 userId: user?.id
             }
             socket.send(JSON.stringify(message))
-            console.log('Socket открыт2')
         }
         socket.onmessage = (event) => {
             getMessage(event, dispatch)
