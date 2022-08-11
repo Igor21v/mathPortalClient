@@ -1,5 +1,6 @@
 import { store } from "../reducers"
-import { setMessage } from "../reducers/messageReducer"
+import { addMessage, setMessage } from "../reducers/messageReducer"
+import { $authHost, $host } from ".";
 
 
 export function getMessage(event, dispatch) {
@@ -7,7 +8,7 @@ export function getMessage(event, dispatch) {
     const currentChat = store.getState().messages.currentChat
     console.log('CH2 ' + message.chatId + '  ' + JSON.stringify(currentChat))
     if (message.chatId == currentChat) {
-        dispatch(setMessage(message))
+        dispatch(addMessage(message))
     }
 }
 
@@ -16,11 +17,20 @@ export async function sendMessage(value, chatId) {
     const user = store.getState().user.currentUser
     console.log('fffffxcccc ' + JSON.stringify(user))
     const message = {
-        username: user.name,
+        authorId: user.id,
         message: value,
         chatId,
-        id: Date.now(),
-        event: 'message'
+        event: 'newMessage'
     }
     socket.send(JSON.stringify(message));
+}
+
+export async function getMessagesList(chatId) {
+    try {
+        const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}`)
+        store.dispatch(setMessage(response.data))
+        console.log('getML ' + JSON.stringify(response.data))
+    } catch (error) {
+        alert(error?.response?.data?.message)
+    }
 }

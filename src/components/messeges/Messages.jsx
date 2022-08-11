@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendMessage } from '../../actions/message';
+import { getMessagesList, sendMessage } from '../../actions/message';
 import { setCurrentChat, setMessage } from '../../reducers/messageReducer';
 import './messages.css'
 
@@ -16,9 +16,11 @@ export default function Chat({ chatId }) {
   }
   useEffect(() => {
     dispatch(setCurrentChat(chatId))
+    getMessagesList(chatId)
     console.log('setChatID ' + chatId)
     return () => {
       dispatch(setCurrentChat(undefined))
+      dispatch(setMessage([]))
     }
   }, [])
   return (
@@ -31,14 +33,9 @@ export default function Chat({ chatId }) {
         <div className="messages__list">
           {messages.map(mess =>
             <div key={mess.id}>
-              {mess.event === 'connection'
-                ? <div className="messages__connection-message">
-                  Пользователь подключился
-                </div>
-                : <div className="messages__message">
-                  {mess.username}: {mess.message}
-                </div>
-              }
+              <div className="messages__message">
+                {mess.authorName}: {mess.message}
+              </div>
             </div>
           )}
         </div>

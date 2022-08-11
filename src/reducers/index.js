@@ -6,7 +6,7 @@ import fileReducer from "./fileReducer";
 import uploadReducer from "./uploadReducer";
 import appReducer from "./appReducer";
 import themeReduser from "./themeReducer";
-import messagesReducer from "./messageReducer";
+import messageReducer from "./messageReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     upload: uploadReducer,
     app: appReducer,
     themes: themeReduser,
-    messages: messagesReducer,
+    messages: messageReducer,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

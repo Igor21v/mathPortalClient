@@ -29,7 +29,7 @@ function App() {
 
   useNonInitialEffect(() => {
     user && dispatch(ws(user, socket))
-  }, [user])
+  }, [user.id])
 
   const authRoutes = () => {
     console.log('user.role:  ' + user.role)
