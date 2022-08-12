@@ -32,7 +32,7 @@ export default function Chat({ chatId }) {
         </form>
         <div className="messages__list">
           {messages.map(mess =>
-            <div key={mess.id}>
+            <div key={mess._id}>
               <div className="messages__message">
                 {mess.authorName}: {mess.message}
               </div>
