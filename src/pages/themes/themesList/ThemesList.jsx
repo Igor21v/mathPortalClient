@@ -45,8 +45,6 @@ const ThemesList = () => {
             setNeedUpdate(prevState => !prevState)
 }
     }, [showThemes, searchThemes, showThemesLoading])
-    console.log('Тест ' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes +
-                ' needUpdate ' + needUpdate + ' feetching ' + fetchingThemes)
     useNonInitialEffect(() => {
         console.log('showThemesLoading' + showThemesLoading)
         if (!showThemesLoading) {
@@ -59,8 +57,6 @@ const ThemesList = () => {
     useObserver(lastElement, fetchingThemes, (themes.length < amountThemesAfterRender), () => {
         setCurrentPage(prevState => prevState + 1)
     })
-
-    console.log(' themes.length ' + themes.length + ' amountThemes ' + amountThemes)
 
     /* console.log('Themes: ' + themes.map(theme => theme.name))     */
 

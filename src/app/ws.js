@@ -17,6 +17,7 @@ export default function (user, socket) {
             const message = {
                 event: 'connection',
                 userId: user?.id,
+                accessToken: localStorage.getItem('token'),
             }
             socket.send(JSON.stringify(message))
         }

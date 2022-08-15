@@ -29,7 +29,6 @@ export async function getMessagesList(chatId) {
     try {
         const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}`)
         store.dispatch(setMessage(response.data))
-        console.log('getML ' + JSON.stringify(response.data))
     } catch (error) {
         console.log(error?.response?.data?.message)
     }
