@@ -24,8 +24,8 @@ export default function (user, socket) {
         socket.onmessage = (event) => {
             getMessage(event, dispatch)
         }
-        socket.onclose = () => {
-            console.log('Socket закрыт')
+        socket.onclose = (event) => {
+            console.log('Socket закрыт с кодом ' + event.code)
             if (user.id) {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
                 console.log('Открытие сокета повторно')
