@@ -1,6 +1,5 @@
 import { setUser, clearDataUser } from "../reducers/userReducer";
 import { $authHost, $host } from '.';
-import { setUserLoading } from "../reducers/themeReducer";
 
 
 export const login = (phon, password) => {
@@ -29,9 +28,6 @@ export const refresh = () => {
 
             console.log(e?.response?.data?.message)
             dispatch(clearDataUser())
-        }
-        finally {
-            dispatch(setUserLoading(false))
         }
 
     }

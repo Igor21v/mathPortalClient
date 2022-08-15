@@ -20,7 +20,6 @@ const ThemesList = () => {
     const lastElement = useRef()
     const [needUpdate, setNeedUpdate] = useState(undefined)
     const showThemesLoading = useSelector(state => state.themes.showThemesLoading)
-    const userLoading = useSelector(state => state.themes.userLoading)
 
     if (amountThemesAfterRender != amountThemes) {
         setAmountThemesAfterRender(amountThemes)
@@ -46,15 +45,16 @@ const ThemesList = () => {
             setNeedUpdate(prevState => !prevState)
 }
     }, [showThemes, searchThemes, showThemesLoading])
-
-    useEffect(() => {
-        console.log('showThemesLoading' + showThemesLoading + ' userLoading ' + userLoading)
-        if (!showThemesLoading && !userLoading) {
+    console.log('Тест ' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes +
+                ' needUpdate ' + needUpdate + ' feetching ' + fetchingThemes)
+    useNonInitialEffect(() => {
+        console.log('showThemesLoading' + showThemesLoading)
+        if (!showThemesLoading) {
             console.log('Запрос списка тем ' + 'currentPage' + currentPage + ' themes.length ' + themes.length + ' amountThemes ' + amountThemes +
                 ' needUpdate ' + needUpdate + ' feetching ' + fetchingThemes)
             dispatch(getListThemes(showThemes, searchThemes, currentPage))
         }
-    }, [currentPage, needUpdate, userLoading])
+    }, [currentPage, needUpdate])
 
     useObserver(lastElement, fetchingThemes, (themes.length < amountThemesAfterRender), () => {
         setCurrentPage(prevState => prevState + 1)
