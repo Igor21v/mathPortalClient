@@ -21,7 +21,7 @@ function addEventListener(user, socket, timerReopenSocket) {
     console.log('lll' + timerReopenSocket)
     socket.onclose = (event) => {
         console.log('Socket закрыт с кодом ' + event.code)
-        if (user?.id) {
+        if (user?.id && event.code === 1008) {
             setTimeout(function reopenSocket() {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
                 timerReopenSocket = setTimeout(reopenSocket, 20000)
