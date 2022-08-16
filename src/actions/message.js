@@ -3,12 +3,11 @@ import { addMessage, setMessage } from "../reducers/messageReducer"
 import { $authHost, $host } from ".";
 
 
-export function getMessage(event, dispatch) {
-    const message = JSON.parse(event.data)
+export function getMessage(message) {
     const currentChat = store.getState().messages.currentChat
     console.log('CH2 ' + message.chatId + '  ' + JSON.stringify(currentChat))
     if (message.chatId == currentChat) {
-        dispatch(addMessage(message))
+        store.dispatch(addMessage(message))
     }
 }
 

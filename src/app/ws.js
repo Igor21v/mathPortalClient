@@ -2,13 +2,14 @@ import { getMessage } from "../actions/message";
 import { setSocket } from "../reducers/messageReducer"
 import { WS_API_URL } from "../utils/config";
 import { store } from "../reducers";
+import { refresh } from "../actions/auth";
 
 export default function (user, socket, timerReopenSocket) {
     console.log('socket.readyState ' + socket?.readyState)
     if (socket?.readyState === 1) {
         socket.close()
         console.log('Сокет принудительно закрывается ' + timerReopenSocket)
-        clearTimeout(timerReopenSocket)     
+        clearTimeout(timerReopenSocket)
     } else if (user?.id) {
         socket = new WebSocket(`${WS_API_URL}connectionWS`)
     }
@@ -17,11 +18,11 @@ export default function (user, socket, timerReopenSocket) {
 }
 
 function addEventListener(user, socket, timerReopenSocket) {
-    console.log('lll'  + timerReopenSocket)
+    console.log('lll' + timerReopenSocket)
     socket.onclose = (event) => {
         console.log('Socket закрыт с кодом ' + event.code)
         if (user?.id) {
-            setTimeout(function reopenSocket () {
+            setTimeout(function reopenSocket() {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
                 timerReopenSocket = setTimeout(reopenSocket, 20000)
                 addEventListener(user, socket, timerReopenSocket)
@@ -42,7 +43,28 @@ function addEventListener(user, socket, timerReopenSocket) {
         socket.send(JSON.stringify(message))
     }
     socket.onmessage = (event) => {
-        getMessage(event, store.dispatch)
+        const mess = JSON.parse(event.data)
+        switch (mess.event) {
+            case 'newMessage':
+                getMessage(mess)
+                break;
+            case 'reqRefresh':
+                console.log('Запрошен рефреш токен по websocket')
+                new Promise((resolve, reject) => {
+                    store.dispatch(refresh())
+                    resolve()
+                }).then(() => {
+                    const message = {
+                        event: 'reconnection',
+                        userId: user?.id,
+                        accessToken: localStorage.getItem('token'),
+                    }
+                    socket.send(JSON.stringify(message))
+                })
+            default:
+                break;
+        }
+
     }
     socket.onerror = () => {
         console.log('Socket произошла ошибка')
