@@ -15,7 +15,6 @@ export function getMessage(event, dispatch) {
 export async function sendMessage(value, chatId) {
     const socket = store.getState().messages.socket
     const user = store.getState().user.currentUser
-    console.log('fffffxcccc ' + JSON.stringify(user))
     const message = {
         authorId: user.id,
         message: value,

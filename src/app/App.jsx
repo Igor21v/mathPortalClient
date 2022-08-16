@@ -21,14 +21,14 @@ function App() {
   const user = useSelector(state =>state.user.currentUser)
   const dispatch = useDispatch()
   let socket = useSelector(state=>state.messages.socket)
-
+  let timerReopenSocket
 
   useEffect(() => {
     dispatch(refresh())
   }, [])
 
   useNonInitialEffect(() => {
-    user && dispatch(ws(user, socket))
+    ws(user, socket, timerReopenSocket)
   }, [user.id])
 
   const authRoutes = () => {
