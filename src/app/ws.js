@@ -21,7 +21,7 @@ function addEventListener(user, socket, timerReopenSocket) {
     console.log('lll' + timerReopenSocket)
     socket.onclose = (event) => {
         console.log('Socket закрыт с кодом ' + event.code)
-        if (user?.id && event.code === 1008) {
+        if (user?.id && event.code !== 1008) {
             setTimeout(function reopenSocket() {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
                 timerReopenSocket = setTimeout(reopenSocket, 20000)
@@ -42,25 +42,24 @@ function addEventListener(user, socket, timerReopenSocket) {
         }
         socket.send(JSON.stringify(message))
     }
-    socket.onmessage = (event) => {
+    socket.onmessage = async (event) => {
         const mess = JSON.parse(event.data)
+        console.log('EM' + mess.event)
         switch (mess.event) {
             case 'newMessage':
                 getMessage(mess)
                 break;
             case 'reqRefresh':
-                console.log('Запрошен рефреш токен по websocket')
-                new Promise((resolve, reject) => {
-                    store.dispatch(refresh())
-                    resolve()
-                }).then(() => {
-                    const message = {
-                        event: 'reconnection',
-                        userId: user?.id,
-                        accessToken: localStorage.getItem('token'),
-                    }
-                    socket.send(JSON.stringify(message))
-                })
+                console.log('Запрошен рефреш токен по websocket, старый токен: ' + localStorage.getItem('token'))
+                await store.dispatch(refresh())
+                const message = {
+                    event: 'reconnection',
+                    userId: user?.id,
+                    accessToken: localStorage.getItem('token'),
+                }
+                socket.send(JSON.stringify(message))
+                console.log('новый токен: ' + localStorage.getItem('token'))
+
             default:
                 break;
         }
