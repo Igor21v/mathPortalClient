@@ -1,0 +1,30 @@
+@import '../../../utils/colors';
+
+.message {
+    border: 1px solid $primary;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+    
+
+    /* position: relative; */
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+
+    &__own {
+        background-color: lighten($color: $primary, $amount: 50)
+    }
+
+    &__date {
+        color: rgb(128, 128, 128);
+        font-size: small;
+        text-align: right;
+        /* float: right; */
+        /* margin: 0 auto; */
+        /* position: absolute;
+        right: 5px;
+        bottom: 5px; */
+        /* text-align: right; */
+    }
+}

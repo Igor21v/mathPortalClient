@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,QAAQ,CAAC;EACL,MAAM,EAAE,GAAG,CAAC,KAAK,CCHX,OAAO;EDIb,aAAa,EAAE,GAAG;EAClB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,IAAI;EAGhB,yBAAyB;EACzB;;sCAEkC;CAiBrC;;AAfI,AAAD,aAAM,CAAC;EACH,gBAAgB,EAAE,OAAsC;CAC3D;;AAEA,AAAD,cAAO,CAAC;EACJ,KAAK,EAAE,IAAkB;EACzB,SAAS,EAAE,KAAK;EAChB,UAAU,EAAE,KAAK;EACjB,mBAAmB;EACnB,qBAAqB;EACrB;;uBAEe;EACf,wBAAwB;CAC3B",
+    "sources": [
+        "message.scss",
+        "../../../utils/colors.scss"
+    ],
+    "names": [],
+    "file": "message.css"
+}

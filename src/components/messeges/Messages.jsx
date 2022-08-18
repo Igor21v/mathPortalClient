@@ -3,9 +3,10 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessagesList, sendMessage } from '../../actions/message';
 import { setCurrentChat, setMessage } from '../../reducers/messageReducer';
+import Message from './message/Message';
 import './messages.css'
 
-export default function Chat({ chatId }) {
+export default function Messages({ chatId }) {
   const [value, setValue] = useState('');
   const dispatch = useDispatch()
   const messages = useSelector(state => state.messages.messages)
@@ -32,11 +33,7 @@ export default function Chat({ chatId }) {
         </form>
         <div className="messages__list">
           {messages.map(mess =>
-            <div key={mess._id}>
-              <div className="messages__message">
-                {mess.authorName}: {mess.message}
-              </div>
-            </div>
+            <Message key={mess._id} mess={mess} />
           )}
         </div>
       </div>
