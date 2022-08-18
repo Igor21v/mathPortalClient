@@ -1,58 +1,38 @@
 .file {
   margin: 10px 0;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 4fr (1fr)[3];
-      grid-template-columns: 1fr 4fr repeat(3, 1fr);
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  grid-template-columns: 1fr 4fr repeat(3, 1fr);
+  align-items: center;
 }
-
 .file:hover {
   border-bottom: solid 1px #558b2f;
 }
-
 .file__img {
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
   width: 3rem;
 }
-
 .file__img:hover {
   cursor: pointer;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
-
 .file__date {
-  -ms-grid-column: 4;
-      grid-column-start: 4;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  grid-column-start: 4;
+  justify-self: center;
   text-align: center;
 }
-
 .file__size {
-  -ms-grid-column: 5;
-      grid-column-start: 5;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  grid-column-start: 5;
+  justify-self: center;
   text-align: center;
 }
-
 .file__basket {
   width: 2rem;
   display: none;
 }
-
 .file:hover .file__basket {
   display: block;
 }
-
 .file__basket:hover {
   cursor: pointer;
-  -webkit-transform: scale(1.15);
-          transform: scale(1.15);
-}
-/*# sourceMappingURL=file.css.map */
+  transform: scale(1.15);
+}/*# sourceMappingURL=file.css.map */
