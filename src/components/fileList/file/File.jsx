@@ -5,6 +5,7 @@ import './file.css'
 import { useDispatch } from 'react-redux';
 import { downloadUserFile, deleteUserFile } from '../../../actions/file';
 import sizeFormat from '../../../utils/sizeFormat';
+import getDateTime from '../../../utils/getDate&Time';
 
 const File = ({ props }) => {
     const dispatch = useDispatch()
@@ -16,14 +17,14 @@ const File = ({ props }) => {
         downloadUserFile(props.userId, props.folder, props.file)
     }
     console.log(props)
-    const dateTime = props.file.time.slice(0, 19)
+    const dateTime = getDateTime(props.file.time)
 
     return (
         <div className='file' >
             <img className="file__img" src={icon_download} alt="" onClick={getUserFile}/>
             <div className="file__name">{props.file.name}</div>
             <img className='file__basket'  src={icon_basket} alt="" onClick={delUserFile} />
-            <div className="file__date">{dateTime.replace('T', ' ')}</div>
+            <div className="file__date">{dateTime}</div>
             <div className="file__size">{sizeFormat(props.file.size)}</div>
         </div>
     );
