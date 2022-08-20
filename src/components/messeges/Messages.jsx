@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessagesList, sendMessage } from '../../actions/message';
-import { setCurrentChat, setMessage } from '../../reducers/messageReducer';
+import { setCurrentChat, setMessage, setSelectedMessage } from '../../reducers/messageReducer';
 import Message from './message/Message';
 import './messages.css'
 
@@ -33,7 +33,7 @@ export default function Messages({ chatId }) {
         </form>
         <div className="messages__list">
           {messages.map(mess =>
-            <Message key={mess._id} mess={mess} />
+            <Message key={mess._id} mess={mess}/>
           )}
         </div>
       </div>

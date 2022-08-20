@@ -5,51 +5,39 @@
     border-radius: 8px;
     padding: 10px;
     margin-top: 15px;
-/*     display: flex;
-    justify-content: space-between; */
-
-
-
-    /* position: relative; */
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; */
 
     &__own {
         background-color: lighten($color: $primary, $amount: 50)
     }
 
+    &__last-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__checkbox {
+        opacity: 0;
+    }
+
+    &:hover &__checkbox {
+        opacity: 1;
+    }
+
+    &__checkbox-selected {
+        opacity: 1;
+    }
+
+    &__checkbox {
+        opacity: 0;
+
+    }
+
     &__date {
         color: rgb(128, 128, 128);
         font-size: small;
-        text-align: right;
- /*        flex-grow: 2;
-        flex-shrink: 0;
-        flex-basis:90%;
-        order:2 */
-        /* display: inline; */
-
-        /* text-align: right; */
-        /* float: right; */
-        /* margin: 0 auto; */
-        /* position: absolute;
-        right: 5px;
-        bottom: 5px; */
         /* text-align: right; */
     }
 
-   /*  &__text {
-        width: 90%;
-        flex-shrink: 3;
-    
-    } */
 
-/*     &__text:after {
-        content: "Здесь будет дата";
-        color: green;
-        text-align: end;
-        vertical-align: bottom;
-        float: right;
-        
-    } */
 }

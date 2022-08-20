@@ -1,46 +1,31 @@
-@charset "UTF-8";
 .message {
   border: 1px solid #558b2f;
   border-radius: 8px;
   padding: 10px;
   margin-top: 15px;
-  /*     display: flex;
-      justify-content: space-between; */
-  /* position: relative; */
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; */
-  /*  &__text {
-       width: 90%;
-       flex-shrink: 3;
-
-   } */
-  /*     &__text:after {
-          content: "Здесь будет дата";
-          color: green;
-          text-align: end;
-          vertical-align: bottom;
-          float: right;
-
-      } */
 }
 .message__own {
   background-color: #daeecb;
 }
+.message__last-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.message__checkbox {
+  opacity: 0;
+}
+.message:hover .message__checkbox {
+  opacity: 1;
+}
+.message__checkbox-selected {
+  opacity: 1;
+}
+.message__checkbox {
+  opacity: 0;
+}
 .message__date {
   color: rgb(128, 128, 128);
   font-size: small;
-  text-align: right;
-  /*        flex-grow: 2;
-         flex-shrink: 0;
-         flex-basis:90%;
-         order:2 */
-  /* display: inline; */
-  /* text-align: right; */
-  /* float: right; */
-  /* margin: 0 auto; */
-  /* position: absolute;
-  right: 5px;
-  bottom: 5px; */
   /* text-align: right; */
 }/*# sourceMappingURL=message.css.map */
