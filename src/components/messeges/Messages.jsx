@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMessagesList, sendMessage } from '../../actions/message';
+import { deleteMessages, getMessagesList, sendMessage } from '../../actions/message';
 import { changeOneMessage, setCurrentChat, setMessage, setSelectedMessage } from '../../reducers/messageReducer';
 import Message from './message/Message';
 import './messages.css'
@@ -24,7 +24,18 @@ export default function Messages({ chatId }) {
     })
     dispatch(setMessage(newMessages))
   }
-  const checkAll = !messages.find(message => !message.selected)
+  const checkAll = messages.length>0 && !messages.find(message => !message.selected)
+  console.log('me' + messages + ' checkAll ' + checkAll)
+  const clickDeleteMessages = () => {
+    let arrayForDelete = []
+    messages.forEach(message => {
+      if (message.selected == true) {
+        arrayForDelete.push(message._id)
+      }
+    })
+    console.log('delete ' + arrayForDelete)
+    deleteMessages(arrayForDelete, chatId)
+  }
   useEffect(() => {
     dispatch(setCurrentChat(chatId))
     getMessagesList(chatId)
@@ -34,6 +45,7 @@ export default function Messages({ chatId }) {
       dispatch(setMessage([]))
     }
   }, [])
+
   /* console.log('ggg' + JSON.stringify(messages)) */
 
   return (
@@ -48,12 +60,14 @@ export default function Messages({ chatId }) {
             className='messages__check'
             id={'Select all message'}
             label={checkAll?'Снять выделение':'Выделить все сообщения'}
+            disabled = {messages.length<1}
             checked={checkAll}
             onChange={checkAllMess}
           />
           <div
             className={'text-decoration-underline text-danger messages__del ' + (selected && 'messages__del-active')}
-            style={{ cursor: 'pointer' }}>
+            style={{ cursor: 'pointer' }}
+            onClick={clickDeleteMessages}>
             Удалить выделенные сообщения</div>
         </div>
         <div className="messages__list">

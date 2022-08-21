@@ -31,3 +31,13 @@ export async function getMessagesList(chatId) {
         console.log(error?.response?.data?.message)
     }
 }
+
+export async function deleteMessages(messagesId, chatId) {
+    try {
+        const messagesIdJSON = JSON.stringify(messagesId)
+        const response = await $authHost.delete(`api/message/deleteMessages?messagesId=${messagesIdJSON}&chatId=${chatId}`)
+        store.dispatch(setMessage(response.data))
+    } catch (error) {
+        console.log('Ошибка удаления сообщений ' + error?.response?.data?.message)
+    }
+}
