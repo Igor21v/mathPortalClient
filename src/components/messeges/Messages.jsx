@@ -24,7 +24,7 @@ export default function Messages({ chatId }) {
     })
     dispatch(setMessage(newMessages))
   }
-  const checkAll = messages.length>0 && !messages.find(message => !message.selected)
+  const checkAll = messages.length > 0 && !messages.find(message => !message.selected)
   console.log('me' + messages + ' checkAll ' + checkAll)
   const clickDeleteMessages = () => {
     let arrayForDelete = []
@@ -55,26 +55,28 @@ export default function Messages({ chatId }) {
           <input value={value} onChange={e => setValue(e.target.value)} type="text" />
           <Button type='submit'>Отправить</Button>
         </form>
-        <div>
-          <Form.Check
-            className='messages__check'
-            id={'Select all message'}
-            label={checkAll?'Снять выделение':'Выделить все сообщения'}
-            disabled = {messages.length<1}
-            checked={checkAll}
-            onChange={checkAllMess}
-          />
-          <div
-            className={'text-decoration-underline text-danger messages__del ' + (selected && 'messages__del-active')}
-            style={{ cursor: 'pointer' }}
-            onClick={clickDeleteMessages}>
-            Удалить выделенные сообщения</div>
-        </div>
-        <div className="messages__list">
-          {messages.map((mess, index) =>
-            <Message key={mess._id} mess={mess} index={index} selected={selected} />
-          )}
-        </div>
+        {messages.length > 0 ? <>
+          <div>
+            <Form.Check
+              className='messages__check'
+              id={'Select all message'}
+              label={checkAll ? 'Снять выделение' : 'Выделить все сообщения'}
+              checked={checkAll}
+              onChange={checkAllMess}
+            />
+            <div
+              className={'text-decoration-underline text-danger messages__del ' + (selected && 'messages__del-active')}
+              style={{ cursor: 'pointer' }}
+              onClick={clickDeleteMessages}>
+              Удалить выделенные сообщения</div>
+          </div>
+          <div className="messages__list">
+            {messages.map((mess, index) =>
+              <Message key={mess._id} mess={mess} index={index} selected={selected} />
+            )}
+          </div>
+        </> :
+          <div className='messages__none'>Сообщений пока что нет </div>}
       </div>
     </>
   )
