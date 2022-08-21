@@ -4,15 +4,26 @@ import getDateTime from '../../../utils/getDate&Time';
 import './message.css'
 import { Form } from 'react-bootstrap'
 import deleteOneElement from '../../../utils/deleteOneElement';
-import { setSelectedMessage } from '../../../reducers/messageReducer';
+import { changeOneMessage } from '../../../reducers/messageReducer';
 
-const Message = ({ mess }) => {
+const Message = (props) => {
     const currentUser = useSelector(state => state.user.currentUser)
-    const dateTime = getDateTime(mess.date)
-    const [check, setCheck] = useState(false)
-    let selectedMessage = useSelector(state => state.messages.selectedMessage)
+    const dateTime = getDateTime(props.mess.date)
     const dispatch = useDispatch()
-    const select = (e) => {
+    /* const selectOneMessage = (e) => {
+        console.log('index ' + props.index + 'checked' + e.target.checked)
+        dispatch(changeOneMessage({ index: props.index, selected: e.target.checked }))
+    } */
+    const selectOneMessage = (e) => {
+        let mess = props.mess
+        mess.selected = e.target.checked
+        dispatch(changeOneMessage({ index: props.index, mess }))
+    }
+    const checked = props.mess.selected ? true : false
+
+    /* let selectedMessage = useSelector( */
+
+    /* const select = (e) => {
         if (e.target.checked) {
             selectedMessage.push(mess._id)
             setCheck(true)
@@ -23,19 +34,18 @@ const Message = ({ mess }) => {
         }
         dispatch(setSelectedMessage(selectedMessage))
         console.log('aaaa' + selectedMessage)
-    }
-
+    } */
     return (
-        <div className={`message ${(currentUser.id == mess.authorId) && 'message__own'}`}>
+        <div className={`message ${(currentUser.id == props.mess.authorId) && 'message__own'}`}>
 
             <div className='message__text' >
-                {mess.message}
+                {props.mess.message}
             </div>
             <div className='message__last-row'>
                 <Form.Check
-                    className={selectedMessage.length > 0 ? 'message__checkbox-selected' : 'message__checkbox'}
-                    checked={check}
-                    onChange={select}
+                    className={props.selected ? 'message__checkbox-selected' : 'message__checkbox'}
+                    checked={checked}
+                    onChange={selectOneMessage}
                 />
                 <div className='message__date' >
                     {dateTime}

@@ -2,7 +2,7 @@
   border: 1px solid #558b2f;
   border-radius: 8px;
   padding: 10px;
-  margin-top: 15px;
+  margin: 15px 0 15px 0;
 }
 .message__own {
   background-color: #daeecb;
