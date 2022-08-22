@@ -25,7 +25,6 @@ export default function Messages({ chatId }) {
     dispatch(setMessage(newMessages))
   }
   const checkAll = messages.length > 0 && !messages.find(message => !message.selected)
-  console.log('me' + messages + ' checkAll ' + checkAll)
   const clickDeleteMessages = () => {
     let arrayForDelete = []
     messages.forEach(message => {
@@ -33,13 +32,11 @@ export default function Messages({ chatId }) {
         arrayForDelete.push(message._id)
       }
     })
-    console.log('delete ' + arrayForDelete)
     deleteMessages(arrayForDelete, chatId)
   }
   useEffect(() => {
     dispatch(setCurrentChat(chatId))
     getMessagesList(chatId)
-    console.log('setChatID ' + chatId)
     return () => {
       dispatch(setCurrentChat(undefined))
       dispatch(setMessage([]))

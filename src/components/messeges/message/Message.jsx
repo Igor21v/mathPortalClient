@@ -10,10 +10,6 @@ const Message = (props) => {
     const currentUser = useSelector(state => state.user.currentUser)
     const dateTime = getDateTime(props.mess.date)
     const dispatch = useDispatch()
-    /* const selectOneMessage = (e) => {
-        console.log('index ' + props.index + 'checked' + e.target.checked)
-        dispatch(changeOneMessage({ index: props.index, selected: e.target.checked }))
-    } */
     const selectOneMessage = (e) => {
         let mess = props.mess
         mess.selected = e.target.checked
@@ -21,20 +17,6 @@ const Message = (props) => {
     }
     const checked = props.mess.selected ? true : false
 
-    /* let selectedMessage = useSelector( */
-
-    /* const select = (e) => {
-        if (e.target.checked) {
-            selectedMessage.push(mess._id)
-            setCheck(true)
-            console.log('fff' + selectedMessage)
-        } else {
-            selectedMessage = deleteOneElement(selectedMessage, mess._id)
-            setCheck(false)
-        }
-        dispatch(setSelectedMessage(selectedMessage))
-        console.log('aaaa' + selectedMessage)
-    } */
     return (
         <div className={`message ${(currentUser.id == props.mess.authorId) && 'message__own'}`}>
 

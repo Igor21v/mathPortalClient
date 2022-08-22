@@ -4,37 +4,35 @@ import { WS_API_URL } from "../utils/config";
 import { store } from "../reducers";
 import { refresh } from "../actions/auth";
 
-export default function (user, socket, timerReopenSocket) {
+export default function (user, socket) {
+    let reopeningSocket = false
     console.log('socket.readyState ' + socket?.readyState)
     if (socket?.readyState === 1) {
         socket.close()
-        console.log('Сокет принудительно закрывается ' + timerReopenSocket)
-        clearTimeout(timerReopenSocket)
+        console.log('Сокет принудительно закрывается ')
     } else if (user?.id) {
         socket = new WebSocket(`${WS_API_URL}connectionWS`)
     }
-    addEventListener(user, socket)
+    addEventListener(user, socket, reopeningSocket)
     store.dispatch(setSocket(socket))
 }
 
-function addEventListener(user, socket, timerReopenSocket) {
-    console.log('lll' + timerReopenSocket)
+function addEventListener(user, socket, reopeningSocket) {
     socket.onclose = (event) => {
-        console.log('Socket закрыт с кодом ' + event.code)
+        console.log('Socket закрыт с кодом ' + event.code + 'Время: ' + Date.now() + ' ' + reopeningSocket)
         if (user?.id && event.code !== 1008) {
-            setTimeout(function reopenSocket() {
+            setTimeout(function () {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
-                timerReopenSocket = setTimeout(reopenSocket, 20000)
-                addEventListener(user, socket, timerReopenSocket)
+                reopeningSocket = true
+                addEventListener(user, socket, reopeningSocket)
                 store.dispatch(setSocket(socket))
-                console.log('Socket переоткрыт ' + timerReopenSocket)
-            }, 5000)
-
+                console.log('Socket переоткрыт ' + reopeningSocket)
+            }, reopeningSocket ? 27000 : 5000)
         }
     }
     socket.onopen = () => {
-        clearTimeout(timerReopenSocket)
-        console.log('Socket открыт ' + timerReopenSocket)
+        console.log('Socket открыт ' + Date.now() + '  ' + reopeningSocket)
+        reopeningSocket = false
         const message = {
             event: 'connection',
             userId: user?.id,
