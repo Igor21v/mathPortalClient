@@ -1,10 +1,31 @@
 import React from 'react';
+import { useState } from 'react';
 import File from './file/File';
 import './fileList.css'
 
 const FileList = (props) => {
-    return (
-        <div className='file-list'>
+    const [dragEnter, setDragEnter] = useState()
+    function dragEnterHandler(event) {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(true)
+    }
+
+    function dragLeaveHandler(event) {
+        event.preventDefault()
+        event.stopPropagation()
+        setDragEnter(false)
+    }
+
+    function dropHandler(event) {
+        event.preventDefault()
+        event.stopPropagation()
+        /* let files = [...event.dataTransfer.files]
+        files.forEach(file => dispatch(uploadFile(file, currentDir))) */
+        setDragEnter(false)
+    }
+    return ( !dragEnter ?
+        <div className='file-list' onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
             {props.files && props.files != 0 ?
                 <>
                     <div className="filelist__header">
@@ -18,6 +39,10 @@ const FileList = (props) => {
                 </>
                 :
                 <span> Файлов пока нет... </span>}
+        </div>
+        :
+        <div onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
+            Для добавления файлов поместите их сюда
         </div>
     );
 };
