@@ -5,7 +5,7 @@ import './file.css'
 import { useDispatch } from 'react-redux';
 import { downloadUserFile, deleteUserFile } from '../../../actions/file';
 import sizeFormat from '../../../utils/sizeFormat';
-import getDateTime from '../../../utils/getDate&Time';
+import getDateTime from '../../../utils/getDateTime';
 
 const File = ({ props }) => {
     const dispatch = useDispatch()

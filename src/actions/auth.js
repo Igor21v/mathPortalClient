@@ -12,7 +12,11 @@ export const login = (phon, password) => {
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
-            alert(e?.response?.data?.message)
+            if (e?.response?.data?.message) {
+                alert(e?.response?.data?.message)
+            } else {
+                alert('Сервер временно недоступен')
+            }
         }
     }
 }

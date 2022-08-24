@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import getDateTime from '../../../utils/getDate&Time';
+import getDateTime from '../../../utils/getDateTime';
 import './message.css'
 import { Form } from 'react-bootstrap'
 import deleteOneElement from '../../../utils/deleteOneElement';

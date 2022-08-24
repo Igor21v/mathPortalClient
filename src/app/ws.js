@@ -3,6 +3,7 @@ import { setSocket } from "../reducers/messageReducer"
 import { WS_API_URL } from "../utils/config";
 import { store } from "../reducers";
 import { refresh } from "../actions/auth";
+import getDateTimeSec from "../utils/getDateTimeSec";
 
 export default function (user, socket) {
     let reopeningSocket = false
@@ -19,7 +20,7 @@ export default function (user, socket) {
 
 function addEventListener(user, socket, reopeningSocket) {
     socket.onclose = (event) => {
-        console.log('Socket закрыт с кодом ' + event.code + 'Время: ' + Date.now() + ' ' + reopeningSocket)
+        console.log('Socket закрыт с кодом ' + event.code + 'Время: ' + getDateTimeSec(Date.now()) + ' ' + reopeningSocket)
         if (user?.id && event.code !== 1008) {
             setTimeout(function () {
                 socket = new WebSocket(`${WS_API_URL}connectionWS`)
@@ -31,7 +32,7 @@ function addEventListener(user, socket, reopeningSocket) {
         }
     }
     socket.onopen = () => {
-        console.log('Socket открыт ' + Date.now() + '  ' + reopeningSocket)
+        console.log('Socket открыт ' + getDateTimeSec(Date.now()) + '  ' + reopeningSocket)
         reopeningSocket = false
         const message = {
             event: 'connection',
