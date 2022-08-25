@@ -1,0 +1,24 @@
+@import "../../../../utils/colors.scss";
+
+.user-files {
+    padding: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    
+    &__drop-area {
+        width: 100% - 2rem;
+        height: 100% - 2rem;
+        border: dashed $primary 2px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        position: absolute;
+        z-index: 10;
+        background-color: lighten($color: $primary, $amount: 50);
+        border-radius: 3rem;
+        opacity: 0.5;
+    }
+}
