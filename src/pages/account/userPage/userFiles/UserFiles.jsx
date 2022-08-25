@@ -47,7 +47,7 @@ const UserFiles = () => {
     }
 
     return (
-        <Card className='user-files' onDragEnter={dragEnterHandler} onDrop={dropHandler} /* onDragLeave={dragLeaveHandler} */ onDragOver={dragEnterHandler} >
+        <Card className='user-files' /* onDragEnter={dragEnterHandler} */ /* onDrop={dropHandler}  *//* onDragLeave={dragLeaveHandler} */ onDragOver={dragEnterHandler} >
             <h4 className='text-center'>Файлы</h4>
 
             <>
@@ -62,7 +62,7 @@ const UserFiles = () => {
                 </Form>
             </>
             {dragEnter &&
-                <div className='user-files__drop-area' onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} /* onDragOver={dragEnterHandler} */>
+                <div className='user-files__drop-area' onDrop={dropHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
                     Для добавления файлов поместите их в эту область
                 </div>}
         </Card>

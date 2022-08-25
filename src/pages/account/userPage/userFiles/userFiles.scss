@@ -6,8 +6,8 @@
     position: relative;
     
     &__drop-area {
-        width: calc(100% - 2rem);
-        height: calc(100% - 2rem);
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
         border: dashed $primary 2px;
         text-align: center;
         display: flex;
@@ -15,9 +15,11 @@
         align-items: center;
         font-size: 40px;
         position: absolute;
+        left: -1px;
+        top: -1px;
         z-index: 10;
         background-color: lighten($color: $primary, $amount: 50);
-        border-radius: 3rem;
+        border-radius: 5px;
         opacity: 0.5;
     }
 }
