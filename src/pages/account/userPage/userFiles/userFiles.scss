@@ -4,11 +4,10 @@
     padding: 1rem;
     margin-top: 1rem;
     position: relative;
-    z-index: 1;
     
     &__drop-area {
-        width: 100% - 2rem;
-        height: 100% - 2rem;
+        width: calc(100% - 2rem);
+        height: calc(100% - 2rem);
         border: dashed $primary 2px;
         text-align: center;
         display: flex;

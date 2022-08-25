@@ -17,20 +17,19 @@ const UserFiles = () => {
         setDragEnter(true)
         console.log('dragEnterHandler')
     }
-
     function dragLeaveHandler(event) {
         event.preventDefault()
         event.stopPropagation()
         setDragEnter(false)
         console.log('dragLeaveHandler')
     }
-
     function dropHandler(event) {
+        console.log('dropHandler')
         event.preventDefault()
         event.stopPropagation()
-        console.log('dropHandler')
-        /* let files = [...event.dataTransfer.files]
-        files.forEach(file => dispatch(uploadFile(file, currentDir))) */
+        
+        let files = [...event.dataTransfer.files]
+        files.forEach(file => dispatch(postUserFile(userExtend._id, 'General', file)))
         setDragEnter(false)
     }
     function fileUploadHandler() {
@@ -48,21 +47,21 @@ const UserFiles = () => {
     }
 
     return (
-        <Card className='user-files' onDragEnter={dragEnterHandler} /* onDragLeave={dragLeaveHandler} */ /* onDragOver={dragEnterHandler} */ >
+        <Card className='user-files' onDragEnter={dragEnterHandler} onDrop={dropHandler} /* onDragLeave={dragLeaveHandler} */ onDragOver={dragEnterHandler} >
             <h4 className='text-center'>Файлы</h4>
-            
-                <>
-                    <FileList files={userExtend.files} userId={userExtend._id} folder={'General'} />
-                    <Form className='border p-3 rounded-3 mt-4'>
-                        <Form.Group controlId="Add files">
-                            <Form.Label>Добавить файлы</Form.Label>
-                            <Form.Control type="file" multiple className='mb-3' ref={inputFiles} />
-                            <Button className='me-2' onClick={fileUploadHandler}>Добавить</Button>
-                            <ProcState procState={procState} />
-                        </Form.Group>
-                    </Form>
-                </>
-                {dragEnter &&
+
+            <>
+                <FileList files={userExtend.files} userId={userExtend._id} folder={'General'} />
+                <Form className='border p-3 rounded-3 mt-4'>
+                    <Form.Group controlId="Add files">
+                        <Form.Label>Добавить файлы</Form.Label>
+                        <Form.Control type="file" multiple className='mb-3' ref={inputFiles} />
+                        <Button className='me-2' onClick={fileUploadHandler}>Добавить</Button>
+                        <ProcState procState={procState} />
+                    </Form.Group>
+                </Form>
+            </>
+            {dragEnter &&
                 <div className='user-files__drop-area' onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} /* onDragOver={dragEnterHandler} */>
                     Для добавления файлов поместите их в эту область
                 </div>}
