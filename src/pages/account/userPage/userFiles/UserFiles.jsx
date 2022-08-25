@@ -10,17 +10,17 @@ const UserFiles = () => {
     const dispatch = useDispatch()
     let inputFiles = React.createRef()
     const userExtend = useSelector(state => state.user.userExtend)
-    const [dragEnter, setDragEnter] = useState()
-    function dragEnterHandler(event) {
+    const [drag, setdrag] = useState()
+    function dragHandler(event) {
         event.preventDefault()
         event.stopPropagation()
-        setDragEnter(true)
-        console.log('dragEnterHandler')
+        setdrag(true)
+        console.log('dragHandler')
     }
     function dragLeaveHandler(event) {
         event.preventDefault()
         event.stopPropagation()
-        setDragEnter(false)
+        setdrag(false)
         console.log('dragLeaveHandler')
     }
     function dropHandler(event) {
@@ -30,7 +30,7 @@ const UserFiles = () => {
         
         let files = [...event.dataTransfer.files]
         files.forEach(file => dispatch(postUserFile(userExtend._id, 'General', file)))
-        setDragEnter(false)
+        setdrag(false)
     }
     function fileUploadHandler() {
         const files = [...inputFiles.current.files]
@@ -47,7 +47,7 @@ const UserFiles = () => {
     }
 
     return (
-        <Card className='user-files' /* onDragEnter={dragEnterHandler} */ /* onDrop={dropHandler}  *//* onDragLeave={dragLeaveHandler} */ onDragOver={dragEnterHandler} >
+        <Card className='user-files' /* ondrag={dragHandler} */ /* onDrop={dropHandler}  *//* onDragLeave={dragLeaveHandler} */ onDragOver={dragHandler} >
             <h4 className='text-center'>Файлы</h4>
 
             <>
@@ -61,8 +61,8 @@ const UserFiles = () => {
                     </Form.Group>
                 </Form>
             </>
-            {dragEnter &&
-                <div className='user-files__drop-area' onDrop={dropHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
+            {drag &&
+                <div className='user-files__drop-area' onDrop={dropHandler} onDragLeave={dragLeaveHandler} onDragOver={dragHandler}>
                     Для добавления файлов поместите их в эту область
                 </div>}
         </Card>
