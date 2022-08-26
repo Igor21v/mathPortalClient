@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { Pagination } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessagesList } from '../../../actions/message';
 import { setCurrentChat, setMessage } from '../../../reducers/messageReducer';
+import PaginationComp from '../../pagination/PaginationComp';
 import './mesPagination.css'
 
 const MesPagination = ({chatId}) => {
@@ -15,22 +15,15 @@ const MesPagination = ({chatId}) => {
           dispatch(setMessage([]))
         }
       }, []) */
+    const limit = useState(20)
     const messages = useSelector(state => state.messages.messages)
     const totalMessages = useSelector(state => state.messages.totalMessages)
     const currentPage = useSelector(state => state.messages.currentPage)
-    
+
+
     return (
         <div >
-            <Pagination className='mes-pagination'>
-                <Pagination.First/>
-                <Pagination.Prev/>
-                <Pagination.Item> 1 </Pagination.Item>
-                <Pagination.Ellipsis/>
-                <Pagination.Item> 2 </Pagination.Item>
-                <Pagination.Item> 3 </Pagination.Item>
-                <Pagination.Next/>
-                <Pagination.Last/>
-            </Pagination>
+           <PaginationComp totalPages={6} page={2} changePage= {()=>console.log('ffffxxxx')}/>
         </div>
     );
 };
