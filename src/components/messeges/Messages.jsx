@@ -6,6 +6,7 @@ import { changeOneMessage, setCurrentChat, setMessage, setSelectedMessage } from
 import Message from './message/Message';
 import './messages.css'
 import { Form } from 'react-bootstrap';
+import MesPagination from './mesPagination/MesPagination';
 
 export default function Messages({ chatId }) {
   const [value, setValue] = useState('');
@@ -71,6 +72,7 @@ export default function Messages({ chatId }) {
             {messages.map((mess, index) =>
               <Message key={mess._id} mess={mess} index={index} selected={selected} />
             )}
+            <MesPagination/>
           </div>
         </> :
           <div className='messages__none'>Сообщений пока что нет </div>}

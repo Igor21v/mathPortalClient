@@ -15,19 +15,15 @@ const UserFiles = () => {
         event.preventDefault()
         event.stopPropagation()
         setdrag(true)
-        console.log('dragHandler')
     }
     function dragLeaveHandler(event) {
         event.preventDefault()
         event.stopPropagation()
         setdrag(false)
-        console.log('dragLeaveHandler')
     }
     function dropHandler(event) {
-        console.log('dropHandler')
         event.preventDefault()
-        event.stopPropagation()
-        
+        event.stopPropagation()    
         let files = [...event.dataTransfer.files]
         files.forEach(file => dispatch(postUserFile(userExtend._id, 'General', file)))
         setdrag(false)
