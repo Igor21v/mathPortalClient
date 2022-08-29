@@ -15,15 +15,14 @@ const MesPagination = ({chatId}) => {
           dispatch(setMessage([]))
         }
       }, []) */
-    const limit = useState(20)
-    const messages = useSelector(state => state.messages.messages)
-    const totalMessages = useSelector(state => state.messages.totalMessages)
+    /* const messages = useSelector(state => state.messages.messages) */
+    const totalMessages = /* useSelector(state => state.messages.totalMessages) */200
     const currentPage = useSelector(state => state.messages.currentPage)
 
 
     return (
         <div >
-           <PaginationComp totalPages={6} page={2} changePage= {()=>console.log('ffffxxxx')}/>
+           <PaginationComp totalItems={totalMessages} reqPage= {(page)=>console.log('ffffxxxx' + page)}/>
         </div>
     );
 };
