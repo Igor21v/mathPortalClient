@@ -6,23 +6,16 @@ import PaginationComp from '../../pagination/PaginationComp';
 import './mesPagination.css'
 
 const MesPagination = ({chatId}) => {
-    /* const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(setCurrentChat(chatId))
-        getMessagesList(chatId)
-        return () => {
-          dispatch(setCurrentChat(undefined))
-          dispatch(setMessage([]))
-        }
-      }, []) */
-    /* const messages = useSelector(state => state.messages.messages) */
     const totalMessages = /* useSelector(state => state.messages.totalMessages) */200
-    const currentPage = useSelector(state => state.messages.currentPage)
+    const reqPage = (page) => {
+      console.log('ffffxxxx' + page)
+      getMessagesList(chatId, page)
+    }
 
 
     return (
         <div >
-           <PaginationComp totalItems={totalMessages} reqPage= {(page)=>console.log('ffffxxxx' + page)}/>
+           <PaginationComp totalItems={totalMessages} reqPage= {reqPage}/>
         </div>
     );
 };

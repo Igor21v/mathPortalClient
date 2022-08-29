@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;CACjC",
-    "sources": [
-        "pagination.scss"
-    ],
-    "names": [],
-    "file": "pagination.css"
-}
+{"version":3,"sources":["pagination.scss","pagination.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;EACA,eAAA;EACA,mBAAA;ACCJ;ADAI;EACI,gBAAA;ACER","file":"pagination.css"}

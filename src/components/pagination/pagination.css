@@ -1,9 +1,9 @@
 .pagination {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
-/*# sourceMappingURL=pagination.css.map */
+.pagination__pages {
+  margin-bottom: 0;
+}/*# sourceMappingURL=pagination.css.map */

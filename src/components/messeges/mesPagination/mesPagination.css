@@ -1,6 +1,3 @@
 .mes-pagination {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-/*# sourceMappingURL=mesPagination.css.map */
+  justify-content: center;
+}/*# sourceMappingURL=mesPagination.css.map */

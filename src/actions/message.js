@@ -1,5 +1,5 @@
 import { store } from "../reducers"
-import { addMessage, setMessage } from "../reducers/messageReducer"
+import { addMessage, setMessage, setTotalMessages } from "../reducers/messageReducer"
 import { $authHost, $host } from ".";
 
 
@@ -23,10 +23,11 @@ export async function sendMessage(value, chatId) {
     socket.send(JSON.stringify(message));
 }
 
-export async function getMessagesList(chatId) {
+export async function getMessagesList(chatId, page) {
     try {
-        const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}`)
+        const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}&page=${page}`)
         store.dispatch(setMessage(response.data))
+        /* store.dispatch(setTotalMessages(response.data.page)) */
     } catch (error) {
         console.log(error?.response?.data?.message)
     }

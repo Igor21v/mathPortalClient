@@ -1,4 +1,9 @@
 .pagination {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    &__pages {
+        margin-bottom: 0;
+    }
 }

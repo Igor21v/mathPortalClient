@@ -37,7 +37,7 @@ export default function Messages({ chatId }) {
   }
   useEffect(() => {
     dispatch(setCurrentChat(chatId))
-    getMessagesList(chatId)
+    getMessagesList(chatId, 1)
     return () => {
       dispatch(setCurrentChat(undefined))
       dispatch(setMessage([]))

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,eAAe,EAAE,MAAM;CAC1B",
-    "sources": [
-        "mesPagination.scss"
-    ],
-    "names": [],
-    "file": "mesPagination.css"
-}
+{"version":3,"sources":["mesPagination.scss","mesPagination.css"],"names":[],"mappings":"AAAA;EACI,uBAAA;ACCJ","file":"mesPagination.css"}
