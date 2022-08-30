@@ -2,23 +2,23 @@ import React, {useState} from 'react';
 import { getPageCount, getPagesArray } from "../../utils/pages";
 import { Dropdown, Pagination } from 'react-bootstrap';
 import './pagination.css'
+import { useNonInitialEffect } from '../../hooks/useNonInitialEffect';
 
 const PaginationComp = ({ totalItems, reqPage }) => {
     const [limit, setLimit] = useState(10)
     const [page, setPage] = useState(1)
     const totalPages = getPageCount(totalItems, limit)
     let pagesArray = getPagesArray(totalPages);
-    function changePage (p) {
-        setPage(p)
-        reqPage(p)
-    }
+    useNonInitialEffect(()=> {
+        reqPage(page, limit)
+    }, [page, limit])
     return (
         <div className='pagination'>
             <Pagination className='pagination__pages'>
                 <Pagination.First />
                 <Pagination.Prev />
                 {pagesArray.map(p =>
-                    <Pagination.Item active={page == p} key={p} onClick={()=>changePage(p)}> {p} </Pagination.Item>
+                    <Pagination.Item active={page == p} key={p} onClick={()=>setPage(p)}> {p} </Pagination.Item>
                 )}
                 {/* <Pagination.Ellipsis /> */}
                 <Pagination.Next />

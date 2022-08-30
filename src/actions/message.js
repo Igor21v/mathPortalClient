@@ -23,9 +23,9 @@ export async function sendMessage(value, chatId) {
     socket.send(JSON.stringify(message));
 }
 
-export async function getMessagesList(chatId, page) {
+export async function getMessagesList(chatId, page, limit) {
     try {
-        const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}&page=${page}`)
+        const response = await $authHost.get(`api/message/getMessagesList?chatId=${chatId}&page=${page}&limit=${limit}`)
         store.dispatch(setMessage(response.data))
         /* store.dispatch(setTotalMessages(response.data.page)) */
     } catch (error) {

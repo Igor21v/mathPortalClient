@@ -7,9 +7,9 @@ import './mesPagination.css'
 
 const MesPagination = ({chatId}) => {
     const totalMessages = /* useSelector(state => state.messages.totalMessages) */200
-    const reqPage = (page) => {
-      console.log('ffffxxxx' + page)
-      getMessagesList(chatId, page)
+    const reqPage = (page, limit) => {
+      console.log('ffffxxxx' + page + ' vv ' + chatId)
+      getMessagesList(chatId, page, limit)
     }
 
 

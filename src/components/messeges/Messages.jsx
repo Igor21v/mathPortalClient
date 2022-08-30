@@ -72,7 +72,7 @@ export default function Messages({ chatId }) {
             {messages.map((mess, index) =>
               <Message key={mess._id} mess={mess} index={index} selected={selected} />
             )}
-            <MesPagination/>
+            <MesPagination chatId={chatId}/>
           </div>
         </> :
           <div className='messages__none'>Сообщений пока что нет </div>}
